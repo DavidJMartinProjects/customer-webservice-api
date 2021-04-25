@@ -43,18 +43,18 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
     public ErrorData handleDataAccessException(@NonNull HttpServletRequest request, @NonNull EmptyResultDataAccessException ex) {
         log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
         return ErrorData.builder()
-                .errorCode("NOT_FOUND")
-                .message(ex.getMessage())
-                .url(request.getRequestURI())
-                .timestamp(LocalDateTime.now().toString())
-                .build();
+            .errorCode("NOT_FOUND")
+            .message(ex.getMessage())
+            .url(request.getRequestURI())
+            .timestamp(LocalDateTime.now().toString())
+            .build();
     }
 
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ErrorData handleNullPointer(@NonNull NullPointerException ex) {
-
+    public ErrorData handleNullPointerException(@NonNull NullPointerException ex) {
+        log.info("handling NullPointerException: {}.", ex.getMessage());
         return ErrorData.builder()
             .errorCode("BAD_REQUEST")
             .message(ex.getMessage())
