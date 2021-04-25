@@ -2,10 +2,11 @@ package com.customer;
 
 import java.util.List;
 
+import com.app.openapi.model.Customer;
 import com.customer.base.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import com.app.openapi.model.Customer;
+
 
 class CustomerControllerTests extends IntegrationTest {
 
@@ -78,28 +79,6 @@ class CustomerControllerTests extends IntegrationTest {
                 .jsonPath("$.timestamp").isNotEmpty();
     }
 
-//    @Test
-//    void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
-//
-//        // given
-//        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
-//
-//        // when
-//        webTestClient
-//            .delete()
-//            .uri("/customers/" + CUSTOMER_ID_ONE)
-//
-//            // then
-//            .exchange()
-//            .expectStatus()
-//            .isNoContent()
-//
-//            // and
-//            .expectBody()
-//                .isEmpty();
-//
-//    }
-
     @Test
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
 
@@ -123,5 +102,28 @@ class CustomerControllerTests extends IntegrationTest {
             .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
             .jsonPath("$.timestamp").isNotEmpty();
     }
+
+    // ToDO: enable db transaction rollback per testcase
+//    @Test
+//    void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
+//
+//        // given
+//        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+//
+//        // when
+//        webTestClient
+//            .delete()
+//            .uri("/customers/" + CUSTOMER_ID_ONE)
+//
+//            // then
+//            .exchange()
+//            .expectStatus()
+//            .isNoContent()
+//
+//            // and
+//            .expectBody()
+//                .isEmpty();
+//
+//    }
 
 }
