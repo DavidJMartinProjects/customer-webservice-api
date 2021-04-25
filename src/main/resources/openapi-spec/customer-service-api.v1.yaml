@@ -1,12 +1,16 @@
 openapi: 3.0.1
 info:
+  description: customer-service api docs
   title: OpenAPI definition
   version: v0
+  contact:
+    name: DavidJMartin
+  termsOfService: DavidJMartin
 servers:
   - url: 'http://localhost:8080'
     description: Generated server url
 paths:
-  /customers/:
+  '/customers/':
     get:
       tags:
         - customer-controller
@@ -23,13 +27,13 @@ paths:
         '400':
           description: Bad Request
           content:
-            application/json:
+            '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
         '404':
           description: Not Found
           content:
-            application/json:
+            '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
       description: returns all customers
@@ -55,16 +59,102 @@ paths:
         '400':
           description: Bad Request
           content:
-            application/json:
+            '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
         '404':
           description: Not Found
           content:
-            application/json:
+            '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
       description: returns a customer by id
+    post:
+      tags:
+        - customer-controller
+      summary: ''
+      operationId: post-customers-id
+      responses:
+        '201':
+          description: Created
+        '404':
+          description: Not Found
+      description: creates a new customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                firstName:
+                  type: string
+                  minLength: 1
+                lastName:
+                  type: string
+                  minLength: 1
+                address:
+                  type: string
+                  minLength: 1
+                city:
+                  type: string
+                  minLength: 1
+                country:
+                  type: string
+                  minLength: 1
+                email:
+                  type: string
+                  minLength: 1
+              required:
+                - firstName
+                - lastName
+                - address
+                - city
+                - country
+                - email
+            examples:
+              example-1:
+                value:
+                  firstName: string
+                  lastName: string
+                  address: string
+                  city: string
+                  country: string
+                  email: string
+    put:
+      tags:
+        - customer-controller
+      summary: ''
+      operationId: put-customers-id
+      responses:
+        '201':
+          description: Created
+        '404':
+          description: Not Found
+      description: updates a customer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+    delete:
+      tags:
+        - customer-controller
+      summary: ''
+      operationId: delete-customers-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+      description: deletes a customer
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: customer id
 components:
   schemas:
     ErrorData:
