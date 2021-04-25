@@ -55,19 +55,17 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_getRequestToCustomerById_THEN_notFound() {
+
         // given
         final long nonExistingId = 100;
-
         // when
         webTestClient
             .get()
             .uri("/customers/" + nonExistingId)
-
             // then
             .exchange()
             .expectStatus()
                 .isNotFound()
-
             // and
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
@@ -80,17 +78,14 @@ class CustomerControllerTests extends IntegrationTest {
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
         // given
         final long nonExistingId = 100;
-
         // when
         webTestClient
             .delete()
             .uri("/customers/" + nonExistingId)
-
             // then
             .exchange()
             .expectStatus()
                 .isNotFound()
-
             // and
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
