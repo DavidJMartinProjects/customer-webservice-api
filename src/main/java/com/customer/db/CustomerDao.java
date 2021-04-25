@@ -22,7 +22,7 @@ import com.customer.exceptions.EntityNotFoundException;
 public class CustomerDao {
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public List<Customer> findAllCustomers() {
         return customerRepository.findAll()
@@ -37,11 +37,11 @@ public class CustomerDao {
         CustomerEntity customerEntity =
             customerRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(id));
-
         return new ModelMapper().map(customerEntity, Customer.class);
     }
 
     public void deleteCustomerById(@NonNull long id) {
         customerRepository.deleteById(id);
     }
+
 }
