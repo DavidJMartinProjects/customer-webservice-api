@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
 
-
 /**
  * @author davidjmartin
  */
@@ -16,7 +15,7 @@ import com.customer.db.CustomerDao;
 public class CustomerService {
 
     @Autowired
-    CustomerDao customerDao;
+    private CustomerDao customerDao;
 
     public List<Customer> getCustomers() {
         return customerDao.findAllCustomers();

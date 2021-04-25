@@ -27,7 +27,8 @@ public class CustomerDao {
     public List<Customer> findAllCustomers() {
         return customerRepository.findAll()
             .stream()
-            .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))
+            .map(customerEntity
+                    -> new ModelMapper().map(customerEntity, Customer.class))
             .collect(Collectors.toList());
     }
 

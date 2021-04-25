@@ -4,9 +4,9 @@ import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
 import java.util.List;
 
-import com.app.openapi.model.Customer;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import com.app.openapi.model.Customer;
 
 class CustomerControllerTests extends IntegrationTest {
 

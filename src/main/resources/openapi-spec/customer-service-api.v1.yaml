@@ -22,8 +22,8 @@ paths:
                 example-1:
                   value:
                     - id: string
-                      fname: string
-                      sname: string
+                      firstName: string
+                      lastName: string
                       address: string
                       city: string
                       country: string
@@ -42,8 +42,8 @@ components:
       x-examples:
         example-1:
           id: '1'
-          fname: David
-          sname: Martin
+          firstName: David
+          lastName: Martin
           address: Main St.
           city: Paris
           country: France
@@ -52,9 +52,9 @@ components:
       properties:
         id:
           type: number
-        fname:
+        firstName:
           type: string
-        sname:
+        lastName:
           type: string
         address:
           type: string
