@@ -2,7 +2,6 @@ package com.customer.controller.advice;
 
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.customer.exceptions.EntityNotFoundException;
-import com.customer.exceptions.ErrorData;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,11 +29,11 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
     public ErrorData handleEntityNotFound(@NonNull HttpServletRequest request, @NonNull EntityNotFoundException ex) {
         log.info("handling EntityNotFoundException: {}.", ex.getMessage());
         return ErrorData.builder()
-			.errorCode("NOT_FOUND")
-			.message(ex.getMessage())
-			.url(request.getRequestURI())
-			.timestamp(LocalDateTime.now())
-			.build();
+            .errorCode("NOT_FOUND")
+            .message(ex.getMessage())
+            .url(request.getRequestURI())
+            .timestamp(LocalDateTime.now())
+            .build();
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
@@ -44,10 +42,10 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
     public ErrorData handleNullPointer(@NonNull NullPointerException ex) {
 
         return ErrorData.builder()
-			.errorCode("BAD_REQUEST")
-			.message(ex.getMessage())
-			.timestamp(LocalDateTime.now())
-			.build();
+            .errorCode("BAD_REQUEST")
+            .message(ex.getMessage())
+            .timestamp(LocalDateTime.now())
+            .build();
     }
 
 }

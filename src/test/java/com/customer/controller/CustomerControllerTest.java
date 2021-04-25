@@ -2,11 +2,11 @@ package com.customer.controller;
 
 import java.util.List;
 
-import com.customer.TestsBase;
+import com.customer.IntegrationTest;
 import com.customer.model.dto.Customer;
 import org.junit.Test;
 
-public class CustomerControllerTest extends TestsBase{
+public class CustomerControllerTest extends IntegrationTest {
 
     public static final int CUSTOMER_ID_ONE = 1;
 
@@ -39,17 +39,17 @@ public class CustomerControllerTest extends TestsBase{
 
         // when
         webTestClient
-                .get()
-                .uri("/customers/" + CUSTOMER_ID_ONE)
+            .get()
+            .uri("/customers/" + CUSTOMER_ID_ONE)
 
-                // then
-                .exchange()
-                .expectStatus()
+            // then
+            .exchange()
+            .expectStatus()
                 .isOk()
 
-                // and
-                .expectBody(Customer.class)
-                .isEqualTo(expectedCustomer);
+            // and
+            .expectBody(Customer.class)
+            .isEqualTo(expectedCustomer);
 
     }
 
