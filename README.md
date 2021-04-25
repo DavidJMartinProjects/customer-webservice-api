@@ -1,10 +1,12 @@
 # Springboot based web microservice.
- - This project is an example of clean code and architecture.
- - it was developed using the "api-driven first" approach.
+ - this project demonstrates the development of a RESTful web-service using an "api-driven first" approach.
+ - high focus on clean, maintainable code, tested at the appropriate level for production.
+ 
   
 ## frameworks used:
-- doc generation - openapi
-- db - jpa, h2 
+- doc generation: openapi
+- build: maven, maven code generator
+- db: jpa, h2 (relational db) 
 - utils: model-mapper
 - test :
   - integration testing (@SpringBootTest) 
