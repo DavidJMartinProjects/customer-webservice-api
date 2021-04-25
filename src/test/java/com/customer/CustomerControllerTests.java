@@ -14,6 +14,7 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() throws Exception {
+
         // given
         final List<Customer> expectedCustomers = customerDao.findAllCustomers();
 
@@ -26,8 +27,6 @@ class CustomerControllerTests extends IntegrationTest {
             .exchange()
                 .expectStatus()
                     .isOk()
-
-            // and
             .expectBodyList(Customer.class)
                 .hasSize(3)
                 .isEqualTo(expectedCustomers);
@@ -35,6 +34,7 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
+
         // given
         final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
 
@@ -47,8 +47,6 @@ class CustomerControllerTests extends IntegrationTest {
             .exchange()
             .expectStatus()
                 .isOk()
-
-            // and
             .expectBody(Customer.class)
                 .isEqualTo(expectedCustomer);
     }
@@ -58,15 +56,16 @@ class CustomerControllerTests extends IntegrationTest {
 
         // given
         final long nonExistingId = 100;
+
         // when
         webTestClient
             .get()
             .uri("/customers/" + nonExistingId)
+
             // then
             .exchange()
             .expectStatus()
                 .isNotFound()
-            // and
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " cannot be found"))
@@ -76,6 +75,7 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
+        
         // given
         final long nonExistingId = 100;
         // when
@@ -86,7 +86,6 @@ class CustomerControllerTests extends IntegrationTest {
             .exchange()
             .expectStatus()
                 .isNotFound()
-            // and
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
@@ -109,8 +108,7 @@ class CustomerControllerTests extends IntegrationTest {
 //            .exchange()
 //            .expectStatus()
 //            .isNoContent()
-//
-//            // and
+
 //            .expectBody()
 //                .isEmpty();
 //
