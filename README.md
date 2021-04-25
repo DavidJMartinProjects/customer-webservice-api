@@ -1,6 +1,6 @@
 # Springboot based web microservice.
  - this project demonstrates the development of a RESTful web-service using an "api-driven first" approach.
- - high focus on clean, maintainable code, tested at the appropriate level for production.
+ - high focus on clean, maintainable code, tested at the appropriate level to meet production quality standards.
  
   
 ## frameworks used:
