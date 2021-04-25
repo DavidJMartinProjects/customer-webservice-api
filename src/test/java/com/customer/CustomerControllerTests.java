@@ -75,9 +75,10 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
-        
+
         // given
         final long nonExistingId = 100;
+        
         // when
         webTestClient
             .delete()
