@@ -14,7 +14,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() throws Exception {
-
         // given
         final List<Customer> expectedCustomers = customerDao.findAllCustomers();
 
@@ -36,7 +35,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
-
         // given
         final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
 
@@ -57,7 +55,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_getRequestToCustomerById_THEN_notFound() {
-
         // given
         final long nonExistingId = 100;
 
@@ -81,7 +78,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
-
         // given
         final long nonExistingId = 100;
 
@@ -106,7 +102,6 @@ class CustomerControllerTests extends IntegrationTest {
     // ToDO: enable db transaction rollback per testcase
 //    @Test
 //    void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
-//
 //        // given
 //        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
 //
