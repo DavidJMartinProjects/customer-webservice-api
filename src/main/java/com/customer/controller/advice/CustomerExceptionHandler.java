@@ -62,6 +62,4 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
             .build();
     }
 
-
-
 }
