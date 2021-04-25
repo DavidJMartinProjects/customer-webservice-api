@@ -1,6 +1,7 @@
 # Springboot based web microservice.
  - This project is an example of clean code and architecture.
- - built using an "api driven first" approach to web service development. 
+ - built using an "api driven first" approach to web service development.
+  
 ##frameworks used:
 - doc generation - openapi
 - db - jpa, h2 
