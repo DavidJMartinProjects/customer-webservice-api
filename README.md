@@ -27,8 +27,8 @@ $ mvn clean install
  * The microservice exposes its api documentation through its actuator endpoints.
  * To view the service api docs, run the project & navigate to the below service management urls:
 
-    http://localhost:9090/actuator/openapi
-    http://localhost:9090/actuator/swaggerui   
+    - http://localhost:9090/actuator/openapi    
+    - http://localhost:9090/actuator/swaggerui   
 
 
 ## additional info :
