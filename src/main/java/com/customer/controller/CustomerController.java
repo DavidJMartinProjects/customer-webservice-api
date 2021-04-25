@@ -1,4 +1,4 @@
-package com.customer.integration;
+package com.customer.controller;
 
 import java.util.List;
 
@@ -10,9 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.customer.model.dto.Customer;
-import com.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
+
+import com.app.openapi.api.CustomersApi;
+import com.app.openapi.model.Customer;
+
+import com.customer.service.CustomerService;
+
 
 /**
  * @author davidjmartin
@@ -20,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 @RequestMapping(CustomerController.CUSTOMERS_BASE_PATH)
-public class CustomerController {
+public class CustomerController implements CustomersApi {
 
     public static final String CUSTOMERS_BASE_PATH = "customers/";
 

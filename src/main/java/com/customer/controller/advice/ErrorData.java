@@ -1,4 +1,4 @@
-package com.customer.integration.advice;
+package com.customer.controller.advice;
 
 import lombok.Builder;
 import lombok.Data;

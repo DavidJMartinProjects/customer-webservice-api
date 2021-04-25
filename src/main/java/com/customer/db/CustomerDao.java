@@ -6,12 +6,14 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import lombok.NonNull;
+
+import org.modelmapper.ModelMapper;
+import com.app.openapi.model.Customer;
+
+import com.customer.db.entity.CustomerEntity;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.EntityNotFoundException;
-import com.customer.model.dto.Customer;
-import com.customer.model.entity.CustomerEntity;
-import lombok.NonNull;
-import org.modelmapper.ModelMapper;
 
 /**
  * @author davidjmartin

@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
-import com.customer.model.dto.Customer;
+
 
 /**
  * @author davidjmartin
