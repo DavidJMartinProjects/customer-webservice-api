@@ -2,6 +2,12 @@
  - this project demonstrates the development of a RESTful web-service using an "api-driven first" approach.
  - high focus on clean, maintainable code, tested at the appropriate level to meet production quality standards.
  
+## api docs :
+ - to view the service api docs, run the project & navigate to the below service management urls:
+  
+     - http://localhost:9090/actuator   
+     - http://localhost:9090/actuator/swaggerui   
+     - http://localhost:9090/actuator/openapi
   
 ## frameworks used:
 - doc generation: openapi
