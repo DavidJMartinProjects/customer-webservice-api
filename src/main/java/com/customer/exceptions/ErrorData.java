@@ -3,12 +3,12 @@ package com.customer.exceptions;
 import java.time.LocalDateTime;
 
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
 /**
  * @author davidjmartin
  */
-@Value
+@Data
 @Builder
 public class ErrorData {
 
