@@ -4,6 +4,7 @@ import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
 import java.util.List;
 
+import com.customer.base.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import com.app.openapi.model.Customer;
@@ -14,7 +15,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() throws Exception {
-
         // given
         final List<Customer> expectedCustomers = customerDao.findAllCustomers();
 
@@ -32,12 +32,10 @@ class CustomerControllerTests extends IntegrationTest {
             .expectBodyList(Customer.class)
                 .hasSize(3)
                 .isEqualTo(expectedCustomers);
-
     }
 
     @Test
     void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
-
         // given
         final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
 
@@ -54,12 +52,10 @@ class CustomerControllerTests extends IntegrationTest {
             // and
             .expectBody(Customer.class)
             .isEqualTo(expectedCustomer);
-
     }
 
     @Test
     void GIVEN_nonExistingId_WHEN_getRequestToCustomerById_THEN_notFound() {
-
         // given
         final long nonExistingId = 100;
 
@@ -77,8 +73,6 @@ class CustomerControllerTests extends IntegrationTest {
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString(CUSTOMERS_BASE_PATH + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " cannot be found"));
-
-
     }
 
 }

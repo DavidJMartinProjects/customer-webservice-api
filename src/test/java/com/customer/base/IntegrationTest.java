@@ -1,4 +1,4 @@
-package com.customer;
+package com.customer.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
