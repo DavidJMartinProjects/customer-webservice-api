@@ -97,10 +97,10 @@ class CustomerControllerTests extends IntegrationTest {
 
             // and
             .expectBody()
-            .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-            .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
-            .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
-            .jsonPath("$.timestamp").isNotEmpty();
+                .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
+                .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
+                .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
+                .jsonPath("$.timestamp").isNotEmpty();
     }
 
     // ToDO: enable db transaction rollback per testcase
