@@ -23,8 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ExceptionHandler(EntityNotFoundException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ResponseBody
     public ErrorData handleEntityNotFound(@NonNull HttpServletRequest request, @NonNull EntityNotFoundException ex) {
         log.info("handling EntityNotFoundException: {}.", ex.getMessage());
@@ -32,19 +32,19 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
             .errorCode("NOT_FOUND")
             .message(ex.getMessage())
             .url(request.getRequestURI())
-            .timestamp(LocalDateTime.now())
+            .timestamp(LocalDateTime.now().toString())
             .build();
     }
 
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(NullPointerException.class)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorData handleNullPointer(@NonNull NullPointerException ex) {
 
         return ErrorData.builder()
             .errorCode("BAD_REQUEST")
             .message(ex.getMessage())
-            .timestamp(LocalDateTime.now())
+            .timestamp(LocalDateTime.now().toString())
             .build();
     }
 

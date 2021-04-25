@@ -19,10 +19,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping(CustomerController.BASE_PATH)
+@RequestMapping(CustomerController.CUSTOMERS_BASE_PATH)
 public class CustomerController {
 
-    public static final String BASE_PATH = "customers/";
+    public static final String CUSTOMERS_BASE_PATH = "customers/";
 
     @Autowired
     private CustomerService customerService;
@@ -30,14 +30,14 @@ public class CustomerController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Customer> getCustomers() {
-        log.info("received GET request to {}", BASE_PATH);
+        log.info("received GET request to {}", CUSTOMERS_BASE_PATH);
         return customerService.getCustomers();
     }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public Customer getCustomerById(@PathVariable("id") long id) {
-        log.info("received GET request to {}{}.", BASE_PATH, id);
+        log.info("received GET request to {}{}.", CUSTOMERS_BASE_PATH, id);
         return customerService.findCustomerById(id);
     }
 

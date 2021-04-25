@@ -12,10 +12,7 @@ import org.junit.runner.RunWith;
 
 @Slf4j
 @RunWith(SpringRunner.class)
-@SpringBootTest(
-    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    classes = DemoApplication.class 
-)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
 public abstract class IntegrationTest {
 
