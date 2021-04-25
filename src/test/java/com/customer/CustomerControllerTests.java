@@ -53,7 +53,7 @@ class CustomerControllerTests extends IntegrationTest {
 
             // and
             .expectBody(Customer.class)
-            .isEqualTo(expectedCustomer);
+                .isEqualTo(expectedCustomer);
     }
 
     @Test
