@@ -1,7 +1,5 @@
 package com.customer;
 
-import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
-
 import java.util.List;
 
 import com.customer.base.IntegrationTest;
@@ -22,7 +20,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-                .uri(CUSTOMERS_BASE_PATH)
+                .uri("/customers/")
 
             // then
             .exchange()
@@ -44,7 +42,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH + CUSTOMER_ID_ONE)
+            .uri("/customers/" + CUSTOMER_ID_ONE)
 
             // then
             .exchange()
@@ -65,7 +63,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
+            .uri("/customers/" + nonExistingId)
 
             // then
             .exchange()
@@ -74,7 +72,7 @@ class CustomerControllerTests extends IntegrationTest {
 
             // and
             .expectBody()
-                .jsonPath("$.url").value(Matchers.containsString(CUSTOMERS_BASE_PATH + nonExistingId))
+                .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " cannot be found"))
                 .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
                 .jsonPath("$.timestamp").isNotEmpty();

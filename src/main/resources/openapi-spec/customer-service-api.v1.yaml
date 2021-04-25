@@ -1,14 +1,16 @@
-openapi: 3.0.0
+openapi: 3.0.1
 info:
-  title: customer-service
-  version: '1.0'
+  title: OpenAPI definition
+  version: v0
 servers:
   - url: 'http://localhost:8080'
+    description: Generated server url
 paths:
-  /customers:
+  /customers/:
     get:
-      summary: GET /customers
-      tags: []
+      tags:
+        - customer-controller
+      operationId: getCustomers
       responses:
         '200':
           description: OK
@@ -18,37 +20,68 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Customer'
-              examples:
-                example-1:
-                  value:
-                    - id: string
-                      firstName: string
-                      lastName: string
-                      address: string
-                      city: string
-                      country: string
-                      email: string
         '400':
           description: Bad Request
-        '500':
-          description: Internal Server Error
-      operationId: getAllCustomers
-      description: Returns all customer records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+      description: returns all customers
+  '/customers/{id}':
+    get:
+      tags:
+        - customer-controller
+      operationId: getCustomerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+      description: returns a customer by id
 components:
   schemas:
+    ErrorData:
+      title: ErrorData
+      type: object
+      properties:
+        url:
+          type: string
+        errorCode:
+          type: string
+        message:
+          type: string
+        timestamp:
+          type: string
     Customer:
       title: Customer
       type: object
-      x-examples:
-        example-1:
-          id: '1'
-          firstName: David
-          lastName: Martin
-          address: Main St.
-          city: Paris
-          country: France
-          email: david.martin@email.com
-      description: stores customer details
       properties:
         id:
           type: number
