@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -36,6 +37,19 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
             .build();
     }
 
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorData handleDataAccessException(@NonNull HttpServletRequest request, @NonNull EmptyResultDataAccessException ex) {
+        log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
+        return ErrorData.builder()
+                .errorCode("NOT_FOUND")
+                .message(ex.getMessage())
+                .url(request.getRequestURI())
+                .timestamp(LocalDateTime.now().toString())
+                .build();
+    }
+
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ResponseBody
@@ -47,5 +61,7 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
             .timestamp(LocalDateTime.now().toString())
             .build();
     }
+
+
 
 }

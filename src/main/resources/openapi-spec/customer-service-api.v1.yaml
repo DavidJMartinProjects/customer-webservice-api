@@ -141,16 +141,17 @@ paths:
       tags:
         - customer-controller
       summary: ''
-      operationId: delete-customers-id
+      operationId: deleteCustomerById
       responses:
         '204':
           description: No Content
         '404':
           description: Not Found
-      description: deletes a customer
+      description: deletes a customer by id
     parameters:
       - schema:
-          type: string
+          type: integer
+          format: int64
         name: id
         in: path
         required: true

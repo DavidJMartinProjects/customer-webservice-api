@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.app.openapi.api.CustomersApi;
 import com.app.openapi.model.Customer;
 import com.customer.service.CustomerService;
 import io.swagger.annotations.ApiParam;
+import javafx.beans.value.ObservableValue;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -23,8 +25,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping("/customers/")
+@RequestMapping(CustomerController.CUSTOMERS_BASE_PATH)
 public class CustomerController implements CustomersApi {
+
+    public static final String CUSTOMERS_BASE_PATH = "/customers/";
 
     @Autowired
     private CustomerService customerService;
@@ -33,7 +37,7 @@ public class CustomerController implements CustomersApi {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Customer>> getCustomers() {
-        log.info("received GET request to {}", "/customers/");
+        log.info("received GET request to {}", CUSTOMERS_BASE_PATH);
         return ResponseEntity.ok(customerService.getCustomers());
     }
 
@@ -41,8 +45,17 @@ public class CustomerController implements CustomersApi {
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
-        log.info("received GET request to {}{}.", "/customers/", id);
+        log.info("received GET request to {}{}.", CUSTOMERS_BASE_PATH, id);
         return ResponseEntity.ok(customerService.findCustomerById(id));
+    }
+
+    @Override
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> deleteCustomerById(@PathVariable("id") Long id) {
+        log.info("received DELETE request to {}{}.", CUSTOMERS_BASE_PATH, id);
+        customerService.deleteCustomerById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

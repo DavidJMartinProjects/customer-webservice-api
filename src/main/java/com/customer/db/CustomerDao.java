@@ -41,4 +41,7 @@ public class CustomerDao {
         return new ModelMapper().map(customerEntity, Customer.class);
     }
 
+    public void deleteCustomerById(@NonNull long id) {
+        customerRepository.deleteById(id);
+    }
 }

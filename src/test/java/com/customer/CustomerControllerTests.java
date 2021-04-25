@@ -78,4 +78,50 @@ class CustomerControllerTests extends IntegrationTest {
                 .jsonPath("$.timestamp").isNotEmpty();
     }
 
+//    @Test
+//    void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
+//
+//        // given
+//        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+//
+//        // when
+//        webTestClient
+//            .delete()
+//            .uri("/customers/" + CUSTOMER_ID_ONE)
+//
+//            // then
+//            .exchange()
+//            .expectStatus()
+//            .isNoContent()
+//
+//            // and
+//            .expectBody()
+//                .isEmpty();
+//
+//    }
+
+    @Test
+    void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
+
+        // given
+        final long nonExistingId = 100;
+
+        // when
+        webTestClient
+            .delete()
+            .uri("/customers/" + nonExistingId)
+
+            // then
+            .exchange()
+            .expectStatus()
+                .isNotFound()
+
+            // and
+            .expectBody()
+            .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
+            .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
+            .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
+            .jsonPath("$.timestamp").isNotEmpty();
+    }
+
 }
