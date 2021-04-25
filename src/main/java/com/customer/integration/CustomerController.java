@@ -1,4 +1,4 @@
-package com.customer.controller;
+package com.customer.integration;
 
 import java.util.List;
 

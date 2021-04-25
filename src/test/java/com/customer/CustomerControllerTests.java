@@ -1,10 +1,9 @@
-package com.customer.controller;
+package com.customer;
 
-import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
+import static com.customer.integration.CustomerController.CUSTOMERS_BASE_PATH;
 
 import java.util.List;
 
-import com.customer.IntegrationTest;
 import com.customer.model.dto.Customer;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
