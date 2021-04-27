@@ -1,37 +1,30 @@
 package com.customer;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.app.openapi.model.Customer;
-import com.customer.base.IntegrationTest;
+import com.customer.model.CustomerFactory;
+import com.customer.setup.IntegrationTest;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 class CustomerControllerTests extends IntegrationTest {
 
-    public static final int CUSTOMER_ID_ONE = 1;
+    private static final int CUSTOMER_ID_ONE = 1;
 
-    @Test
-    void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() throws Exception {
+    @Autowired
+    private CustomerFactory customerFactory;
 
-        // given
-        final List<Customer> expectedCustomers = customerService.getCustomers();
+    @BeforeEach
+    public void init() {
+        customerFactory.buildAndPersistTestData(3);
+    }
 
-        // when
-        webTestClient
-            .get()
-                .uri("/customers/")
-
-            // then
-            .exchange()
-                .expectStatus()
-                    .isOk()
-
-            // and
-            .expectBodyList(Customer.class)
-                .hasSize(3)
-                .isEqualTo(expectedCustomers);
+    @AfterEach
+    public void tearDown() {
+        customerFactory.wipeTestData();
     }
 
     @Test
@@ -42,18 +35,56 @@ class CustomerControllerTests extends IntegrationTest {
 
         // when
         webTestClient
-            .get()
-            .uri("/customers/" + CUSTOMER_ID_ONE)
+                .get()
+                .uri("/customers/" + CUSTOMER_ID_ONE)
 
-            // then
-            .exchange()
-            .expectStatus()
+                // then
+                .exchange()
+                .expectStatus()
                 .isOk()
 
-            // and
-            .expectBody(Customer.class)
+                // and
+                .expectBody(Customer.class)
                 .isEqualTo(expectedCustomer);
     }
+//    @Test
+//    void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
+//
+//        // given
+//        final List<Customer> expectedCustomers = customerFactory.getDefaultTestCustomers(3);
+//
+//        // when
+//        webTestClient
+//            .get()
+//                .uri("/customers/")
+//
+//            // then
+//            .exchange()
+//                .expectStatus()
+//                    .isOk()
+//            .expectBodyList(Customer.class)
+//                .hasSize(3)
+//                .isEqualTo(expectedCustomers);
+//    }
+//
+//    @Test
+//    void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
+//
+//        // given
+//        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+//
+//        // when
+//        webTestClient
+//            .get()
+//            .uri("/customers/" + CUSTOMER_ID_ONE)
+//
+//            // then
+//            .exchange()
+//            .expectStatus()
+//                .isOk()
+//            .expectBody(Customer.class)
+//                .isEqualTo(expectedCustomer);
+//    }
 
     @Test
     void GIVEN_nonExistingId_WHEN_getRequestToCustomerById_THEN_notFound() {
@@ -70,8 +101,6 @@ class CustomerControllerTests extends IntegrationTest {
             .exchange()
             .expectStatus()
                 .isNotFound()
-
-            // and
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " cannot be found"))
@@ -89,13 +118,10 @@ class CustomerControllerTests extends IntegrationTest {
         webTestClient
             .delete()
             .uri("/customers/" + nonExistingId)
-
             // then
             .exchange()
             .expectStatus()
                 .isNotFound()
-
-            // and
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
@@ -106,7 +132,6 @@ class CustomerControllerTests extends IntegrationTest {
     // ToDO: enable db transaction rollback per testcase
 //    @Test
 //    void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
-//
 //        // given
 //        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
 //
@@ -119,8 +144,6 @@ class CustomerControllerTests extends IntegrationTest {
 //            .exchange()
 //            .expectStatus()
 //            .isNoContent()
-//
-//            // and
 //            .expectBody()
 //                .isEmpty();
 //

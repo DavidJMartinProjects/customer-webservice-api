@@ -7,17 +7,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * @author davidjmartin
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "customers")
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CustomerEntity {
 
     @Id
