@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.customer.db.CustomerDao;
+import com.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,7 +19,7 @@ public abstract class IntegrationTest {
     protected WebTestClient webTestClient;
 
     @Autowired
-    protected CustomerDao customerDao;
+    protected CustomerService customerService;
 
 }
 

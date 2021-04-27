@@ -37,10 +37,10 @@ OS X, Windows, Linux:
     - http://localhost:9090/actuator/swaggerui   
 
 ## Additional info 
- - api docs are automatically generated from the openapi specification.
- - controller models and interfaces are automatically generated from the openapi spec, allowing them to be introduced in the code base.
+ - api docs are automatically generated from the OpenAPI specification.
+ - controller models and interfaces are generated from the OpenAPI spec, allowing them to be introduced in the code base.
     - by integrating the generated controller interfaces and response models, the code must always align to the behaviour outlined in the openapi specification.  
-    - now, the openapi spec is _"the single source of truth"_ in terms of the behaviour of the microservice.
+    - now, the OpenAPI spec is _"the single source of truth"_ in terms of the behaviour of the microservice.
     - this solves the production problem of changes in api's not being reflected in the microservice documentation. 
 
  - NB: for integration testing, Flux TestWebClient was used in favour of RestTemplate(soon to be deprecated).
@@ -53,7 +53,7 @@ _For more examples and usage, please refer to the [Wiki][wiki]._
 
 ## Development setup
 
-To generated the required sources, build the project using the below command
+To generate the required sources, build the project using the below command
 
 ```sh
 >> mvn clean install 
@@ -62,7 +62,7 @@ To generated the required sources, build the project using the below command
 ## Release History
 
 * 0.1.0
-    * Introduced OpenApi Spec
+    * Introduced OpenAPI Spec
     * Introduced @SpringBootTest integration tests
 * 0.0.1
     * Initial Release

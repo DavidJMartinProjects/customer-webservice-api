@@ -16,7 +16,7 @@ class CustomerControllerTests extends IntegrationTest {
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() throws Exception {
 
         // given
-        final List<Customer> expectedCustomers = customerDao.findAllCustomers();
+        final List<Customer> expectedCustomers = customerService.getCustomers();
 
         // when
         webTestClient
@@ -38,7 +38,7 @@ class CustomerControllerTests extends IntegrationTest {
     void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
 
         // given
-        final Customer expectedCustomer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+        final Customer expectedCustomer = customerService.findCustomerById(CUSTOMER_ID_ONE);
 
         // when
         webTestClient
