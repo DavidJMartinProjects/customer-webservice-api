@@ -48,8 +48,6 @@ class CustomerControllerTests extends IntegrationTest {
             // then
             .expectStatus()
                 .isOk()
-
-            // and
             .expectBody(Customer.class)
                 .isEqualTo(customer);
     }
