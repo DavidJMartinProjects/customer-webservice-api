@@ -31,18 +31,18 @@ class CustomerControllerTests extends IntegrationTest {
 
     @BeforeEach
     public void init() {
-        customerFactory.buildAndPersistTestData(3);
+        customerFactory.buildAndPersistTestCustomers(3);
     }
 
     @Test
-    void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
+    void GIVEN_existingCustomerId_WHEN_getRequestToCustomerById_THEN_ok() {
         // given
-        final Customer expectedCustomer = customerService.findCustomerById(CUSTOMER_ID_ONE);
+        final Customer customer = customerFactory.findCustomerById(CUSTOMER_ID_ONE);
 
         // when
         webTestClient
             .get()
-            .uri("/customers/" + CUSTOMER_ID_ONE)
+            .uri("/customers/" + customer.getId())
             .exchange()
 
             // then
@@ -51,13 +51,13 @@ class CustomerControllerTests extends IntegrationTest {
 
             // and
             .expectBody(Customer.class)
-                .isEqualTo(expectedCustomer);
+                .isEqualTo(customer);
     }
 
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
         // given
-        final List<Customer> expectedCustomers = customerFactory.getDefaultTestCustomers(3);
+        final List<Customer> expectedCustomers = customerFactory.getDefaultCustomers(3);
 
         // when
         webTestClient
@@ -126,7 +126,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .put()
-            .uri("/customers/" + CUSTOMER_ID_ONE)
+            .uri("/customers/" + customerEntity.getId())
             .body(Mono.just(expectedCustomer), Customer.class)
             .exchange()
 
@@ -142,12 +142,11 @@ class CustomerControllerTests extends IntegrationTest {
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
         // given
         final CustomerEntity customerEntity = customerDao.findCustomerById(CUSTOMER_ID_ONE);
-        final Customer expectedCustomer = mapper.toCustomer(customerEntity);
 
         // when
         webTestClient
             .delete()
-            .uri("/customers/" + CUSTOMER_ID_ONE)
+            .uri("/customers/" + customerEntity.getId())
             .exchange()
 
             // then
