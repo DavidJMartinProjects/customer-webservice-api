@@ -37,6 +37,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorData'
       description: returns all customers
+    post:
+      tags:
+        - customer-controller
+      summary: ''
+      operationId: createCustomers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+      description: creates a new customer
+      requestBody:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
   '/customers/{id}':
     get:
       tags:
@@ -68,75 +90,37 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
-      description: returns a customer by id
-    post:
-      tags:
-        - customer-controller
-      summary: ''
-      operationId: post-customers-id
-      responses:
-        '201':
-          description: Created
-        '404':
-          description: Not Found
-      description: creates a new customer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              description: ''
-              type: object
-              properties:
-                firstName:
-                  type: string
-                  minLength: 1
-                lastName:
-                  type: string
-                  minLength: 1
-                address:
-                  type: string
-                  minLength: 1
-                city:
-                  type: string
-                  minLength: 1
-                country:
-                  type: string
-                  minLength: 1
-                email:
-                  type: string
-                  minLength: 1
-              required:
-                - firstName
-                - lastName
-                - address
-                - city
-                - country
-                - email
-            examples:
-              example-1:
-                value:
-                  firstName: string
-                  lastName: string
-                  address: string
-                  city: string
-                  country: string
-                  email: string
+      description: returns a customer by idó
     put:
       tags:
         - customer-controller
       summary: ''
-      operationId: put-customers-id
-      responses:
-        '201':
-          description: Created
-        '404':
-          description: Not Found
+      operationId: updateCustomerById
       description: updates a customer
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Customer'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        '404':
+          description: Not Found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
     delete:
       tags:
         - customer-controller

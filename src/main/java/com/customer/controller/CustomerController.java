@@ -43,6 +43,7 @@ public class CustomerController implements CustomersApi {
         return ResponseEntity.ok(customerService.getCustomers());
     }
 
+    @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<List<Customer>> createCustomers(@RequestBody List<Customer> customers) {
@@ -58,6 +59,7 @@ public class CustomerController implements CustomersApi {
         return ResponseEntity.ok(customerService.findCustomerById(id));
     }
 
+    @Override
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Customer> updateCustomerById(@PathVariable("id") Integer id, @RequestBody Customer customer) {
@@ -69,7 +71,7 @@ public class CustomerController implements CustomersApi {
     @Override
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> deleteCustomerById(@ApiParam(value = "customer id",required=true) @PathVariable("id") Integer id) {
+    public ResponseEntity<Void> deleteCustomerById(@PathVariable("id") Integer id) {
         log.info("received DELETE request to path: {}.", CUSTOMERS_BASE_PATH + id);
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();
