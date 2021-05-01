@@ -35,7 +35,7 @@ public class CustomerService {
     public List<Customer> saveCustomers(List<Customer> customers) {
         List<CustomerEntity> entities =
             customers.stream()
-                .map(e -> customerMapper.toEntity(e))
+                .map(customerMapper::toEntity)
                 .collect(Collectors.toList());
         return customerMapper.toDtos(customerDao.saveAll(entities));
     }
