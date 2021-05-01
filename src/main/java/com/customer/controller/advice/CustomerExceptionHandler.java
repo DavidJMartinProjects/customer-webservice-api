@@ -20,8 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author davidjmartin
  */
-@Slf4j
 @ControllerAdvice
+@Slf4j
 public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)

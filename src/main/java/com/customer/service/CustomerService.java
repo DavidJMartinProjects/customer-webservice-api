@@ -46,7 +46,8 @@ public class CustomerService {
 
     public Customer updateCustomerById(Customer customer) {
         final CustomerEntity customerEntity = mapper.toCustomerEntity(customer);
-        return mapper.toCustomer(customerDao.updateCustomerById(customerEntity));
+        final CustomerEntity updatedCustomer = customerDao.updateCustomerById(customerEntity);
+        return mapper.toCustomer(updatedCustomer);
     }
 
     public void deleteCustomerById(long id) {
