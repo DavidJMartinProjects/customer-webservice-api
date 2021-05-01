@@ -20,7 +20,7 @@ import org.modelmapper.ModelMapper;
 public class CustomerFactory {
 
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @Autowired
     private CustomerDao customerDao;
