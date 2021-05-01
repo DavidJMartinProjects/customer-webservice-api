@@ -14,15 +14,15 @@ import org.modelmapper.ModelMapper;
 public class CustomerMapper {
 
     @Autowired
-    private static ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     private CustomerMapper() {}
 
-    public static Customer toCustomer(CustomerEntity customerEntity) {
+    public Customer toCustomer(CustomerEntity customerEntity) {
         return modelMapper.map(customerEntity, Customer.class);
     }
 
-    public static CustomerEntity toCustomerEntity(Customer customer) {
+    public CustomerEntity toCustomerEntity(Customer customer) {
         return modelMapper.map(customer, CustomerEntity.class);
     }
 

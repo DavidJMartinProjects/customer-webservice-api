@@ -57,7 +57,7 @@ public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
         log.info("handling NullPointerException: {}.", ex.getMessage());
         return ErrorData.builder()
             .errorCode("BAD_REQUEST")
-            .message(ex.getMessage())
+            .message(ex.getCause().getMessage())
             .timestamp(LocalDateTime.now().toString())
             .build();
     }

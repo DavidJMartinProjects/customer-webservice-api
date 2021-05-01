@@ -10,7 +10,7 @@ servers:
   - url: 'http://localhost:8080'
     description: Generated server url
 paths:
-  '/customers/':
+  '/customers':
     get:
       tags:
         - customer-controller

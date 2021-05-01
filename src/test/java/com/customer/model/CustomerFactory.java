@@ -46,22 +46,21 @@ public class CustomerFactory {
     private List<CustomerEntity> buildTestCustomerEntities(int numOfCustomers) {
         List<CustomerEntity> customers = new ArrayList<>();
 
-        for(int index = 0; index < numOfCustomers; index++) {
+        for(int index = 1; index <= numOfCustomers; index++) {
             CustomerEntity customerEntity =
                 CustomerEntity.builder()
-                    .firstName("test-firstName-" + (index + 1))
-                    .lastName("test-lastName-" + (index + 1))
-                    .address("test-address-" + (index + 1))
-                    .city("test-city-" + (index + 1))
-                    .country("test-country-" + (index + 1))
-                    .email("test-email-" + (index + 1))
+                    .id(index)
+                    .firstName("test-firstName-" + (index))
+                    .lastName("test-lastName-" + (index))
+                    .address("test-address-" + (index))
+                    .city("test-city-" + (index))
+                    .country("test-country-" + (index))
+                    .email("test-email-" + (index))
                     .build();
             customers.add(customerEntity);
         }
         log.debug("Build {}.", customers);
         return customers;
     }
-
-
 
 }
