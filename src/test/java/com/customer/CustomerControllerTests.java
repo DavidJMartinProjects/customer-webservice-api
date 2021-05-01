@@ -42,16 +42,16 @@ class CustomerControllerTests extends IntegrationTest {
 
         // when
         webTestClient
-                .get()
-                .uri("/customers/" + CUSTOMER_ID_ONE)
+            .get()
+            .uri("/customers/" + CUSTOMER_ID_ONE)
+            .exchange()
 
-                // then
-                .exchange()
-                .expectStatus()
+            // then
+            .expectStatus()
                 .isOk()
 
-                // and
-                .expectBody(Customer.class)
+            // and
+            .expectBody(Customer.class)
                 .isEqualTo(expectedCustomer);
     }
 
