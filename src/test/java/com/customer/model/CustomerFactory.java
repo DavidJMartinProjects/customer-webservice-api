@@ -31,15 +31,12 @@ public class CustomerFactory {
     public void buildAndPersistTestCustomers(int numOfCustomers) {
         List<CustomerEntity> entities = buildTestCustomers(numOfCustomers);
         customerRepository.saveAll(entities);
-        customerRepository.flush();
     }
 
     public List<Customer> getDefaultCustomers(int numOfCustomers) {
         List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);
-
         return customerEntities.stream()
-            .map(customerEntity
-                    -> new ModelMapper().map(customerEntity, Customer.class))
+            .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))
             .collect(Collectors.toList());
     }
 

@@ -4,37 +4,15 @@ import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.app.openapi.model.Customer;
-import com.customer.db.CustomerDao;
 import com.customer.db.entity.CustomerEntity;
-import com.customer.model.CustomerFactory;
-import com.customer.service.mapper.CustomerMapper;
 import com.customer.setup.IntegrationTest;
 import org.hamcrest.Matchers;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
 
 class CustomerControllerTests extends IntegrationTest {
-
-    private static final int CUSTOMER_ID_ONE = 1;
-
-    @Autowired
-    private CustomerFactory customerFactory;
-
-    @Autowired
-    private CustomerDao customerDao;
-
-    @Autowired
-    private CustomerMapper mapper;
-
-    @BeforeEach
-    public void init() {
-        customerFactory.buildAndPersistTestCustomers(3);
-    }
 
     @Test
     void GIVEN_existingCustomerId_WHEN_getRequestToCustomerById_THEN_ok() {

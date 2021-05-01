@@ -7,8 +7,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import com.customer.db.CustomerDao;
+import com.customer.model.CustomerFactory;
 import com.customer.service.CustomerService;
+import com.customer.service.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 
 @Slf4j
 @AutoConfigureWebTestClient
@@ -16,11 +20,27 @@ import lombok.extern.slf4j.Slf4j;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public abstract class IntegrationTest {
 
+    protected static final int CUSTOMER_ID_ONE = 1;
+
     @Autowired
     protected WebTestClient webTestClient;
 
     @Autowired
     protected CustomerService customerService;
+
+    @Autowired
+    protected CustomerFactory customerFactory;
+
+    @Autowired
+    protected CustomerDao customerDao;
+
+    @Autowired
+    protected CustomerMapper mapper;
+
+    @BeforeEach
+    public void init() {
+        customerFactory.buildAndPersistTestCustomers(3);
+    }
 
 }
 
