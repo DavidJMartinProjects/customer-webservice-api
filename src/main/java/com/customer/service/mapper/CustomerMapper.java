@@ -21,17 +21,17 @@ public class CustomerMapper {
 
     private CustomerMapper() {}
 
-    public Customer toCustomer(CustomerEntity customerEntity) {
+    public Customer toDto(CustomerEntity customerEntity) {
         return modelMapper.map(customerEntity, Customer.class);
     }
 
-    public CustomerEntity toCustomerEntity(Customer customer) {
+    public CustomerEntity toEntity(Customer customer) {
         return modelMapper.map(customer, CustomerEntity.class);
     }
 
-    public List<Customer> toCustomers(List<CustomerEntity> customers) {
+    public List<Customer> toDtos(List<CustomerEntity> customers) {
         return customers.stream()
-            .map(this::toCustomer)
+            .map(this::toDto)
             .collect(Collectors.toList());
     }
 

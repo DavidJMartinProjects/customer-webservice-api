@@ -9,7 +9,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.customer.db.CustomerDao;
 import com.customer.model.CustomerFactory;
-import com.customer.service.CustomerService;
 import com.customer.service.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,20 +25,17 @@ public abstract class IntegrationTest {
     protected WebTestClient webTestClient;
 
     @Autowired
-    protected CustomerService customerService;
-
-    @Autowired
     protected CustomerFactory customerFactory;
 
     @Autowired
     protected CustomerDao customerDao;
 
     @Autowired
-    protected CustomerMapper mapper;
+    protected CustomerMapper customerMapper;
 
     @BeforeEach
     public void init() {
-        customerFactory.buildAndPersistTestCustomers(3);
+        customerFactory.persistCustomers(3);
     }
 
 }

@@ -35,7 +35,7 @@ class CustomerControllerTests extends IntegrationTest {
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
         // given
-        final List<Customer> expectedCustomers = customerFactory.getDefaultCustomers(3);
+        final List<Customer> expectedCustomers = customerFactory.fetchCustomers(3);
 
         // when
         webTestClient
@@ -99,7 +99,7 @@ class CustomerControllerTests extends IntegrationTest {
         final CustomerEntity customerEntity = customerDao.findCustomerById(CUSTOMER_ID_ONE);
         customerEntity.setFirstName("Clint");
         customerEntity.setLastName("Eastwood");
-        final Customer expectedCustomer = mapper.toCustomer(customerEntity);
+        final Customer expectedCustomer = customerMapper.toDto(customerEntity);
 
         // when
         webTestClient

@@ -28,12 +28,12 @@ public class CustomerFactory {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public void buildAndPersistTestCustomers(int numOfCustomers) {
+    public void persistCustomers(int numOfCustomers) {
         List<CustomerEntity> entities = buildTestCustomers(numOfCustomers);
         customerRepository.saveAll(entities);
     }
 
-    public List<Customer> getDefaultCustomers(int numOfCustomers) {
+    public List<Customer> fetchCustomers(int numOfCustomers) {
         List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);
         return customerEntities.stream()
             .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))

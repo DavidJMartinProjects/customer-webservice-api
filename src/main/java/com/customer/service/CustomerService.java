@@ -23,31 +23,31 @@ public class CustomerService {
     private CustomerDao customerDao;
 
     @Autowired
-    private CustomerMapper mapper;
+    private CustomerMapper customerMapper;
 
     public List<Customer> getCustomers() {
         return customerDao.findAllCustomers()
             .stream()
-            .map(mapper::toCustomer)
+            .map(customerMapper::toDto)
             .collect(Collectors.toList());
     }
 
     public List<Customer> saveCustomers(List<Customer> customers) {
         List<CustomerEntity> entities =
             customers.stream()
-                .map(e -> mapper.toCustomerEntity(e))
+                .map(e -> customerMapper.toEntity(e))
                 .collect(Collectors.toList());
-        return mapper.toCustomers(customerDao.saveAll(entities));
+        return customerMapper.toDtos(customerDao.saveAll(entities));
     }
 
     public Customer findCustomerById(long id) {
-        return mapper.toCustomer(customerDao.findCustomerById(id));
+        return customerMapper.toDto(customerDao.findCustomerById(id));
     }
 
     public Customer updateCustomerById(Customer customer) {
-        final CustomerEntity customerEntity = mapper.toCustomerEntity(customer);
+        final CustomerEntity customerEntity = customerMapper.toEntity(customer);
         final CustomerEntity updatedCustomer = customerDao.updateCustomerById(customerEntity);
-        return mapper.toCustomer(updatedCustomer);
+        return customerMapper.toDto(updatedCustomer);
     }
 
     public void deleteCustomerById(long id) {
