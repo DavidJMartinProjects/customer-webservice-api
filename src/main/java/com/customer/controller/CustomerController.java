@@ -51,18 +51,18 @@ public class CustomerController implements CustomersApi {
         return ResponseEntity.ok(customerService.findCustomerById(id));
     }
 
-//    @PutMapping("{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<Customer> updateCustomerById(@PathVariable("id") Long id, @RequestBody Customer customer) {
-//        log.info("received PUT request to path: {}.", CUSTOMERS_BASE_PATH + id);
-//        customer.setId(id);
-//        return ResponseEntity.ok(customerService.updateCustomerById(customer));
-//    }
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Customer> updateCustomerById(@PathVariable("id") Integer id, @RequestBody Customer customer) {
+        log.info("received PUT request to path: {}.", CUSTOMERS_BASE_PATH + id);
+        customer.setId(id);
+        return ResponseEntity.ok(customerService.updateCustomerById(customer));
+    }
 
-//    @Override
+    @Override
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public ResponseEntity<Void> deleteCustomerById(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteCustomerById(@ApiParam(value = "customer id",required=true) @PathVariable("id") Integer id) {
         log.info("received DELETE request to path: {}.", CUSTOMERS_BASE_PATH + id);
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();

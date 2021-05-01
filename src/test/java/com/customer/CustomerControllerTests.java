@@ -13,6 +13,7 @@ import com.customer.setup.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Mono;
 
 
 class CustomerControllerTests extends IntegrationTest {
@@ -63,12 +64,12 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-                .uri("/customers/")
+            .uri("/customers/")
+            .exchange()
 
             // then
-            .exchange()
-                .expectStatus()
-                    .isOk()
+            .expectStatus()
+                .isOk()
             .expectBodyList(Customer.class)
                 .hasSize(3)
                 .isEqualTo(expectedCustomers);
@@ -84,9 +85,9 @@ class CustomerControllerTests extends IntegrationTest {
         webTestClient
             .get()
             .uri("/customers/" + nonExistingId)
+            .exchange()
 
             // then
-            .exchange()
             .expectStatus()
                 .isNotFound()
             .expectBody()
@@ -106,8 +107,9 @@ class CustomerControllerTests extends IntegrationTest {
         webTestClient
             .delete()
             .uri("/customers/" + nonExistingId)
-            // then
             .exchange()
+
+            // then
             .expectStatus()
                 .isNotFound()
             .expectBody()
@@ -115,6 +117,29 @@ class CustomerControllerTests extends IntegrationTest {
                 .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
                 .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
                 .jsonPath("$.timestamp").isNotEmpty();
+    }
+
+    @Test
+    void GIVEN_updatedCustomer_WHEN_putRequestToCustomerById_THEN_ok() {
+        // given
+        final CustomerEntity customerEntity = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+        customerEntity.setFirstName("Clint");
+        customerEntity.setLastName("Eastwood");
+        final Customer expectedCustomer = mapper.toCustomer(customerEntity);
+
+        // when
+        webTestClient
+            .put()
+            .uri("/customers/" + CUSTOMER_ID_ONE)
+            .body(Mono.just(expectedCustomer), Customer.class)
+            .exchange()
+
+            // then
+            .expectStatus()
+                .isOk()
+            .expectBody(Customer.class)
+                .isEqualTo(expectedCustomer);
+
     }
 
     @Test
@@ -127,11 +152,11 @@ class CustomerControllerTests extends IntegrationTest {
         webTestClient
             .delete()
             .uri("/customers/" + CUSTOMER_ID_ONE)
+            .exchange()
 
             // then
-            .exchange()
             .expectStatus()
-            .isNoContent()
+                .isNoContent()
             .expectBody()
                 .isEmpty();
 

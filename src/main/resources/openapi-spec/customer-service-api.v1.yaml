@@ -175,7 +175,7 @@ components:
       type: object
       properties:
         id:
-          type: number
+          type: integer
         firstName:
           type: string
         lastName:
