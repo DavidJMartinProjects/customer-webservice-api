@@ -2,6 +2,7 @@ package com.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.app.openapi.model.Customer;
 import com.customer.model.CustomerFactory;
 import com.customer.setup.IntegrationTest;
 import org.hamcrest.Matchers;
@@ -27,26 +28,26 @@ class CustomerControllerTests extends IntegrationTest {
         customerFactory.wipeTestData();
     }
 
-    @Test
-    void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
-
-        // given
-        final Customer expectedCustomer = customerService.findCustomerById(CUSTOMER_ID_ONE);
-
-        // when
-        webTestClient
-                .get()
-                .uri("/customers/" + CUSTOMER_ID_ONE)
-
-                // then
-                .exchange()
-                .expectStatus()
-                .isOk()
-
-                // and
-                .expectBody(Customer.class)
-                .isEqualTo(expectedCustomer);
-    }
+//    @Test
+//    void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
+//
+//        // given
+//        final Customer expectedCustomer = customerService.findCustomerById(CUSTOMER_ID_ONE);
+//
+//        // when
+//        webTestClient
+//                .get()
+//                .uri("/customers/" + CUSTOMER_ID_ONE)
+//
+//                // then
+//                .exchange()
+//                .expectStatus()
+//                .isOk()
+//
+//                // and
+//                .expectBody(Customer.class)
+//                .isEqualTo(expectedCustomer);
+//    }
 //    @Test
 //    void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
 //
