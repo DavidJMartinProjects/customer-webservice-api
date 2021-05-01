@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
 import com.customer.db.entity.CustomerEntity;
+import com.customer.service.mapper.CustomerMapper;
 import org.modelmapper.ModelMapper;
 
 /**
@@ -23,12 +24,17 @@ public class CustomerService {
     public List<Customer> getCustomers() {
         return customerDao.findAllCustomers()
             .stream()
-            .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))
+            .map(CustomerMapper::toCustomer)
             .collect(Collectors.toList());
     }
 
     public Customer findCustomerById(long id) {
-        return new ModelMapper().map(customerDao.findCustomerById(id), Customer.class);
+        return CustomerMapper.toCustomer(customerDao.findCustomerById(id));
+    }
+
+    public Customer updateCustomerById(Customer customer) {
+        CustomerEntity customerEntity = customerDao.updateCustomerById(CustomerMapper.toCustomerEntity(customer));
+        return CustomerMapper.toCustomer(customerEntity);
     }
 
     public void deleteCustomerById(long id) {
