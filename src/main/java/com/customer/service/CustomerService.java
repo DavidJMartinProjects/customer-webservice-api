@@ -11,7 +11,6 @@ import com.customer.db.CustomerDao;
 import com.customer.db.entity.CustomerEntity;
 import com.customer.service.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 
 /**
  * @author davidjmartin
@@ -27,11 +26,19 @@ public class CustomerService {
     private CustomerMapper mapper;
 
     public List<Customer> getCustomers() {
-        log.info("returning: {}", customerDao.findAllCustomers());
         return customerDao.findAllCustomers()
             .stream()
             .map(mapper::toCustomer)
             .collect(Collectors.toList());
+    }
+
+    public List<Customer> saveCustomers(List<Customer> customers) {
+        List<CustomerEntity> entities =
+            customers.stream()
+                .map(e -> mapper.toCustomerEntity(e))
+                .collect(Collectors.toList());
+
+        return mapper.toCustomers(customerDao.saveAll(entities));
     }
 
     public Customer findCustomerById(long id) {
@@ -39,9 +46,8 @@ public class CustomerService {
     }
 
     public Customer updateCustomerById(Customer customer) {
-        CustomerEntity customerEntity = mapper.toCustomerEntity(customer);
-        CustomerEntity updatedCustomer = customerDao.updateCustomerById(customerEntity);
-        return mapper.toCustomer(updatedCustomer);
+        final CustomerEntity customerEntity = mapper.toCustomerEntity(customer);
+        return mapper.toCustomer(customerDao.updateCustomerById(customerEntity));
     }
 
     public void deleteCustomerById(long id) {

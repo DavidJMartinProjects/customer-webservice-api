@@ -1,5 +1,8 @@
 package com.customer.service.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +27,12 @@ public class CustomerMapper {
 
     public CustomerEntity toCustomerEntity(Customer customer) {
         return modelMapper.map(customer, CustomerEntity.class);
+    }
+
+    public List<Customer> toCustomers(List<CustomerEntity> customers) {
+        return customers.stream()
+            .map(this::toCustomer)
+            .collect(Collectors.toList());
     }
 
 }

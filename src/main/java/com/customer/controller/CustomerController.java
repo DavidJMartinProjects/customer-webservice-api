@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,6 @@ import com.app.openapi.api.CustomersApi;
 import com.app.openapi.model.Customer;
 import com.customer.service.CustomerService;
 import io.swagger.annotations.ApiParam;
-import javafx.beans.value.ObservableValue;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -41,6 +41,13 @@ public class CustomerController implements CustomersApi {
     public ResponseEntity<List<Customer>> getCustomers() {
         log.info("received GET request to path: {}.", CUSTOMERS_BASE_PATH);
         return ResponseEntity.ok(customerService.getCustomers());
+    }
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<List<Customer>> createCustomers(@RequestBody List<Customer> customers) {
+        log.info("received POST request to path: {}.", CUSTOMERS_BASE_PATH);
+        return ResponseEntity.ok(customerService.saveCustomers(customers));
     }
 
     @Override

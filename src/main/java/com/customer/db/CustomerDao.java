@@ -26,6 +26,10 @@ public class CustomerDao {
         return customerRepository.findAll();
     }
 
+    public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
+        return customerRepository.saveAll(entities);
+    }
+
     public CustomerEntity findCustomerById(@NonNull long id) {
         return customerRepository.findById(id)
             .orElseThrow(() -> new EntityNotFoundException(id));
