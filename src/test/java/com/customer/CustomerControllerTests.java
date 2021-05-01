@@ -1,5 +1,7 @@
 package com.customer;
 
+import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +44,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri("/customers/" + customer.getId())
+            .uri(CUSTOMERS_BASE_PATH + customer.getId())
             .exchange()
 
             // then
@@ -60,7 +62,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri("/customers/")
+            .uri(CUSTOMERS_BASE_PATH)
             .exchange()
 
             // then
@@ -79,7 +81,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri("/customers/" + nonExistingId)
+            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
             .exchange()
 
             // then
@@ -100,7 +102,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .delete()
-            .uri("/customers/" + nonExistingId)
+            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
             .exchange()
 
             // then
@@ -124,7 +126,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .put()
-            .uri("/customers/" + customerEntity.getId())
+            .uri(CUSTOMERS_BASE_PATH + customerEntity.getId())
             .body(Mono.just(expectedCustomer), Customer.class)
             .exchange()
 
@@ -144,7 +146,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .delete()
-            .uri("/customers/" + customerEntity.getId())
+            .uri(CUSTOMERS_BASE_PATH + customerEntity.getId())
             .exchange()
 
             // then
