@@ -36,7 +36,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomer_WHEN_getRequestToCustomerById_THEN_ok() {
-
         // given
         final Customer expectedCustomer = customerService.findCustomerById(CUSTOMER_ID_ONE);
 
@@ -57,7 +56,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
-
         // given
         final List<Customer> expectedCustomers = customerFactory.getDefaultTestCustomers(3);
 
@@ -77,7 +75,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_getRequestToCustomerById_THEN_notFound() {
-
         // given
         final long nonExistingId = 100;
 
@@ -99,7 +96,6 @@ class CustomerControllerTests extends IntegrationTest {
 
     @Test
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_notFound() {
-
         // given
         final long nonExistingId = 100;
 
