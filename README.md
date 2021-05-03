@@ -2,7 +2,7 @@
 > A RESTful web based microservice used to perform CRUD operations on Customer records.
 
 This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ approach.
-- Integration tests location:  
+- Integration Tests location:  
 ```sh
   \src\test\java\com\customer\CustomerControllerTests.java
 ```
