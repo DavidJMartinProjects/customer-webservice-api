@@ -1,0 +1,16 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+metadata:
+  name: customer-webservice
+build:
+  artifacts:
+  - image: postgres
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8/nginx-ingress/cloud-generic.yaml
+    - k8/nginx-ingress/ingress.yaml
+    - k8/nginx-ingress/nginx.deployment.yaml
+    - k8/postgres-db/postgres-db-deployment.yaml
