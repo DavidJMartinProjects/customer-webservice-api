@@ -7,7 +7,7 @@ This project demonstrates the development of a RESTful web-service using an _"ap
   \src\test\java\com\customer\CustomerControllerTests.java
 ```
 
-- OpenAPI Spec located 
+- OpenAPI Spec location: 
 ```sh
   \src\main\resources\openapi-spec\customer-service-api.v1.yaml
 ```
