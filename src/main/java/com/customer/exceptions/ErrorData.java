@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class ApiException {
+public class ErrorData {
 
     private String url;
     private String errorCode;
