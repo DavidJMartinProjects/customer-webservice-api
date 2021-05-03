@@ -10,7 +10,5 @@ build:
 deploy:
   kubectl:
     manifests:
-    - k8/nginx-ingress/cloud-generic.yaml
-    - k8/nginx-ingress/ingress.yaml
-    - k8/nginx-ingress/nginx.deployment.yaml
-    - k8/postgres-db/postgres-db-deployment.yaml
+    - k8/customer-service.deployment.yaml
+    - k8/postgres-db-deployment.yaml
