@@ -21,6 +21,7 @@ OS X, Windows, Linux:
 
 ```sh
 >> mvn clean install 
+>> skaffold run
 ```
 
 ## Frameworks used
