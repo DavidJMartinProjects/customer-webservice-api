@@ -35,7 +35,7 @@ class CustomerControllerTests extends IntegrationTest {
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
         // given
-        final List<Customer> expectedCustomers = customerFactory.fetchCustomers(3);
+        final List<Customer> expectedCustomers = customerFactory.getTestCustomers(3);
 
         // when
         webTestClient
@@ -67,7 +67,7 @@ class CustomerControllerTests extends IntegrationTest {
                 .isNotFound()
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-                .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " cannot be found"))
+                .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " not found"))
                 .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
                 .jsonPath("$.timestamp").isNotEmpty();
     }
@@ -85,11 +85,10 @@ class CustomerControllerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isNotFound()
+                .is5xxServerError()
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-                .jsonPath("$.message").value(Matchers.containsString("entity with id " + nonExistingId))
-                .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
+                .jsonPath("$.errorCode").value(Matchers.equalTo("INTERNAL_ERROR"))
                 .jsonPath("$.timestamp").isNotEmpty();
     }
 

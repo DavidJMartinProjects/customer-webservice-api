@@ -1,2 +1,1 @@
 - write testcase for POST customers
-- update exception handling to Amazon's pattern readworldserverlessexample aws github

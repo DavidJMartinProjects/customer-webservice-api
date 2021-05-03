@@ -1,4 +1,4 @@
-package com.customer.controller.advice;
+package com.customer.exceptions;
 
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @Builder
-public class ErrorData {
+public class ApiException {
 
     private String url;
     private String errorCode;

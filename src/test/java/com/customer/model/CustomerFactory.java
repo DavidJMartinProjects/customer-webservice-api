@@ -28,16 +28,9 @@ public class CustomerFactory {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public void persistCustomers(int numOfCustomers) {
+    public void persistTestCustomers(int numOfCustomers) {
         List<CustomerEntity> entities = buildTestCustomers(numOfCustomers);
         customerRepository.saveAll(entities);
-    }
-
-    public List<Customer> fetchCustomers(int numOfCustomers) {
-        List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);
-        return customerEntities.stream()
-            .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))
-            .collect(Collectors.toList());
     }
 
     private List<CustomerEntity> buildTestCustomers(int numOfCustomers) {
@@ -60,7 +53,15 @@ public class CustomerFactory {
         return customers;
     }
 
+    public List<Customer> getTestCustomers(int numOfCustomers) {
+        List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);
+        return customerEntities.stream()
+            .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))
+            .collect(Collectors.toList());
+    }
+
     public Customer findCustomerById(int customerId) {
         return customerService.findCustomerById(customerId);
     }
+
 }
