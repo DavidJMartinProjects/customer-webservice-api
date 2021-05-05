@@ -5,9 +5,6 @@ import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.BodyInserters;
-
 import com.app.openapi.model.Customer;
 import com.customer.db.entity.CustomerEntity;
 import com.customer.setup.IntegrationTest;
@@ -98,7 +95,6 @@ class CustomerControllerTests extends IntegrationTest {
                 .isOk()
             .expectBody(Customer.class)
                 .isEqualTo(expectedCustomer);
-
     }
 
     @Test
@@ -118,7 +114,6 @@ class CustomerControllerTests extends IntegrationTest {
                  .isBadRequest()
             .expectBody()
                 .isEmpty();
-
     }
 
     // <-- POST Requests -->
@@ -144,7 +139,6 @@ class CustomerControllerTests extends IntegrationTest {
                 .jsonPath("$[0].address").value(Matchers.equalTo("test-address"))
                 .jsonPath("$[0].country").value(Matchers.equalTo("test-country"))
                 .jsonPath("$[0].email").value(Matchers.equalTo("test@email.com"));
-
     }
 
     // <-- DELETE Requests -->
@@ -164,7 +158,6 @@ class CustomerControllerTests extends IntegrationTest {
                .isNoContent()
             .expectBody()
                 .isEmpty();
-
     }
 
     // ToDo: handle the JPA exception & return a more precise error message for this delete scenario
