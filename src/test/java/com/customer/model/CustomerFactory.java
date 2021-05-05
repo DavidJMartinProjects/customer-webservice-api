@@ -69,6 +69,7 @@ public class CustomerFactory {
                 .email("test@email.com")
                 .build();
 
+        log.debug("Build {}.", customerEntity);
         return customerMapper.toDto(customerEntity);
     }
 
