@@ -141,6 +141,25 @@ class CustomerControllerTests extends IntegrationTest {
                 .jsonPath("$[0].email").value(Matchers.equalTo("test@email.com"));
     }
 
+    @Test
+    void GIVEN_noRequestBody_WHEN_postRequestToCustomers_THEN_badRequest() {
+        // given
+        final Customer customer = customerFactory.buildTestCustomer();
+
+        // when
+        webTestClient
+            .post()
+            .uri(CUSTOMERS_BASE_PATH)
+            .body(Mono.empty(), Customer.class)
+            .exchange()
+
+            // then
+            .expectStatus()
+                .isBadRequest()
+            .expectBody()
+                .isEmpty();
+    }
+
     // <-- DELETE Requests -->
     @Test
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {

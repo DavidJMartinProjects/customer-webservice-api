@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.openapi.api.CustomersApi;
 import com.app.openapi.model.Customer;
 import com.customer.service.CustomerService;
-import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 
 
