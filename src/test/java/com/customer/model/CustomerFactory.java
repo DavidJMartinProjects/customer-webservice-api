@@ -1,6 +1,7 @@
 package com.customer.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import com.customer.db.CustomerDao;
 import com.customer.db.entity.CustomerEntity;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.service.CustomerService;
+import com.customer.service.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 
@@ -21,6 +23,9 @@ public class CustomerFactory {
 
     @Autowired
     private CustomerDao customerDao;
+
+    @Autowired
+    private CustomerMapper customerMapper;
 
     @Autowired
     private CustomerService customerService;
@@ -52,6 +57,21 @@ public class CustomerFactory {
         log.debug("Build {}.", customers);
         return customers;
     }
+
+    public Customer buildTestCustomer() {
+        final CustomerEntity customerEntity =
+            CustomerEntity.builder()
+                .firstName("test-firstName")
+                .lastName("test-lastName")
+                .address("test-address")
+                .city("test-country")
+                .country("test-country")
+                .email("test@email.com")
+                .build();
+
+        return customerMapper.toDto(customerEntity);
+    }
+
 
     public List<Customer> getTestCustomers(int numOfCustomers) {
         List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);

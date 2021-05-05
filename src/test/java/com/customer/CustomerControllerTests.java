@@ -125,22 +125,12 @@ class CustomerControllerTests extends IntegrationTest {
     @Test
     void GIVEN_newCustomer_WHEN_postRequestToCustomers_THEN_ok() {
         // given
-        CustomerEntity customerEntity =
-            CustomerEntity.builder()
-                .firstName("test-firstName")
-                .lastName("test-lastName")
-                .address("test-address")
-                .city("test-country")
-                .country("test-country")
-                .email("test@email.com")
-                .build();
-        final Customer customer = customerMapper.toDto(customerEntity);
+        final Customer customer = customerFactory.buildTestCustomer();
 
         // when
         webTestClient
             .post()
             .uri(CUSTOMERS_BASE_PATH)
-            .contentType(MediaType.APPLICATION_JSON)
             .body(Mono.just(Collections.singletonList(customer)), List.class)
             .exchange()
 
