@@ -174,11 +174,11 @@ class CustomerControllerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-            .is5xxServerError()
+                .is5xxServerError()
             .expectBody()
-            .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-            .jsonPath("$.errorCode").value(Matchers.equalTo("INTERNAL_ERROR"))
-            .jsonPath("$.timestamp").isNotEmpty();
+                .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
+                .jsonPath("$.errorCode").value(Matchers.equalTo("INTERNAL_ERROR"))
+                .jsonPath("$.timestamp").isNotEmpty();
     }
 
 }
