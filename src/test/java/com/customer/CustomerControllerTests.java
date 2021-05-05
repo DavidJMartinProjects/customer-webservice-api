@@ -2,7 +2,11 @@ package com.customer;
 
 import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.BodyInserters;
 
 import com.app.openapi.model.Customer;
 import com.customer.db.entity.CustomerEntity;
@@ -14,6 +18,7 @@ import reactor.core.publisher.Mono;
 
 class CustomerControllerTests extends IntegrationTest {
 
+    // <-- GET Requests -->
     @Test
     void GIVEN_existingCustomerId_WHEN_getRequestToCustomerById_THEN_ok() {
         // given
@@ -72,26 +77,7 @@ class CustomerControllerTests extends IntegrationTest {
                 .jsonPath("$.timestamp").isNotEmpty();
     }
 
-    @Test
-    void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_serverError() {
-        // given
-        final long nonExistingId = 100;
-
-        // when
-        webTestClient
-            .delete()
-            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
-            .exchange()
-
-            // then
-            .expectStatus()
-                .is5xxServerError()
-            .expectBody()
-                .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-                .jsonPath("$.errorCode").value(Matchers.equalTo("INTERNAL_ERROR"))
-                .jsonPath("$.timestamp").isNotEmpty();
-    }
-
+    // <-- PUT Requests -->
     @Test
     void GIVEN_updatedCustomer_WHEN_putRequestToCustomerById_THEN_ok() {
         // given
@@ -116,6 +102,63 @@ class CustomerControllerTests extends IntegrationTest {
     }
 
     @Test
+    void GIVEN_emptyRequestBody_WHEN_putRequestToCustomer_THEN_badRequest() {
+        // given
+        final long customerId = 1;
+
+        // when
+        webTestClient
+            .put()
+            .uri(CUSTOMERS_BASE_PATH + customerId)
+            .body(Mono.empty(), Customer.class)
+            .exchange()
+
+            // then
+            .expectStatus()
+                 .isBadRequest()
+            .expectBody()
+                .isEmpty();
+
+    }
+
+    // <-- POST Requests -->
+    @Test
+    void GIVEN_newCustomer_WHEN_postRequestToCustomers_THEN_ok() {
+        // given
+        CustomerEntity customerEntity =
+            CustomerEntity.builder()
+                .firstName("test-firstName")
+                .lastName("test-lastName")
+                .address("test-address")
+                .city("test-country")
+                .country("test-country")
+                .email("test@email.com")
+                .build();
+        final Customer customer = customerMapper.toDto(customerEntity);
+
+        // when
+        webTestClient
+            .post()
+            .uri(CUSTOMERS_BASE_PATH)
+            .contentType(MediaType.APPLICATION_JSON)
+            .body(Mono.just(Collections.singletonList(customer)), List.class)
+            .exchange()
+
+            // then
+            .expectStatus()
+                .isOk()
+            .expectBody()
+                .jsonPath("$[0].id").isNotEmpty()
+                .jsonPath("$[0].firstName").value(Matchers.equalTo("test-firstName"))
+                .jsonPath("$[0].lastName").value(Matchers.equalTo("test-lastName"))
+                .jsonPath("$[0].address").value(Matchers.equalTo("test-address"))
+                .jsonPath("$[0].country").value(Matchers.equalTo("test-country"))
+                .jsonPath("$[0].email").value(Matchers.equalTo("test@email.com"));
+
+    }
+
+    // <-- DELETE Requests -->
+    @Test
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
         // given
         final CustomerEntity customerEntity = customerDao.findCustomerById(CUSTOMER_ID_ONE);
@@ -128,10 +171,31 @@ class CustomerControllerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isNoContent()
+               .isNoContent()
             .expectBody()
                 .isEmpty();
 
+    }
+
+    // ToDo: handle the JPA exception & return a more precise error message for this delete scenario
+    @Test
+    void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_serverError() {
+        // given
+        final long nonExistingId = 100;
+
+        // when
+        webTestClient
+            .delete()
+            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
+            .exchange()
+
+            // then
+            .expectStatus()
+            .is5xxServerError()
+            .expectBody()
+            .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
+            .jsonPath("$.errorCode").value(Matchers.equalTo("INTERNAL_ERROR"))
+            .jsonPath("$.timestamp").isNotEmpty();
     }
 
 }
