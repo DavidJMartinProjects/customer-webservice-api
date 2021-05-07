@@ -42,9 +42,7 @@ public class CustomerDao {
 
     public Customer findCustomerById(@NonNull long id) {
         return customerMapper.toDto(
-            customerRepository.findById(id)
-                .orElseThrow(() ->
-                    new ResourceNotFoundException(format("resource with id: %s not found.", id)))
+            customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id)))
         );
     }
 
