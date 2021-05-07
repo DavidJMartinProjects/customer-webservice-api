@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
-import com.customer.service.mapper.CustomerMapper;
+import com.customer.db.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
 
 /**

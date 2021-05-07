@@ -1,4 +1,4 @@
-package com.customer.service.mapper;
+package com.customer.db.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;

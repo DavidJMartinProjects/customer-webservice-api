@@ -1,7 +1,6 @@
 package com.customer.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,7 +12,7 @@ import com.customer.db.CustomerDao;
 import com.customer.db.entity.CustomerEntity;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.service.CustomerService;
-import com.customer.service.mapper.CustomerMapper;
+import com.customer.db.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 

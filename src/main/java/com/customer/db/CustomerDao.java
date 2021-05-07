@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import com.app.openapi.model.Customer;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
-import com.customer.service.mapper.CustomerMapper;
+import com.customer.db.mapper.CustomerMapper;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
