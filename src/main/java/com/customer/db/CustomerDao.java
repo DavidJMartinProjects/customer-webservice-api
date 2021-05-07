@@ -1,8 +1,7 @@
 package com.customer.db;
 
-import static java.lang.String.*;
+import static java.lang.String.format;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,13 +18,11 @@ import lombok.NonNull;
 /**
  * @author davidjmartin
  */
-
-
 @Component
 public class CustomerDao {
 
     @Autowired
-    CustomerMapper customerMapper;
+    private CustomerMapper customerMapper;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -51,7 +48,9 @@ public class CustomerDao {
     public Customer findCustomerById(@NonNull long id) {
         return customerMapper.toDto(
             customerRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id))));
+                .orElseThrow(() ->
+                    new ResourceNotFoundException(format("resource with id: %s not found.", id)))
+        );
     }
 
     public Customer updateCustomerById(Customer customer) {
