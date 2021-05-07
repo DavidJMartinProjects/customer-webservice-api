@@ -1,4 +1,4 @@
-package com.customer.exceptions.advice;
+package com.customer.controller.advice;
 
 
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @ControllerAdvice
 @Slf4j
-public class CustomerExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomerControllerAdvise extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
