@@ -2,12 +2,10 @@ package com.customer;
 
 import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
-import java.util.Collections;
 import java.util.List;
 
 import com.app.openapi.model.Customer;
 import com.customer.db.entity.CustomerEntity;
-import com.customer.service.mapper.CustomerMapper;
 import com.customer.setup.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
