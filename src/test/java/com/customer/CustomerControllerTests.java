@@ -78,23 +78,22 @@ class CustomerControllerTests extends IntegrationTest {
     @Test
     void GIVEN_updatedCustomer_WHEN_putRequestToCustomerById_THEN_ok() {
         // given
-        final CustomerEntity customerEntity = customerDao.findCustomerById(CUSTOMER_ID_ONE);
-        customerEntity.setFirstName("Clint");
-        customerEntity.setLastName("Eastwood");
-        final Customer expectedCustomer = customerMapper.toDto(customerEntity);
+        final Customer customer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+        customer.setFirstName("Clint");
+        customer.setLastName("Eastwood");
 
         // when
         webTestClient
             .put()
-            .uri(CUSTOMERS_BASE_PATH + customerEntity.getId())
-            .body(Mono.just(expectedCustomer), Customer.class)
+            .uri(CUSTOMERS_BASE_PATH + customer.getId())
+            .body(Mono.just(customer), Customer.class)
             .exchange()
 
             // then
             .expectStatus()
                 .isOk()
             .expectBody(Customer.class)
-                .isEqualTo(expectedCustomer);
+                .isEqualTo(customer);
     }
 
     @Test
@@ -164,12 +163,12 @@ class CustomerControllerTests extends IntegrationTest {
     @Test
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
         // given
-        final CustomerEntity customerEntity = customerDao.findCustomerById(CUSTOMER_ID_ONE);
+        final Customer customer = customerDao.findCustomerById(CUSTOMER_ID_ONE);
 
         // when
         webTestClient
             .delete()
-            .uri(CUSTOMERS_BASE_PATH + customerEntity.getId())
+            .uri(CUSTOMERS_BASE_PATH + customer.getId())
             .exchange()
 
             // then
