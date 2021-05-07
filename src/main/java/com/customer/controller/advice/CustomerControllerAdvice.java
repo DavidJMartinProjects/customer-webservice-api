@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @ControllerAdvice
 @Slf4j
-public class CustomerControllerAdvise extends ResponseEntityExceptionHandler {
+public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
