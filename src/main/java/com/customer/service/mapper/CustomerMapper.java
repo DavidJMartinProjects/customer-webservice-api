@@ -34,7 +34,7 @@ public class CustomerMapper {
     }
 
     public List<Customer> toDtos(List<CustomerEntity> customers) {
-        log.info("mapping customer dtos: {} to entities.", customers);
+        log.info("mapping customer entities: {} to dtos.", customers);
         return customers.stream()
             .map(this::toDto)
             .collect(Collectors.toList());
