@@ -45,9 +45,9 @@ public class CustomerController implements CustomersApi {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<List<Customer>> createCustomers(@RequestBody List<Customer> customers) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         log.info("received POST request to path: {}.", CUSTOMERS_BASE_PATH);
-        return ResponseEntity.ok(customerService.saveCustomers(customers));
+        return ResponseEntity.ok(customerService.saveCustomer(customer));
     }
 
     @Override

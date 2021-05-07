@@ -27,8 +27,8 @@ public class CustomerService {
         return customerDao.findAllCustomers();
     }
 
-    public List<Customer> saveCustomers(List<Customer> customers) {
-        return customerDao.saveAll(customers);
+    public Customer saveCustomer(Customer customer) {
+        return customerDao.save(customer);
     }
 
     public Customer findCustomerById(long id) {

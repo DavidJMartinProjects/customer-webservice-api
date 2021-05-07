@@ -38,7 +38,7 @@ public class CustomerFactory {
         customerRepository.saveAll(entities);
     }
 
-    private List<CustomerEntity> buildTestCustomers(int numOfCustomers) {
+    public List<CustomerEntity> buildTestCustomers(int numOfCustomers) {
         List<CustomerEntity> customers = new ArrayList<>();
 
         for(int index = 1; index <= numOfCustomers; index++) {
@@ -57,22 +57,6 @@ public class CustomerFactory {
         log.debug("Build {}.", customers);
         return customers;
     }
-
-    public Customer buildTestCustomer() {
-        final CustomerEntity customerEntity =
-            CustomerEntity.builder()
-                .firstName("test-firstName")
-                .lastName("test-lastName")
-                .address("test-address")
-                .city("test-country")
-                .country("test-country")
-                .email("test@email.com")
-                .build();
-
-        log.debug("Build {}.", customerEntity);
-        return customerMapper.toDto(customerEntity);
-    }
-
 
     public List<Customer> getTestCustomers(int numOfCustomers) {
         List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);

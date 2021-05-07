@@ -41,24 +41,20 @@ paths:
       tags:
         - customer-controller
       summary: ''
-      operationId: createCustomers
+      operationId: createCustomer
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Customer'
+                $ref: '#/components/schemas/Customer'
       description: creates a new customer
       requestBody:
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Customer'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
   '/customers/{id}':
     get:
       tags:

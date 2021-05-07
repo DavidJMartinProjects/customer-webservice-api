@@ -34,14 +34,9 @@ public class CustomerDao {
             .collect(Collectors.toList());
     }
 
-    public List<Customer> saveAll(List<Customer> customers) {
-        final List<CustomerEntity> customerEntities =
-            customers.stream()
-                .map(customerMapper::toEntity)
-                .collect(Collectors.toList());
-
-        return customerMapper.toDtos(
-            customerRepository.saveAll(customerEntities)
+    public Customer save(Customer customer) {
+        return customerMapper.toDto(
+            customerRepository.save(customerMapper.toEntity(customer))
         );
     }
 
