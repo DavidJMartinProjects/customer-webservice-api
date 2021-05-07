@@ -24,22 +24,27 @@ public class CustomerService {
     private CustomerMapper customerMapper;
 
     public List<Customer> getCustomers() {
+        log.info("processing request to fetch all customers.");
         return customerDao.findAllCustomers();
     }
 
     public Customer saveCustomer(Customer customer) {
+        log.info("processing request to save customer.");
         return customerDao.save(customer);
     }
 
     public Customer findCustomerById(long id) {
+        log.info("processing request to fetch customer with id:{}.", id);
         return customerDao.findCustomerById(id);
     }
 
     public Customer updateCustomerById(Customer customer) {
+        log.info("processing request to update customer with id:{}.", customer.getId());
         return customerDao.updateCustomerById(customer);
     }
 
     public void deleteCustomerById(long id) {
+        log.info("processing request to delete customer with id:{}.", id);
         customerDao.deleteCustomerById(id);
     }
 
