@@ -51,7 +51,7 @@ public class CustomerDao {
     }
 
     public Customer updateCustomerById(Customer customer) {
-        log.info("updating customer with id: {} to {}.", customer.getId(), customer);
+        log.info("updating customer with id: {}.", customer.getId());
         return customerMapper.toDto(
             customerRepository.save(customerMapper.toEntity(customer))
         );
