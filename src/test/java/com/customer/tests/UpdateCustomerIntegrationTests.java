@@ -26,9 +26,9 @@ public class UpdateCustomerIntegrationTests extends IntegrationTest {
 
             // then
             .expectStatus()
-            .isOk()
+                .isOk()
             .expectBody(Customer.class)
-            .isEqualTo(customer);
+                .isEqualTo(customer);
     }
 
     @Test
@@ -45,9 +45,9 @@ public class UpdateCustomerIntegrationTests extends IntegrationTest {
 
             // then
             .expectStatus()
-            .isBadRequest()
+                .isBadRequest()
             .expectBody()
-            .isEmpty();
+                .isEmpty();
     }
 
 }
