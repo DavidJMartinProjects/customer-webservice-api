@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
+import com.customer.db.entity.CustomerEntity;
 import com.customer.db.mapper.CustomerMapper;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
@@ -65,4 +66,7 @@ public class CustomerDao {
         return customerRepository.existsByEmail(email);
     }
 
+    public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
+        return customerRepository.saveAll(entities);
+    }
 }

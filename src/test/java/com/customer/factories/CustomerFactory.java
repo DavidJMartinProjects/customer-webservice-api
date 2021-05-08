@@ -10,11 +10,8 @@ import org.springframework.stereotype.Component;
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
 import com.customer.db.entity.CustomerEntity;
-import com.customer.db.repository.CustomerRepository;
-import com.customer.service.CustomerService;
 import com.customer.db.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 
 @Slf4j
 @Component
@@ -26,15 +23,9 @@ public class CustomerFactory {
     @Autowired
     private CustomerMapper customerMapper;
 
-    @Autowired
-    private CustomerService customerService;
-
-    @Autowired
-    private CustomerRepository customerRepository;
-
     public void persistTestCustomers(int numOfCustomers) {
         List<CustomerEntity> entities = buildTestCustomers(numOfCustomers);
-        customerRepository.saveAll(entities);
+        customerDao.saveAll(entities);
     }
 
     public List<CustomerEntity> buildTestCustomers(int numOfCustomers) {
@@ -60,7 +51,7 @@ public class CustomerFactory {
     public List<Customer> getTestCustomers(int numOfCustomers) {
         List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);
         return customerEntities.stream()
-            .map(customerEntity -> new ModelMapper().map(customerEntity, Customer.class))
+            .map(customerEntity -> customerMapper.toDto(customerEntity))
             .collect(Collectors.toList());
     }
 
@@ -72,7 +63,7 @@ public class CustomerFactory {
     }
 
     public Customer findCustomerById(int customerId) {
-        return customerService.findCustomerById(customerId);
+        return customerDao.findCustomerById(customerId);
     }
 
 }
