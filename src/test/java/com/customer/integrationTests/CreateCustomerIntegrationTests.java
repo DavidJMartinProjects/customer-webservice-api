@@ -1,11 +1,11 @@
-package com.customer;
+package com.customer.integrationTests;
 
 import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
 import java.util.List;
 
 import com.app.openapi.model.Customer;
-import com.customer.base.IntegrationTest;
+import com.customer.IntegrationTest;
 import com.customer.db.entity.CustomerEntity;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 
 public class CreateCustomerIntegrationTests extends IntegrationTest {
 
-    // <-- POST Request Validation Tests -->
+    // <-- POST Requests Validation Tests -->
     @Test
     void GIVEN_emptyFirstName_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
