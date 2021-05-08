@@ -69,4 +69,5 @@ public class CustomerDao {
     public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
         return customerRepository.saveAll(entities);
     }
+    
 }
