@@ -34,7 +34,7 @@ class ReadCustomerIntegrationTests extends IntegrationTest {
     @Test
     void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
         // given
-        final List<Customer> expectedCustomers = customerFactory.getTestCustomers(3);
+        final List<Customer> expectedCustomers = customerFactory.buildTestCustomers(3);
 
         // when
         webTestClient

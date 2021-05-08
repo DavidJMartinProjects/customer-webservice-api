@@ -21,15 +21,16 @@ public class CustomerFactory {
     private CustomerDao customerDao;
 
     @Autowired
-    private CustomerMapper customerMapper;
+    private CustomerMapper mapper;
 
     public void persistTestCustomers(int numOfCustomers) {
-        customerDao.saveAll(buildTestCustomers(numOfCustomers));
+        for(Customer customerEntity : buildTestCustomers(numOfCustomers)) {
+            customerDao.save(customerEntity);
+        }
     }
 
-    public List<CustomerEntity> buildTestCustomers(int numOfCustomers) {
+    public List<Customer> buildTestCustomers(int numOfCustomers) {
         List<CustomerEntity> customers = new ArrayList<>();
-
         for(int index = 1; index <= numOfCustomers; index++) {
             CustomerEntity customerEntity =
                 CustomerEntity.builder()
@@ -43,19 +44,15 @@ public class CustomerFactory {
                     .build();
             customers.add(customerEntity);
         }
-        log.debug("Build {}.", customers);
-        return customers;
-    }
 
-    public List<Customer> getTestCustomers(int numOfCustomers) {
-        return buildTestCustomers(numOfCustomers)
-            .stream()
-            .map(customerEntity -> customerMapper.toDto(customerEntity))
+        log.debug("Build {}.", customers);
+        return customers.stream()
+            .map(e -> mapper.toDto(e))
             .collect(Collectors.toList());
     }
 
     public Customer buildUniqueCustomer() {
-        final Customer customer = customerMapper.toDto(buildTestCustomers(1).get(0));
+        final Customer customer = buildTestCustomers(1).get(0);
         customer.setEmail("unique@email.com");
         return customer;
     }
