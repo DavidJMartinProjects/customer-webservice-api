@@ -4,6 +4,14 @@
 This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ approach.
 With focus on clean, maintainable code & testing at the appropriate level.
 
+- API documentation
+  -  The microservice exposes its api documentation through its actuator endpoints.
+  -  To view the service api docs, run the project & navigate to the service management urls shown below.
+```sh
+    - http://localhost:9090/actuator/openapi    
+    - http://localhost:9090/actuator/swaggerui  
+```
+
 - OpenAPI Spec location: 
 ```sh
   \src\main\resources\openapi-spec\
@@ -17,8 +25,8 @@ With focus on clean, maintainable code & testing at the appropriate level.
 ## Installation
 
 OS X, Windows, Linux:
-
-```sh
+    
+```
 >> mvn clean install 
 >> skaffold run
 ```
@@ -38,13 +46,6 @@ OS X, Windows, Linux:
   - Contract Testing
     - Spring Cloud Contract 
     
-## API documentation
- * The microservice exposes its api documentation through its actuator endpoints.
- * To view the service api docs, run the project & navigate to the below service management urls:
-
-    - http://localhost:9090/actuator/openapi    
-    - http://localhost:9090/actuator/swaggerui   
-
 ## Additional info 
  - api docs are automatically generated from the OpenAPI specification.
  - controller models and interfaces are generated from the OpenAPI spec, allowing them to be introduced in the code base.
