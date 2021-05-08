@@ -44,7 +44,7 @@ public class CustomerDao {
     }
 
     public Customer save(Customer customer) {
-        log.info("saving customer: {}.", customer);
+        log.info("saving customer with lastName: {}.", customer.getLastName());
         return customerMapper.toDto(
             customerRepository.save(customerMapper.toEntity(customer))
         );
