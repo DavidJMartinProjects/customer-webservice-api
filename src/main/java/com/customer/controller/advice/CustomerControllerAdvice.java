@@ -78,7 +78,6 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
     @ResponseBody
     public ErrorData handleValidationFailureException(HttpServletRequest request, ValidationFailureException ex) {
         log.info("handling ValidationFailureException with message: {}.", ex.getMessage());
-
         return ErrorData.builder()
             .errorCode("request validation failure.")
             .message(ex.getMessage())

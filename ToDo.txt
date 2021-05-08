@@ -1,1 +1,2 @@
-- write testcase for POST customers
+implement pagination for get all customers
+make exception messages uniform
