@@ -1,4 +1,4 @@
-package com.customer.integrationTests;
+package com.customer.tests;
 
 
 import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
