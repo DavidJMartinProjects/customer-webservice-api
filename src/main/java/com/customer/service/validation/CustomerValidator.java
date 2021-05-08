@@ -24,12 +24,11 @@ public class CustomerValidator {
     }
 
     private void checkIfEmailIsUnique(String email) {
-        if(!customerRepository.existsByEmail(email)) {
-            log.info("success: email address is unique.");
-        } else {
+        if(customerRepository.existsByEmail(email)) {
             log.info("failure. email address is already registered.");
             throw new ValidationFailureException("email address '" + email + "' is already registered.");
         }
+        log.info("success: email address is unique.");
     }
 
 }
