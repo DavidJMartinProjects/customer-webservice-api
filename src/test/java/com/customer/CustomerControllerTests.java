@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.app.openapi.model.Customer;
 import com.customer.db.entity.CustomerEntity;
-import com.customer.setup.IntegrationTest;
+import com.customer.base.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -114,51 +114,6 @@ class CustomerControllerTests extends IntegrationTest {
                 .isEmpty();
     }
 
-    // <-- POST Requests -->
-    @Test
-    void GIVEN_newCustomer_WHEN_postRequestToCustomers_THEN_created() {
-        // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
-
-        // when
-        webTestClient
-            .post()
-            .uri(CUSTOMERS_BASE_PATH)
-            .body(Mono.just(customer), Customer.class)
-            .exchange()
-
-            // then
-            .expectStatus()
-                .isCreated()
-            .expectBody()
-                .jsonPath("$.id").isNotEmpty()
-                .jsonPath("$.firstName").value(Matchers.equalTo("test-firstName-1"))
-                .jsonPath("$.lastName").value(Matchers.equalTo("test-lastName-1"))
-                .jsonPath("$.address").value(Matchers.equalTo("test-address-1"))
-                .jsonPath("$.country").value(Matchers.equalTo("test-country-1"))
-                .jsonPath("$.email").value(Matchers.equalTo("test-email-1"));
-    }
-
-    @Test
-    void GIVEN_noRequestBody_WHEN_postRequestToCustomers_THEN_badRequest() {
-        // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
-
-        // when
-        webTestClient
-            .post()
-            .uri(CUSTOMERS_BASE_PATH)
-            .body(Mono.empty(), Customer.class)
-            .exchange()
-
-            // then
-            .expectStatus()
-                .isBadRequest()
-            .expectBody()
-                .isEmpty();
-    }
 
     // <-- DELETE Requests -->
     @Test

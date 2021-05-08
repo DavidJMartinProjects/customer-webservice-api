@@ -1,4 +1,4 @@
-package com.customer.model;
+package com.customer.factories;
 
 import java.util.ArrayList;
 import java.util.List;

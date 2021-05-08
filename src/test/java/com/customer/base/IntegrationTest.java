@@ -1,4 +1,4 @@
-package com.customer.setup;
+package com.customer.base;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +8,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.customer.db.CustomerDao;
-import com.customer.model.CustomerFactory;
+import com.customer.factories.CustomerFactory;
 import com.customer.db.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
