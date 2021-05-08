@@ -1,11 +1,10 @@
-package com.customer.db.validation;
+package com.customer.service.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
-import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ValidationFailureException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,10 +20,10 @@ public class CustomerValidator {
 
     public void validate(Customer customer) {
         log.info("validating request...");
-        checkIfEmailIsUnique(customer.getEmail());
+        checkIfEmailIsAlreadyRegistered(customer.getEmail());
     }
 
-    private void checkIfEmailIsUnique(String email) {
+    private void checkIfEmailIsAlreadyRegistered(String email) {
         if(customerDao.isEmailAlreadyRegistered(email)) {
             log.info("failure. email address is already registered.");
             throw new ValidationFailureException("email address '" + email + "' is already registered.");

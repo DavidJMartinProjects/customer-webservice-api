@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
 import com.customer.db.mapper.CustomerMapper;
-import com.customer.db.validation.CustomerValidator;
+import com.customer.service.validation.CustomerValidator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,10 +22,10 @@ public class CustomerService {
     private CustomerDao customerDao;
 
     @Autowired
-    private CustomerValidator customerValidator;
+    private CustomerMapper customerMapper;
 
     @Autowired
-    private CustomerMapper customerMapper;
+    private CustomerValidator customerValidator;
 
     public List<Customer> getCustomers() {
         log.info("processing request to fetch all customers.");

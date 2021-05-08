@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
+import com.customer.db.mapper.CustomerMapper;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
-import com.customer.db.mapper.CustomerMapper;
-import com.customer.exceptions.ValidationFailureException;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -37,7 +35,7 @@ public class CustomerDao {
             .collect(Collectors.toList());
     }
 
-    public Customer findCustomerById(@NonNull long id) {
+    public Customer findCustomerById(long id) {
         log.info("fetching customer with id: {}.", id);
         return customerMapper.toDto(
             customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id)))
@@ -58,9 +56,13 @@ public class CustomerDao {
         );
     }
 
-    public void deleteCustomerById(@NonNull long id) {
+    public void deleteCustomerById(long id) {
         log.info("deleting customer with id: {}.", id);
         customerRepository.deleteById(id);
+    }
+
+    public boolean isEmailAlreadyRegistered(String email) {
+        return customerRepository.existsByEmail(email);
     }
 
 }
