@@ -4,7 +4,10 @@
 This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ approach.
 - Integration Tests location:  
 ```sh
-  \src\test\java\com\customer\CustomerControllerTests.java
+   \src\test\java\com\customer\tests\CreateCustomerIntegrationTest.java
+   \src\test\java\com\customer\tests\ReadCustomerIntegrationTest.java
+   \src\test\java\com\customer\tests\UpdateCustomerIntegrationTest.java
+   \src\test\java\com\customer\tests\DeleteCustomerIntegrationTest.java
 ```
 
 - OpenAPI Spec location: 
