@@ -31,7 +31,7 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ErrorData handleConstraintViolationExceptionException(HttpServletRequest request, ConstraintViolationException ex) {
+    public ErrorData handleConstraintViolationException(HttpServletRequest request, ConstraintViolationException ex) {
         // collect all validation errors
         List<String> errors = ex.getConstraintViolations()
             .stream()
