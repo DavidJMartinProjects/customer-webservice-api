@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.customer.exceptions.ErrorData;
 import com.customer.exceptions.ResourceNotFoundException;
+import com.customer.exceptions.ValidationFailureException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -72,14 +73,16 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
             .build();
     }
 
-    @ExceptionHandler(NullPointerException.class)
-    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ValidationFailureException.class)
+    @ResponseStatus(code = HttpStatus.CONFLICT)
     @ResponseBody
-    public ErrorData handleNullPointerException(NullPointerException ex) {
-        log.info("handling NullPointerException: {}.", ex.getMessage());
+    public ErrorData handleValidationFailureException(HttpServletRequest request, ValidationFailureException ex) {
+        log.info("handling ValidationFailureException with message: {}.", ex.getMessage());
+
         return ErrorData.builder()
-            .errorCode("BAD_REQUEST")
-            .message(ex.getCause().getMessage())
+            .errorCode("request validation failure.")
+            .message(ex.getMessage())
+            .url(request.getMethod() + " request to : " + request.getRequestURI())
             .timestamp(LocalDateTime.now().toString())
             .build();
     }

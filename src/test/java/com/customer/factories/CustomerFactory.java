@@ -64,6 +64,13 @@ public class CustomerFactory {
             .collect(Collectors.toList());
     }
 
+    public Customer buildUniqueCustomer() {
+        final List<CustomerEntity> customerEntities = buildTestCustomers(1);
+        final Customer customer = customerMapper.toDto(customerEntities.get(0));
+        customer.setEmail("unique@email.com");
+        return customer;
+    }
+
     public Customer findCustomerById(int customerId) {
         return customerService.findCustomerById(customerId);
     }

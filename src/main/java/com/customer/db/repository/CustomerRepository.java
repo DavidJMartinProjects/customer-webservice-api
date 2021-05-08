@@ -11,4 +11,5 @@ import com.customer.db.entity.CustomerEntity;
  */
 @Repository
 public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>, CrudRepository<CustomerEntity, Long> {
+    boolean existsByEmail(String email);
 }

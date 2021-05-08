@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
 import com.customer.db.mapper.CustomerMapper;
+import com.customer.service.validation.CustomerValidator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -21,6 +22,9 @@ public class CustomerService {
     private CustomerDao customerDao;
 
     @Autowired
+    private CustomerValidator customerValidator;
+
+    @Autowired
     private CustomerMapper customerMapper;
 
     public List<Customer> getCustomers() {
@@ -30,6 +34,7 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customer) {
         log.info("processing request to save customer.");
+        customerValidator.validate(customer);
         return customerDao.save(customer);
     }
 

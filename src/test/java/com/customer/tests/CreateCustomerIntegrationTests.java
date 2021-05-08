@@ -2,11 +2,10 @@ package com.customer.tests;
 
 import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
-import java.util.List;
+import org.springframework.http.HttpStatus;
 
 import com.app.openapi.model.Customer;
 import com.customer.IntegrationTest;
-import com.customer.db.entity.CustomerEntity;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -15,10 +14,32 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
 
     // <-- POST Requests Validation Tests -->
     @Test
+    void GIVEN_nonUniqueEmail_WHEN_postRequestToCustomers_THEN_validationFailure() {
+        // given
+        final Customer customer = customerFactory.buildUniqueCustomer();
+        customer.setEmail("test-email-1");
+
+        // when
+        webTestClient
+            .post()
+            .uri(CUSTOMERS_BASE_PATH)
+            .body(Mono.just(customer), Customer.class)
+            .exchange()
+
+            // then
+            .expectStatus()
+                .isEqualTo(HttpStatus.CONFLICT)
+            .expectBody()
+                .jsonPath("$.url").value(Matchers.equalTo("POST request to : /customers"))
+                .jsonPath("$.errorCode").value(Matchers.equalTo("request validation failure."))
+                .jsonPath("$.message").value(Matchers.equalTo("email address 'test-email-1' is already registered."))
+                .jsonPath("$.timestamp").isNotEmpty();
+    }
+
+    @Test
     void GIVEN_emptyFirstName_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
+        final Customer customer = customerFactory.buildUniqueCustomer();
         customer.setFirstName("");
 
         // when
@@ -41,8 +62,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
     @Test
     void GIVEN_emptyLastName_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
+        final Customer customer = customerFactory.buildUniqueCustomer();
         customer.setLastName("");
 
         // when
@@ -65,8 +85,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
     @Test
     void GIVEN_emptyEmail_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
+        final Customer customer = customerFactory.buildUniqueCustomer();
         customer.setEmail("");
 
         // when
@@ -87,10 +106,9 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
     }
 
     @Test
-    void GIVEN_multipleValidationViolations_WHEN_postRequestToCustomers_THEN_validationFailures() {
+    void GIVEN_emptyFirstNameAndLastName_WHEN_postRequestToCustomers_THEN_expectedValidationViolationMessages() {
         // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
+        final Customer customer = customerFactory.buildUniqueCustomer();
         customer.setFirstName("");
         customer.setLastName("");
 
@@ -132,14 +150,13 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
     @Test
     void GIVEN_validCustomer_WHEN_postRequestToCustomers_THEN_created() {
         // given
-        final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
-        final Customer validCustomer = customerMapper.toDto(customerEntities.get(0));
+        final Customer customer = customerFactory.buildUniqueCustomer();
 
         // when
         webTestClient
             .post()
             .uri(CUSTOMERS_BASE_PATH)
-            .body(Mono.just(validCustomer), Customer.class)
+            .body(Mono.just(customer), Customer.class)
             .exchange()
 
             // then
@@ -151,7 +168,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
                 .jsonPath("$.lastName").value(Matchers.equalTo("test-lastName-1"))
                 .jsonPath("$.address").value(Matchers.equalTo("test-address-1"))
                 .jsonPath("$.country").value(Matchers.equalTo("test-country-1"))
-                .jsonPath("$.email").value(Matchers.equalTo("test-email-1"));
+                .jsonPath("$.email").value(Matchers.equalTo("unique@email.com"));
     }
 
 }

@@ -12,6 +12,7 @@ import com.app.openapi.model.Customer;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
 import com.customer.db.mapper.CustomerMapper;
+import com.customer.exceptions.ValidationFailureException;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
