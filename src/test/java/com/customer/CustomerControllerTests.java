@@ -23,7 +23,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH + customer.getId())
+            .uri(CUSTOMERS_BASE_PATH + "/" + customer.getId())
             .exchange()
 
             // then
@@ -60,7 +60,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
+            .uri(CUSTOMERS_BASE_PATH + "/" + nonExistingId)
             .exchange()
 
             // then
@@ -84,7 +84,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .put()
-            .uri(CUSTOMERS_BASE_PATH + customer.getId())
+            .uri(CUSTOMERS_BASE_PATH + "/" + customer.getId())
             .body(Mono.just(customer), Customer.class)
             .exchange()
 
@@ -103,7 +103,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .put()
-            .uri(CUSTOMERS_BASE_PATH + customerId)
+            .uri(CUSTOMERS_BASE_PATH + "/" + customerId)
             .body(Mono.empty(), Customer.class)
             .exchange()
 
@@ -169,7 +169,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .delete()
-            .uri(CUSTOMERS_BASE_PATH + customer.getId())
+            .uri(CUSTOMERS_BASE_PATH + "/" + customer.getId())
             .exchange()
 
             // then
@@ -188,7 +188,7 @@ class CustomerControllerTests extends IntegrationTest {
         // when
         webTestClient
             .delete()
-            .uri(CUSTOMERS_BASE_PATH + nonExistingId)
+            .uri(CUSTOMERS_BASE_PATH + "/" + nonExistingId)
             .exchange()
 
             // then

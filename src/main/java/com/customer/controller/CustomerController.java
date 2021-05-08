@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(CustomerController.CUSTOMERS_BASE_PATH)
 public class CustomerController implements CustomersApi {
 
-    public static final String CUSTOMERS_BASE_PATH = "/customers/";
+    public static final String CUSTOMERS_BASE_PATH = "/customers";
 
     @Autowired
     private CustomerService customerService;
@@ -51,7 +51,7 @@ public class CustomerController implements CustomersApi {
     }
 
     @Override
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         log.info("received GET request to path: {}.", CUSTOMERS_BASE_PATH + id);
@@ -59,7 +59,7 @@ public class CustomerController implements CustomersApi {
     }
 
     @Override
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Customer> updateCustomerById(@PathVariable("id") Integer id, @RequestBody Customer customer) {
         log.info("received PUT request to path: {}.", CUSTOMERS_BASE_PATH + id);
@@ -68,7 +68,7 @@ public class CustomerController implements CustomersApi {
     }
 
     @Override
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteCustomerById(@PathVariable("id") Integer id) {
         log.info("received DELETE request to path: {}.", CUSTOMERS_BASE_PATH + id);
