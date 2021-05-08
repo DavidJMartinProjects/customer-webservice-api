@@ -14,7 +14,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
 
     // <-- POST Requests Validation Tests -->
     @Test
-    void GIVEN_nonUniqueEmail_WHEN_postRequestToCustomers_THEN_validationFailure() {
+    void GIVEN_registeredEmail_WHEN_postRequestToCustomers_THEN_alreadyRegistered() {
         // given
         final Customer customer = customerFactory.buildUniqueCustomer();
         customer.setEmail("test-email-1");
