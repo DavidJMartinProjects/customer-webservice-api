@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.app.openapi.model.Customer;
 import com.customer.db.CustomerDao;
 import com.customer.db.mapper.CustomerMapper;
-import com.customer.service.validation.CustomerValidator;
+import com.customer.db.validation.CustomerValidator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
