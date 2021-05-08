@@ -2,8 +2,6 @@ package com.customer.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +45,7 @@ public class CustomerController implements CustomersApi {
     @Override
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Customer> createCustomer(@Valid @RequestBody Customer customer) {
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
         log.info("received POST request to path: {}.", CUSTOMERS_BASE_PATH);
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customer));
     }
