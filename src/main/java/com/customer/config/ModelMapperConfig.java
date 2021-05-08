@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.modelmapper.ModelMapper;
 
 /**
- * @author davidjmartin
+ * @author DavidJMartin
  */
 @Configuration
 public class ModelMapperConfig {
