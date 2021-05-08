@@ -24,8 +24,7 @@ public class CustomerFactory {
     private CustomerMapper customerMapper;
 
     public void persistTestCustomers(int numOfCustomers) {
-        List<CustomerEntity> entities = buildTestCustomers(numOfCustomers);
-        customerDao.saveAll(entities);
+        customerDao.saveAll(buildTestCustomers(numOfCustomers));
     }
 
     public List<CustomerEntity> buildTestCustomers(int numOfCustomers) {
@@ -49,15 +48,14 @@ public class CustomerFactory {
     }
 
     public List<Customer> getTestCustomers(int numOfCustomers) {
-        List<CustomerEntity> customerEntities = buildTestCustomers(numOfCustomers);
-        return customerEntities.stream()
+        return buildTestCustomers(numOfCustomers)
+            .stream()
             .map(customerEntity -> customerMapper.toDto(customerEntity))
             .collect(Collectors.toList());
     }
 
     public Customer buildUniqueCustomer() {
-        final List<CustomerEntity> customerEntities = buildTestCustomers(1);
-        final Customer customer = customerMapper.toDto(customerEntities.get(0));
+        final Customer customer = customerMapper.toDto(buildTestCustomers(1).get(0));
         customer.setEmail("unique@email.com");
         return customer;
     }
