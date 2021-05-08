@@ -2,8 +2,12 @@ package com.customer.controller.advice;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -15,7 +19,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.customer.exceptions.ErrorData;
 import com.customer.exceptions.ResourceNotFoundException;
-import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -25,10 +28,28 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
 
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorData handleConstraintViolationExceptionException(HttpServletRequest request, ConstraintViolationException ex) {
+        // collect all validation errors
+        List<String> errors = ex.getConstraintViolations()
+            .stream()
+            .map(ConstraintViolation::getMessage)
+            .collect(Collectors.toList());
+
+        return ErrorData.builder()
+            .errorCode("request validation failure.")
+            .message(errors.toString())
+            .url(request.getMethod() + " request to : " + request.getRequestURI())
+            .timestamp(LocalDateTime.now().toString())
+            .build();
+    }
+
     @ExceptionHandler(EmptyResultDataAccessException.class)
     @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public ErrorData handleDataAccessException(@NonNull HttpServletRequest request, @NonNull EmptyResultDataAccessException ex) {
+    public ErrorData handleDataAccessException(HttpServletRequest request, EmptyResultDataAccessException ex) {
         log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
         return ErrorData.builder()
             .errorCode("INTERNAL_ERROR")
@@ -41,7 +62,7 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ResponseBody
-    public ErrorData handleEntityNotFound(@NonNull HttpServletRequest request, @NonNull ResourceNotFoundException ex) {
+    public ErrorData handleEntityNotFound(HttpServletRequest request, ResourceNotFoundException ex) {
         log.info("handling EntityNotFoundException: {}.", ex.getMessage());
         return ErrorData.builder()
             .errorCode("NOT_FOUND")
@@ -54,7 +75,7 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ErrorData handleNullPointerException(@NonNull NullPointerException ex) {
+    public ErrorData handleNullPointerException(NullPointerException ex) {
         log.info("handling NullPointerException: {}.", ex.getMessage());
         return ErrorData.builder()
             .errorCode("BAD_REQUEST")

@@ -116,7 +116,7 @@ class CustomerControllerTests extends IntegrationTest {
 
     // <-- POST Requests -->
     @Test
-    void GIVEN_newCustomer_WHEN_postRequestToCustomers_THEN_ok() {
+    void GIVEN_newCustomer_WHEN_postRequestToCustomers_THEN_created() {
         // given
         final List<CustomerEntity> customerEntities = customerFactory.buildTestCustomers(1);
         final Customer customer = customerMapper.toDto(customerEntities.get(0));
@@ -130,7 +130,7 @@ class CustomerControllerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isOk()
+                .isCreated()
             .expectBody()
                 .jsonPath("$.id").isNotEmpty()
                 .jsonPath("$.firstName").value(Matchers.equalTo("test-firstName-1"))

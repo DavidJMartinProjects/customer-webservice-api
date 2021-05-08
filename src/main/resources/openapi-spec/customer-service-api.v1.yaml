@@ -43,8 +43,8 @@ paths:
       summary: ''
       operationId: createCustomer
       responses:
-        '200':
-          description: OK
+        '201':
+          description: CREATED
           content:
             application/json:
               schema:
@@ -168,7 +168,3 @@ components:
           type: string
         email:
           type: string
-      required:
-        - firstName
-        - lastName
-        - email
