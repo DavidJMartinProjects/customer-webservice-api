@@ -2,7 +2,9 @@ package com.customer.db;
 
 import static java.lang.String.format;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,7 +51,7 @@ public class CustomerDao {
         return Stream.of(customerRepository.save(mapper.toEntity(customer)))
             .map(mapper::toDto)
             .findFirst()
-            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", customer.getId())));
+            .orElse(new Customer());
     }
 
     public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
