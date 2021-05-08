@@ -54,10 +54,6 @@ public class CustomerDao {
             .orElse(new Customer());
     }
 
-    public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
-        return customerRepository.saveAll(entities);
-    }
-
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
         return Stream.of(customerRepository.save(mapper.toEntity(customer)))
