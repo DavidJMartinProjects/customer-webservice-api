@@ -38,16 +38,13 @@ public class CustomerDao {
 
     public Customer findCustomerById(long id) {
         log.info("fetching customer with id: {}.", id);
-        return customerMapper.toDto(
-            customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id)))
-        );
+        return customerMapper.toDto(customerRepository.findById(id)
+            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id))));
     }
 
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
-        return customerMapper.toDto(
-            customerRepository.save(customerMapper.toEntity(customer))
-        );
+        return customerMapper.toDto(customerRepository.save(customerMapper.toEntity(customer)));
     }
 
     public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
@@ -56,9 +53,7 @@ public class CustomerDao {
 
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        return customerMapper.toDto(
-            customerRepository.save(customerMapper.toEntity(customer))
-        );
+        return customerMapper.toDto(customerRepository.save(customerMapper.toEntity(customer)));
     }
 
     public void deleteCustomerById(long id) {
