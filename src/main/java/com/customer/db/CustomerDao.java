@@ -50,6 +50,10 @@ public class CustomerDao {
         );
     }
 
+    public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
+        return customerRepository.saveAll(entities);
+    }
+
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
         return customerMapper.toDto(
@@ -66,8 +70,4 @@ public class CustomerDao {
         return customerRepository.existsByEmail(email);
     }
 
-    public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
-        return customerRepository.saveAll(entities);
-    }
-    
 }
