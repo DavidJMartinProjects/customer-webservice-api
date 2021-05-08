@@ -4,6 +4,7 @@ import static java.lang.String.format;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -38,14 +39,17 @@ public class CustomerDao {
 
     public Customer findCustomerById(long id) {
         log.info("fetching customer with id: {}.", id);
-        return mapper.toDto(customerRepository.findById(id).orElseThrow(() ->
-            new ResourceNotFoundException(format("resource with id: %s not found.", id)))
-        );
+        return customerRepository.findById(id)
+            .map(mapper::toDto)
+            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id)));
     }
 
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
-        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
+        return Stream.of(customerRepository.save(mapper.toEntity(customer)))
+            .map(mapper::toDto)
+            .findFirst()
+            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", customer.getId())));
     }
 
     public List<CustomerEntity> saveAll(List<CustomerEntity> entities) {
@@ -54,7 +58,10 @@ public class CustomerDao {
 
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
+        return Stream.of(customerRepository.save(mapper.toEntity(customer)))
+            .map(mapper::toDto)
+            .findFirst()
+            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", customer.getId())));
     }
 
     public void deleteCustomerById(long id) {
