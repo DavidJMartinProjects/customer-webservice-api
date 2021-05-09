@@ -17,10 +17,17 @@ With focus on clean, maintainable code & testing at the appropriate level.
   \src\main\resources\openapi-spec\
 ```
 
+- CI/CD Pipeline (using CircleCi)  
+```sh
+   https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer_webservice
+```
+
 - Integration Tests location:  
 ```sh
    \src\test\java\com\customer\tests\
 ```
+
+https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer_webservice
 
 ## Installation
 
