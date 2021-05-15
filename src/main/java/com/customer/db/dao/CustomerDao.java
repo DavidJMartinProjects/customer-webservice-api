@@ -13,7 +13,7 @@ import com.customer.db.DbOperation;
 import com.customer.db.dao.mapper.CustomerMapper;
 import com.customer.db.dao.repository.model.CustomerEntity;
 import com.customer.db.dao.repository.CustomerRepository;
-import com.customer.exceptions.ResourceNotFoundException;
+import com.customer.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 /**

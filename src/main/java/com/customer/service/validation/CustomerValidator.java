@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
-import com.customer.exceptions.ValidationFailureException;
+import com.customer.exception.ValidationFailureException;
 import lombok.extern.slf4j.Slf4j;
 
 /**

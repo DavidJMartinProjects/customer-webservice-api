@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.customer.exceptions.ResourceNotFoundException;
-import com.customer.exceptions.ValidationFailureException;
+import com.customer.exception.ResourceNotFoundException;
+import com.customer.exception.ValidationFailureException;
 import lombok.extern.slf4j.Slf4j;
 
 /**

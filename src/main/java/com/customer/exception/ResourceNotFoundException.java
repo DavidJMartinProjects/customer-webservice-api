@@ -1,4 +1,4 @@
-package com.customer.exceptions;
+package com.customer.exception;
 
 /**
  * @author davidjmartin
