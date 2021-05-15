@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 /**
  * @author DavidJMartin
  */
-class ReadCustomer extends IntegrationTest {
+class ReadCustomerTests extends IntegrationTest {
 
     // <-- Positive GET Requests Integration Tests -->
     @Test

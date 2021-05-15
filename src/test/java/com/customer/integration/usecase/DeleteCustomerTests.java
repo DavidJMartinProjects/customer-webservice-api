@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 /**
  * @author DavidJMartin
  */
-public class DeleteCustomer extends IntegrationTest {
+public class DeleteCustomerTests extends IntegrationTest {
 
     // <-- Positive DELETE Request Integration Tests -->
     @Test

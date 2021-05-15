@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 /**
  * @author DavidJMartin
  */
-public class CreateCustomer extends IntegrationTest {
+public class CreateCustomerTests extends IntegrationTest {
 
     // <-- Negative POST Requests Integration Tests -->
     @Test

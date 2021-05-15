@@ -1,4 +1,4 @@
-package com.customer;
+package com.customer.integration;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

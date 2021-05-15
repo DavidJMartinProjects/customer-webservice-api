@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 /**
  * @author DavidJMartin
  */
-public class UpdateCustomer extends IntegrationTest {
+public class UpdateCustomerTests extends IntegrationTest {
 
     // <-- Positive PUT Requests Integration Tests-->
     @Test
