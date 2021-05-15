@@ -59,12 +59,6 @@ OS X, Windows, Linux:
 
  - NB: for integration testing, Flux TestWebClient was used in favour of RestTemplate(soon to be deprecated).
 
-## Usage example
-
-A few motivating and useful examples of how your product can be used. Spice this up with code blocks and potentially more screenshots.
-
-_For more examples and usage, please refer to the [Wiki][wiki]._
-
 ## Development setup
 
 To generate the required sources, build the project using the below command
@@ -84,7 +78,7 @@ To generate the required sources, build the project using the below command
 ## Meta
 
 
-Distributed under the XYZ license. See ``LICENSE`` for more information.
+Distributed under the Apache license. See ``LICENSE`` for more information.
 
 [https://github.com/davidjmartinprojects](https://github.com/DavidJMartinProjects/customer-webservice/)
 
