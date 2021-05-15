@@ -29,7 +29,7 @@ public class CustomerDao implements DbOperation<Customer> {
     @Autowired
     private CustomerRepository customerRepository;
 
-    // <-- CRUD -->
+    /* CRUD */
     @Override
     public List<Customer> findAllCustomers() {
         log.info("fetching customers.");
@@ -69,7 +69,7 @@ public class CustomerDao implements DbOperation<Customer> {
         customerRepository.deleteById(id);
     }
 
-    // <-- Queries -->
+    /* Queries */
     @Override
     public boolean isEmailRegistered(String email) {
         return customerRepository.existsByEmail(email);

@@ -7,14 +7,14 @@ import java.util.List;
  */
 public interface DbOperation<T> {
 
-    // <-- CRUD -->
+    /* CRUD */
     T save(T customer);
     T findCustomerById(long id);
     List<T> findAllCustomers();
     T updateCustomerById(T customer);
     void deleteCustomerById(long id);
 
-    // <-- Queries -->
+    /* Queries */
     boolean isEmailRegistered(String email);
 
 }
