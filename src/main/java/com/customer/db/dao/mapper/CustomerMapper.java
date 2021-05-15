@@ -1,8 +1,5 @@
 package com.customer.db.dao.mapper;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,12 +29,5 @@ public class CustomerMapper {
         log.info("mapping customer dto with to entity.");
         return modelMapper.map(customer, CustomerEntity.class);
     }
-//
-//    public List<Customer> toDtos(List<CustomerEntity> customers) {
-//        log.info("mapping customer entities to dtos.");
-//        return customers.stream()
-//            .map(this::toDto)
-//            .collect(Collectors.toList());
-//    }
 
 }
