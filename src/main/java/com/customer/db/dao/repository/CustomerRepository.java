@@ -1,9 +1,9 @@
-package com.customer.db.repository;
+package com.customer.db.dao.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.customer.db.model.CustomerEntity;
+import com.customer.db.dao.model.CustomerEntity;
 
 /**
  * @author davidjmartin
