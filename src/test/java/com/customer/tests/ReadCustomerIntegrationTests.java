@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
  */
 class ReadCustomerIntegrationTests extends IntegrationTest {
 
-    // <-- GET Requests Integration Tests -->
+    // <-- Positive GET Requests Integration Tests -->
     @Test
     void GIVEN_existingCustomerId_WHEN_getRequestToCustomerById_THEN_ok() {
         // given
@@ -51,6 +51,7 @@ class ReadCustomerIntegrationTests extends IntegrationTest {
                 .isEqualTo(expectedCustomers);
     }
 
+    // <-- Negative GET Requests Integration Tests -->
     @Test
     void GIVEN_nonExistingId_WHEN_getRequestToCustomerById_THEN_notFound() {
         // given

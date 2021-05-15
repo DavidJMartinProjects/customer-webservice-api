@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
  */
 public class CreateCustomerIntegrationTests extends IntegrationTest {
 
-    // <-- POST Requests Validation Tests -->
+    // <-- Negative POST Requests Integration Tests -->
     @Test
     void GIVEN_registeredEmail_WHEN_postRequestToCustomers_THEN_alreadyRegistered() {
         // given
@@ -147,7 +147,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
                 .isEmpty();
     }
 
-    // <-- Valid POST Request -->
+    // <-- Positive POST Requests Integration Tests -->
     @Test
     void GIVEN_validCustomer_WHEN_postRequestToCustomers_THEN_created() {
         // given

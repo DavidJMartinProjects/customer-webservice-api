@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
  */
 public class DeleteCustomerIntegrationTests extends IntegrationTest {
 
-    // <-- DELETE Requests Integration Tests -->
+    // <-- Positive DELETE Request Integration Tests -->
     @Test
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
         // given
@@ -30,6 +30,7 @@ public class DeleteCustomerIntegrationTests extends IntegrationTest {
     }
 
     // ToDo: handle the JPA exception & return a more precise error message for this delete scenario
+    // <-- Negative DELETE Request Integration Tests -->
     @Test
     void GIVEN_nonExistingId_WHEN_deleteRequestToCustomerById_THEN_serverError() {
         // given

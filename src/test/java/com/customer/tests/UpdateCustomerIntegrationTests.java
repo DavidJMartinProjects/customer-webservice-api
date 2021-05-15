@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  */
 public class UpdateCustomerIntegrationTests extends IntegrationTest {
 
-    // <-- PUT Requests Integration Tests-->
+    // <-- Positive PUT Requests Integration Tests-->
     @Test
     void GIVEN_updatedCustomer_WHEN_putRequestToCustomerById_THEN_ok() {
         // given
@@ -32,6 +32,7 @@ public class UpdateCustomerIntegrationTests extends IntegrationTest {
                 .isEqualTo(customer);
     }
 
+    // <-- Negative PUT Requests Integration Tests-->
     @Test
     void GIVEN_emptyRequestBody_WHEN_putRequestToCustomer_THEN_badRequest() {
         // given
