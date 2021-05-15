@@ -5,13 +5,16 @@ import java.util.List;
 /**
  * @author davidjmartin
  */
-public interface CrudOperations<T> {
+public interface IOperations<T> {
 
-    List<T> findAllCustomers();
-    T findCustomerById(long id);
+    // <-- CRUD -->
     T save(T customer);
+    T findCustomerById(long id);
+    List<T> findAllCustomers();
     T updateCustomerById(T customer);
     void deleteCustomerById(long id);
-    boolean isEmailAlreadyRegistered(String email);
+
+    // <-- Queries -->
+    boolean isEmailRegistered(String email);
 
 }

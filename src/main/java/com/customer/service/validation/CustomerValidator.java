@@ -24,7 +24,7 @@ public class CustomerValidator {
     }
 
     private void checkIfEmailIsAlreadyRegistered(String email) {
-        if(customerDao.isEmailAlreadyRegistered(email)) {
+        if(customerDao.isEmailRegistered(email)) {
             log.info("failure. email address is already registered.");
             throw new ValidationFailureException("email address '" + email + "' is already registered.");
         }
