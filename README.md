@@ -19,7 +19,7 @@ With focus on clean, maintainable code & testing at the appropriate level.
 
 - Integration Tests location:
 ```sh
-   src/test/java/com/customer/integration/usecase/CreateCustomerTests.java
+   src/test/java/com/customer/integration/usecase/
 ```
 
 - CI/CD Pipeline (using CircleCi)  
