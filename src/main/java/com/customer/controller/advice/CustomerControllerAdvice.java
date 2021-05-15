@@ -49,20 +49,20 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
         return buildErrorData("request validation failure.", ex.getMessage(), request);
     }
 
-    @ExceptionHandler(EmptyResultDataAccessException.class)
-    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
-    @ResponseBody
-    public ErrorData handleDataAccessException(HttpServletRequest request, EmptyResultDataAccessException ex) {
-        log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
-        return buildErrorData("internal server error.", ex.getMessage(), request);
-    }
-
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
     @ResponseBody
     public ErrorData handleEntityNotFound(HttpServletRequest request, ResourceNotFoundException ex) {
         log.info("handling EntityNotFoundException: {}.", ex.getMessage());
         return buildErrorData("resource not found.", ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorData handleDataAccessException(HttpServletRequest request, EmptyResultDataAccessException ex) {
+        log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
+        return buildErrorData("internal server error.", ex.getMessage(), request);
     }
 
     private ErrorData buildErrorData(String errorCode, String message, HttpServletRequest request) {
