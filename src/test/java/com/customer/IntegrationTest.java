@@ -9,8 +9,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
-import com.customer.db.dao.mapper.CustomerMapper;
-import com.customer.factories.CustomerFactory;
+import com.customer.factory.CustomerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 
