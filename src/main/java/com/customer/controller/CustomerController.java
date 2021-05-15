@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping(CustomerController.CUSTOMERS_API_BASE_PATH)
 public class CustomerController implements CustomersApi {
 
-    public static final String CUSTOMERS_API_BASE_PATH = "/customers";
+    static final String CUSTOMERS_API_BASE_PATH = "/customers";
 
     @Autowired
     private CustomerService customerService;
