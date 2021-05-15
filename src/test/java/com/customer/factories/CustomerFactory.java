@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.db.dao.CustomerDao;
-import com.customer.db.model.CustomerEntity;
+import com.customer.db.DbOperation;
 import com.customer.db.dao.mapper.CustomerMapper;
+import com.customer.db.model.CustomerEntity;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -18,14 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerFactory {
 
     @Autowired
-    private CustomerDao customerDao;
+    private DbOperation<Customer> dbOperation;
 
     @Autowired
     private CustomerMapper mapper;
 
     public void persistTestCustomers(int numOfCustomers) {
         for(Customer customerEntity : buildTestCustomers(numOfCustomers)) {
-            customerDao.save(customerEntity);
+            dbOperation.save(customerEntity);
         }
     }
 
@@ -58,7 +58,7 @@ public class CustomerFactory {
     }
 
     public Customer findCustomerById(int customerId) {
-        return customerDao.findCustomerById(customerId);
+        return dbOperation.findCustomerById(customerId);
     }
 
 }

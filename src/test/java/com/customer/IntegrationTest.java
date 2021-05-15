@@ -7,9 +7,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.customer.db.dao.CustomerDao;
-import com.customer.factories.CustomerFactory;
+import com.app.openapi.generated.model.Customer;
+import com.customer.db.DbOperation;
 import com.customer.db.dao.mapper.CustomerMapper;
+import com.customer.factories.CustomerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -28,10 +29,10 @@ public abstract class IntegrationTest {
     protected CustomerFactory customerFactory;
 
     @Autowired
-    protected CustomerDao customerDao;
+    protected CustomerMapper customerMapper;
 
     @Autowired
-    protected CustomerMapper customerMapper;
+    protected DbOperation<Customer> dbOperation;
 
     @BeforeEach
     public void init() {
