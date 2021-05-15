@@ -28,6 +28,7 @@ public class CustomerDao implements IOperations<Customer> {
     @Autowired
     private CustomerRepository customerRepository;
 
+    // <-- CRUD -->
     @Override
     public List<Customer> findAllCustomers() {
         log.info("fetching customers.");
@@ -65,6 +66,7 @@ public class CustomerDao implements IOperations<Customer> {
         customerRepository.deleteById(id);
     }
 
+    // <-- Queries -->
     @Override
     public boolean isEmailRegistered(String email) {
         return customerRepository.existsByEmail(email);
