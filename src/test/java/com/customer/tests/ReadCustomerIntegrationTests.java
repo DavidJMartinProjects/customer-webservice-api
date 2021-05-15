@@ -65,7 +65,7 @@ class ReadCustomerIntegrationTests extends IntegrationTest {
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
                 .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " not found"))
-                .jsonPath("$.errorCode").value(Matchers.equalTo("NOT_FOUND"))
+                .jsonPath("$.errorCode").value(Matchers.equalTo("resource not found."))
                 .jsonPath("$.timestamp").isNotEmpty();
     }
 

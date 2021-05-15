@@ -43,7 +43,7 @@ public class DeleteCustomerIntegrationTests extends IntegrationTest {
                 .is5xxServerError()
             .expectBody()
                 .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-                .jsonPath("$.errorCode").value(Matchers.equalTo("INTERNAL_ERROR"))
+                .jsonPath("$.errorCode").value(Matchers.equalTo("internal server error."))
                 .jsonPath("$.timestamp").isNotEmpty();
     }
 
