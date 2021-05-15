@@ -35,17 +35,17 @@ public class CustomerService {
     }
 
     public Customer findCustomerById(long id) {
-        log.info("processing request to fetch customer with id:{}.", id);
+        log.info("processing request to fetch customer with id: {}.", id);
         return dbOperation.findCustomerById(id);
     }
 
     public Customer updateCustomerById(Customer customer) {
-        log.info("processing request to update customer with id:{}.", customer.getId());
+        log.info("processing request to update customer with id: {}.", customer.getId());
         return dbOperation.updateCustomerById(customer);
     }
 
     public void deleteCustomerById(long id) {
-        log.info("processing request to delete customer with id:{}.", id);
+        log.info("processing request to delete customer with id: {}.", id);
         dbOperation.deleteCustomerById(id);
     }
 
