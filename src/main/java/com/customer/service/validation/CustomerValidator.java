@@ -3,7 +3,7 @@ package com.customer.service.validation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.app.openapi.model.Customer;
+import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
 import com.customer.exceptions.ValidationFailureException;
 import lombok.extern.slf4j.Slf4j;

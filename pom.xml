@@ -167,8 +167,8 @@
                             <generateApis>true</generateApis>
                             <generateApiDocumentation>true</generateApiDocumentation>
                             <generateSupportingFiles>true</generateSupportingFiles>
-                            <modelPackage>com.app.openapi.model</modelPackage>
-                            <apiPackage>com.app.openapi.api</apiPackage>
+                            <apiPackage>com.app.openapi.generated.api</apiPackage>
+                            <modelPackage>com.app.openapi.generated.model</modelPackage>
                             <configOptions>
                                 <interfaceOnly>true</interfaceOnly>
                                 <dateLibrary>java8-localdatetime</dateLibrary>

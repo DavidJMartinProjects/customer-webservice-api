@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.openapi.api.CustomersApi;
-import com.app.openapi.model.Customer;
+import com.app.openapi.generated.api.CustomersApi;
+import com.app.openapi.generated.model.Customer;
 import com.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 

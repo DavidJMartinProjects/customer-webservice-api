@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.openapi.model.Customer;
+import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
 import com.customer.service.validation.CustomerValidator;
 import lombok.extern.slf4j.Slf4j;

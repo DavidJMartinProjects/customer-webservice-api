@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.app.openapi.model.Customer;
+import com.app.openapi.generated.model.Customer;
 import com.customer.db.dao.CustomerDao;
 import com.customer.db.model.CustomerEntity;
 import com.customer.db.dao.mapper.CustomerMapper;

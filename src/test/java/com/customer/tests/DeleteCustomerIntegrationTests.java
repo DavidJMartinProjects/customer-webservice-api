@@ -2,7 +2,7 @@ package com.customer.tests;
 
 import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
 
-import com.app.openapi.model.Customer;
+import com.app.openapi.generated.model.Customer;
 import com.customer.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
