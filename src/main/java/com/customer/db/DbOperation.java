@@ -12,7 +12,7 @@ import java.util.List;
 public interface DbOperation<T> {
 
     /**
-     * Save an record.
+     * Save a record.
      *
      * @param entity the record
      *
@@ -21,7 +21,7 @@ public interface DbOperation<T> {
     T save(T entity);
 
     /**
-     * Find record by id t.
+     * Find a record by id.
      *
      * @param id of the record
      *
@@ -37,7 +37,7 @@ public interface DbOperation<T> {
     List<T> findAll();
 
     /**
-     * Update record.
+     * Update a record.
      *
      * @param entity the record
      *
@@ -46,14 +46,14 @@ public interface DbOperation<T> {
     T update(T entity);
 
     /**
-     * Delete record by id.
+     * Delete a record by id.
      *
      * @param id the record id
      */
     void deleteById(long id);
 
     /**
-     * checks if an email is already registered registered.
+     * returns true if the provided email is already registered.
      *
      * @param email the email
      *
