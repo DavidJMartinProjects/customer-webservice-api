@@ -23,20 +23,20 @@ public class CustomerMapper {
 
     private CustomerMapper() {}
 
-    public Customer mapToDto(CustomerEntity customerEntity) {
+    public Customer toDto(CustomerEntity customerEntity) {
         log.info("mapping customer entity with id: {} to dto.", customerEntity.getId());
         return modelMapper.map(customerEntity, Customer.class);
     }
 
-    public CustomerEntity mapToEntity(Customer customer) {
+    public CustomerEntity toEntity(Customer customer) {
         log.info("mapping customer dto with to entity.");
         return modelMapper.map(customer, CustomerEntity.class);
     }
 
-    public List<Customer> mapToDtos(List<CustomerEntity> customers) {
+    public List<Customer> toDtos(List<CustomerEntity> customers) {
         log.info("mapping customer entities to dtos.");
         return customers.stream()
-            .map(this::mapToDto)
+            .map(this::toDto)
             .collect(Collectors.toList());
     }
 

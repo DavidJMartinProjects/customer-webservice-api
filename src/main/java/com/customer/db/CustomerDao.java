@@ -31,14 +31,14 @@ public class CustomerDao {
         log.info("fetching customers.");
         return customerRepository.findAll()
             .stream()
-            .map(mapper::mapToDto)
+            .map(mapper::toDto)
             .collect(Collectors.toList());
     }
 
     public Customer findCustomerById(long id) {
         log.info("fetching customer with id: {}.", id);
         return customerRepository.findById(id)
-            .map(mapper::mapToDto)
+            .map(mapper::toDto)
             .orElseThrow(
                 () -> new ResourceNotFoundException(format("resource with id: %s not found.", id))
             );
@@ -46,12 +46,12 @@ public class CustomerDao {
 
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
-        return mapper.mapToDto(customerRepository.save(mapper.mapToEntity(customer)));
+        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        return mapper.mapToDto(customerRepository.save(mapper.mapToEntity(customer)));
+        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     public void deleteCustomerById(long id) {

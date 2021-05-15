@@ -47,7 +47,7 @@ public class CustomerFactory {
 
         log.debug("Build {}.", customers);
         return customers.stream()
-            .map(e -> mapper.mapToDto(e))
+            .map(e -> mapper.toDto(e))
             .collect(Collectors.toList());
     }
 
