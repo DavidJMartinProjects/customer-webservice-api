@@ -16,7 +16,7 @@ public interface DbOperation<T> {
      *
      * @param entity the record
      *
-     * @return the record
+     * @return the saved record
      */
     T save(T entity);
 
@@ -25,14 +25,14 @@ public interface DbOperation<T> {
      *
      * @param id of the record
      *
-     * @return the record
+     * @return the found record
      */
     T findById(long id);
 
     /**
      * Find all records.
      *
-     * @return the list of records
+     * @return the list of found records
      */
     List<T> findAll();
 
@@ -41,7 +41,7 @@ public interface DbOperation<T> {
      *
      * @param entity the record
      *
-     * @return the record
+     * @return the updated record
      */
     T update(T entity);
 
@@ -57,7 +57,7 @@ public interface DbOperation<T> {
      *
      * @param email the email
      *
-     * @return the boolean
+     * @return true if email is registered
      */
     boolean isEmailRegistered(String email);
 
