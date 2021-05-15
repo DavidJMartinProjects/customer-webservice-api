@@ -19,16 +19,16 @@ public class CustomerValidator {
     private DbOperation<Customer> dbOperation;
 
     public void validate(Customer customer) {
-        log.info("validating request...");
+        log.info("validating request.");
         checkIfEmailIsRegistered(customer.getEmail());
     }
 
     private void checkIfEmailIsRegistered(String email) {
         if(dbOperation.isEmailRegistered(email)) {
-            log.info("failure. email address is already registered.");
+            log.info("FAILED. email address is already registered.");
             throw new ValidationFailureException("email address '" + email + "' is already registered.");
         }
-        log.info("success: email address is unique.");
+        log.info("PASSED: email address is unique.");
     }
 
 }
