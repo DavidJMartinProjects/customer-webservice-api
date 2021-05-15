@@ -21,10 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerFactory {
 
     @Autowired
-    private DbOperation<Customer> dbOperation;
+    private CustomerMapper mapper;
 
     @Autowired
-    private CustomerMapper mapper;
+    private DbOperation<Customer> dbOperation;
 
     public void persistTestCustomers(int numOfTestCustomers) {
         List<Customer> customers = buildTestCustomers(numOfTestCustomers);

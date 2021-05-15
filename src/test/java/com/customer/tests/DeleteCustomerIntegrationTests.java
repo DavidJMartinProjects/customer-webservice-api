@@ -14,7 +14,7 @@ public class DeleteCustomerIntegrationTests extends IntegrationTest {
     @Test
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
         // given
-        final Customer customer = dbOperation.findCustomerById(CUSTOMER_ID_ONE);
+        final Customer customer = customerFactory.findCustomerById(CUSTOMER_ID_ONE);
 
         // when
         webTestClient

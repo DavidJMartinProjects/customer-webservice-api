@@ -7,8 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.app.openapi.generated.model.Customer;
-import com.customer.db.DbOperation;
 import com.customer.factory.CustomerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,9 +28,6 @@ public abstract class IntegrationTest {
 
     @Autowired
     protected CustomerFactory customerFactory;
-
-    @Autowired
-    protected DbOperation<Customer> dbOperation;
 
     @BeforeEach
     public void init() {
