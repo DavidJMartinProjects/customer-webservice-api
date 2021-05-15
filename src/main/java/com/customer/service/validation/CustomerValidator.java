@@ -25,7 +25,7 @@ public class CustomerValidator {
 
     private void checkIfEmailIsRegistered(String email) {
         if(dbOperation.isEmailRegistered(email)) {
-            log.info("FAILED. email address is already registered.");
+            log.info("FAILED: email address is already registered.");
             throw new ValidationFailureException("email address '" + email + "' is already registered.");
         }
         log.info("PASSED: email address is unique.");
