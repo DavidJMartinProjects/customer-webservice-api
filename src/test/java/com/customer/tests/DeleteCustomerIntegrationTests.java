@@ -5,6 +5,9 @@ import com.customer.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author DavidJMartin
+ */
 public class DeleteCustomerIntegrationTests extends IntegrationTest {
 
     // <-- DELETE Requests Integration Tests -->

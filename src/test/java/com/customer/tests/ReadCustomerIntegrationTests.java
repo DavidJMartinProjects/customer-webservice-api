@@ -8,6 +8,9 @@ import com.customer.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
+/**
+ * @author DavidJMartin
+ */
 class ReadCustomerIntegrationTests extends IntegrationTest {
 
     // <-- GET Requests Integration Tests -->

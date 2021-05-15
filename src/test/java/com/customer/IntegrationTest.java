@@ -13,6 +13,9 @@ import com.customer.factory.CustomerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 
+/**
+ * @author DavidJMartin
+ */
 @Slf4j
 @AutoConfigureWebTestClient
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

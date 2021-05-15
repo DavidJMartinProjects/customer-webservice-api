@@ -13,6 +13,9 @@ import com.customer.db.dao.mapper.CustomerMapper;
 import com.customer.db.dao.model.CustomerEntity;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author DavidJMartin
+ */
 @Slf4j
 @Component
 public class CustomerFactory {

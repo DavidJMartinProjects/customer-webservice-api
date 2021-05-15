@@ -8,6 +8,9 @@ import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
+/**
+ * @author DavidJMartin
+ */
 public class CreateCustomerIntegrationTests extends IntegrationTest {
 
     // <-- POST Requests Validation Tests -->
