@@ -1,4 +1,4 @@
-package com.customer.db.mapper;
+package com.customer.db.dao.mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.entity.CustomerEntity;
+import com.customer.db.model.CustomerEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 

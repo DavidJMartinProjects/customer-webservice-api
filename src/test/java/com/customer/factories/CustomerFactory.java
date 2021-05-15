@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.CustomerDao;
-import com.customer.db.entity.CustomerEntity;
-import com.customer.db.mapper.CustomerMapper;
+import com.customer.db.dao.CustomerDao;
+import com.customer.db.model.CustomerEntity;
+import com.customer.db.dao.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j

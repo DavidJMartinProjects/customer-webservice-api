@@ -1,4 +1,4 @@
-package com.customer.db;
+package com.customer.db.dao;
 
 import static java.lang.String.format;
 
@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.mapper.CustomerMapper;
+import com.customer.db.CrudOperations;
+import com.customer.db.dao.mapper.CustomerMapper;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-public class CustomerDao {
+public class CustomerDao implements CrudOperations<Customer> {
 
     @Autowired
     private CustomerMapper mapper;
@@ -27,6 +28,7 @@ public class CustomerDao {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Override
     public List<Customer> findAllCustomers() {
         log.info("fetching customers.");
         return customerRepository.findAll()
@@ -35,6 +37,7 @@ public class CustomerDao {
             .collect(Collectors.toList());
     }
 
+    @Override
     public Customer findCustomerById(long id) {
         log.info("fetching customer with id: {}.", id);
         return customerRepository.findById(id)
@@ -44,21 +47,25 @@ public class CustomerDao {
             );
     }
 
+    @Override
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
         return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
+    @Override
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
         return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
+    @Override
     public void deleteCustomerById(long id) {
         log.info("deleting customer with id: {}.", id);
         customerRepository.deleteById(id);
     }
 
+    @Override
     public boolean isEmailAlreadyRegistered(String email) {
         return customerRepository.existsByEmail(email);
     }
