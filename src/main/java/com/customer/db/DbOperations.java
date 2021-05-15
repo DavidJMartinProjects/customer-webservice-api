@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * @author davidjmartin
  */
-public interface IOperations<T> {
+public interface DbOperations<T> {
 
     // <-- CRUD -->
     T save(T customer);

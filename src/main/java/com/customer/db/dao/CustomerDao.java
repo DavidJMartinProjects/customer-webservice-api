@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.IOperations;
+import com.customer.db.DbOperations;
 import com.customer.db.dao.mapper.CustomerMapper;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-public class CustomerDao implements IOperations<Customer> {
+public class CustomerDao implements DbOperations<Customer> {
 
     @Autowired
     private CustomerMapper mapper;
