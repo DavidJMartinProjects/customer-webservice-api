@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 public abstract class IntegrationTest {
 
     protected static final String CUSTOMERS_API_BASE_PATH = "/customers";
+
     protected static final int CUSTOMER_ID_ONE = 1;
 
     @Autowired
