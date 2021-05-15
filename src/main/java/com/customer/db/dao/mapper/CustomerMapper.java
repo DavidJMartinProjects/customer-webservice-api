@@ -32,12 +32,12 @@ public class CustomerMapper {
         log.info("mapping customer dto with to entity.");
         return modelMapper.map(customer, CustomerEntity.class);
     }
-
-    public List<Customer> toDtos(List<CustomerEntity> customers) {
-        log.info("mapping customer entities to dtos.");
-        return customers.stream()
-            .map(this::toDto)
-            .collect(Collectors.toList());
-    }
+//
+//    public List<Customer> toDtos(List<CustomerEntity> customers) {
+//        log.info("mapping customer entities to dtos.");
+//        return customers.stream()
+//            .map(this::toDto)
+//            .collect(Collectors.toList());
+//    }
 
 }
