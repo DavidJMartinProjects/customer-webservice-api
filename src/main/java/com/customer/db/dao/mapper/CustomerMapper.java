@@ -21,12 +21,12 @@ public class CustomerMapper {
     private CustomerMapper() {}
 
     public Customer toDto(CustomerEntity customerEntity) {
-        log.info("mapping customer entity with id: {} to dto.", customerEntity.getId());
+        log.debug("mapping customer entity with id: {} to dto.", customerEntity.getId());
         return modelMapper.map(customerEntity, Customer.class);
     }
 
     public CustomerEntity toEntity(Customer customer) {
-        log.info("mapping customer dto with to entity.");
+        log.debug("mapping customer dto with to entity.");
         return modelMapper.map(customer, CustomerEntity.class);
     }
 
