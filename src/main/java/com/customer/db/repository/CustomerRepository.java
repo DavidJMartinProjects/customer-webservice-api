@@ -1,7 +1,6 @@
 package com.customer.db.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.customer.db.model.CustomerEntity;
@@ -10,6 +9,6 @@ import com.customer.db.model.CustomerEntity;
  * @author davidjmartin
  */
 @Repository
-public interface CustomerRepository extends JpaRepository<CustomerEntity, Long>, CrudRepository<CustomerEntity, Long> {
+public interface CustomerRepository extends JpaRepository<CustomerEntity, Long> {
     boolean existsByEmail(String email);
 }
