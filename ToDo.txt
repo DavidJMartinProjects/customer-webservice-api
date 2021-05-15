@@ -1,2 +1,0 @@
-implement pagination for get all customers
-make exception messages uniform
