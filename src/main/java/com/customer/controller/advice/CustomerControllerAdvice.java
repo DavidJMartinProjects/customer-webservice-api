@@ -32,7 +32,7 @@ public class CustomerControllerAdvice extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ErrorData handleConstraintViolationException(HttpServletRequest request, ConstraintViolationException ex) {
-        // collect all propagated violation errors
+        log.info("handling ValidationFailureException with propagated violation errors: {}.", ex.getMessage());
         List<String> errors = ex.getConstraintViolations()
             .stream()
             .map(ConstraintViolation::getMessage)
