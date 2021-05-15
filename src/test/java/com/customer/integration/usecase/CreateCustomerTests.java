@@ -1,9 +1,9 @@
-package com.customer.tests;
+package com.customer.integration.usecase;
 
 import org.springframework.http.HttpStatus;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.IntegrationTest;
+import com.customer.integration.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 /**
  * @author DavidJMartin
  */
-public class CreateCustomerIntegrationTests extends IntegrationTest {
+public class CreateCustomer extends IntegrationTest {
 
     // <-- Negative POST Requests Integration Tests -->
     @Test

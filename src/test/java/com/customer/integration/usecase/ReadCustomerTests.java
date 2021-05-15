@@ -1,17 +1,17 @@
-package com.customer.tests;
+package com.customer.integration.usecase;
 
 
 import java.util.List;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.IntegrationTest;
+import com.customer.integration.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 /**
  * @author DavidJMartin
  */
-class ReadCustomerIntegrationTests extends IntegrationTest {
+class ReadCustomer extends IntegrationTest {
 
     // <-- Positive GET Requests Integration Tests -->
     @Test

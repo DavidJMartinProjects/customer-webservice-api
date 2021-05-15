@@ -1,14 +1,14 @@
-package com.customer.tests;
+package com.customer.integration.usecase;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.IntegrationTest;
+import com.customer.integration.IntegrationTest;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Mono;
 
 /**
  * @author DavidJMartin
  */
-public class UpdateCustomerIntegrationTests extends IntegrationTest {
+public class UpdateCustomer extends IntegrationTest {
 
     // <-- Positive PUT Requests Integration Tests-->
     @Test

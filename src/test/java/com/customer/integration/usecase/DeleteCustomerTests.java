@@ -1,14 +1,14 @@
-package com.customer.tests;
+package com.customer.integration.usecase;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.IntegrationTest;
+import com.customer.integration.IntegrationTest;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
 /**
  * @author DavidJMartin
  */
-public class DeleteCustomerIntegrationTests extends IntegrationTest {
+public class DeleteCustomer extends IntegrationTest {
 
     // <-- Positive DELETE Request Integration Tests -->
     @Test
