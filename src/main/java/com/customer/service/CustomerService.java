@@ -41,7 +41,7 @@ public class CustomerService {
 
     public Customer updateCustomerById(Customer customer) {
         log.info("processing request to update customer with id: {}.", customer.getId());
-        return dbOperation.updateById(customer);
+        return dbOperation.update(customer);
     }
 
     public void deleteCustomerById(long id) {

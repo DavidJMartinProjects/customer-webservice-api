@@ -11,7 +11,7 @@ public interface DbOperation<T> {
     T save(T entity);
     T findById(long id);
     List<T> findAll();
-    T updateById(T entity);
+    T update(T entity);
     void deleteById(long id);
 
     /* Queries */

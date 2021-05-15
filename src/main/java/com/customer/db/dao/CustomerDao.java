@@ -58,7 +58,7 @@ public class CustomerDao implements DbOperation<Customer> {
     }
 
     @Override
-    public Customer updateById(Customer entity) {
+    public Customer update(Customer entity) {
         log.info("updating customer with id: {}.", entity.getId());
         final CustomerEntity customerEntity =
             customerRepository.save(mapper.toEntity(entity));
