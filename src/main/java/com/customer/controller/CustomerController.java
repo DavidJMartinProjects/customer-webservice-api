@@ -26,10 +26,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RestController
-@RequestMapping(CustomerController.CUSTOMERS_BASE_PATH)
+@RequestMapping(CustomerController.CUSTOMERS_API_BASE_PATH)
 public class CustomerController implements CustomersApi {
 
-    public static final String CUSTOMERS_BASE_PATH = "/customers";
+    public static final String CUSTOMERS_API_BASE_PATH = "/customers";
 
     @Autowired
     private CustomerService customerService;
@@ -38,7 +38,7 @@ public class CustomerController implements CustomersApi {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<Customer>> getCustomers() {
-        log.info("received GET request to path: {}.", CUSTOMERS_BASE_PATH);
+        log.info("received GET request to path: {}.", CUSTOMERS_API_BASE_PATH);
         return ResponseEntity.ok(customerService.getCustomers());
     }
 
@@ -46,7 +46,7 @@ public class CustomerController implements CustomersApi {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
-        log.info("received POST request to path: {}.", CUSTOMERS_BASE_PATH);
+        log.info("received POST request to path: {}.", CUSTOMERS_API_BASE_PATH);
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customer));
     }
 
@@ -54,7 +54,7 @@ public class CustomerController implements CustomersApi {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
-        log.info("received GET request to path: {}.", CUSTOMERS_BASE_PATH + id);
+        log.info("received GET request to path: {}.", CUSTOMERS_API_BASE_PATH + id);
         return ResponseEntity.ok(customerService.findCustomerById(id));
     }
 
@@ -62,7 +62,7 @@ public class CustomerController implements CustomersApi {
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Customer> updateCustomerById(@PathVariable("id") Integer id, @RequestBody Customer customer) {
-        log.info("received PUT request to path: {}.", CUSTOMERS_BASE_PATH + id);
+        log.info("received PUT request to path: {}.", CUSTOMERS_API_BASE_PATH + id);
         customer.setId(id);
         return ResponseEntity.ok(customerService.updateCustomerById(customer));
     }
@@ -71,7 +71,7 @@ public class CustomerController implements CustomersApi {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteCustomerById(@PathVariable("id") Integer id) {
-        log.info("received DELETE request to path: {}.", CUSTOMERS_BASE_PATH + id);
+        log.info("received DELETE request to path: {}.", CUSTOMERS_API_BASE_PATH + id);
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();
     }

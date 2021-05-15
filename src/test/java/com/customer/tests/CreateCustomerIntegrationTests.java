@@ -1,7 +1,5 @@
 package com.customer.tests;
 
-import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
-
 import org.springframework.http.HttpStatus;
 
 import com.app.openapi.generated.model.Customer;
@@ -22,7 +20,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.just(customer), Customer.class)
             .exchange()
 
@@ -45,7 +43,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.just(customer), Customer.class)
             .exchange()
 
@@ -68,7 +66,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.just(customer), Customer.class)
             .exchange()
 
@@ -91,7 +89,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.just(customer), Customer.class)
             .exchange()
 
@@ -115,7 +113,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.just(customer), Customer.class)
             .exchange()
 
@@ -135,7 +133,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.empty(), Customer.class)
             .exchange()
 
@@ -155,7 +153,7 @@ public class CreateCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .post()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .body(Mono.just(customer), Customer.class)
             .exchange()
 

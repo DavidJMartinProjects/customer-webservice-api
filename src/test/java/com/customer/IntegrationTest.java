@@ -19,6 +19,7 @@ import org.junit.jupiter.api.BeforeEach;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public abstract class IntegrationTest {
 
+    protected static final String CUSTOMERS_API_BASE_PATH = "/customers";
     protected static final int CUSTOMER_ID_ONE = 1;
 
     @Autowired

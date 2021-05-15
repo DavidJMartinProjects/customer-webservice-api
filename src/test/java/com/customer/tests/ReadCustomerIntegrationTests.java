@@ -1,8 +1,6 @@
 package com.customer.tests;
 
 
-import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
-
 import java.util.List;
 
 import com.app.openapi.generated.model.Customer;
@@ -21,7 +19,7 @@ class ReadCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH + "/" + customer.getId())
+            .uri(CUSTOMERS_API_BASE_PATH + "/" + customer.getId())
             .exchange()
 
             // then
@@ -39,7 +37,7 @@ class ReadCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH)
+            .uri(CUSTOMERS_API_BASE_PATH)
             .exchange()
 
             // then
@@ -58,7 +56,7 @@ class ReadCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .get()
-            .uri(CUSTOMERS_BASE_PATH + "/" + nonExistingId)
+            .uri(CUSTOMERS_API_BASE_PATH + "/" + nonExistingId)
             .exchange()
 
             // then

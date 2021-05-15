@@ -1,7 +1,5 @@
 package com.customer.tests;
 
-import static com.customer.controller.CustomerController.CUSTOMERS_BASE_PATH;
-
 import com.app.openapi.generated.model.Customer;
 import com.customer.IntegrationTest;
 import org.hamcrest.Matchers;
@@ -18,7 +16,7 @@ public class DeleteCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .delete()
-            .uri(CUSTOMERS_BASE_PATH + "/" + customer.getId())
+            .uri(CUSTOMERS_API_BASE_PATH + "/" + customer.getId())
             .exchange()
 
             // then
@@ -37,7 +35,7 @@ public class DeleteCustomerIntegrationTests extends IntegrationTest {
         // when
         webTestClient
             .delete()
-            .uri(CUSTOMERS_BASE_PATH + "/" + nonExistingId)
+            .uri(CUSTOMERS_API_BASE_PATH + "/" + nonExistingId)
             .exchange()
 
             // then
