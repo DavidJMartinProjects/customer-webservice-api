@@ -1,4 +1,4 @@
-package com.customer.db.dao.repository.model;
+package com.customer.db.dao.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
