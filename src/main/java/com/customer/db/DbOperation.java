@@ -8,10 +8,10 @@ import java.util.List;
 public interface DbOperation<T> {
 
     /* CRUD */
-    T save(T customer);
+    T save(T entity);
     T findById(long id);
     List<T> findAll();
-    T updateById(T customer);
+    T updateById(T entity);
     void deleteById(long id);
 
     /* Queries */

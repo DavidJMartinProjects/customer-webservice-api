@@ -50,18 +50,18 @@ public class CustomerDao implements DbOperation<Customer> {
     }
 
     @Override
-    public Customer save(Customer customer) {
-        log.info("saving customer with lastName: {}.", customer.getLastName());
+    public Customer save(Customer entity) {
+        log.info("saving customer with lastName: {}.", entity.getLastName());
         final CustomerEntity customerEntity =
-            customerRepository.save(mapper.toEntity(customer));
+            customerRepository.save(mapper.toEntity(entity));
         return mapper.toDto(customerEntity);
     }
 
     @Override
-    public Customer updateById(Customer customer) {
-        log.info("updating customer with id: {}.", customer.getId());
+    public Customer updateById(Customer entity) {
+        log.info("updating customer with id: {}.", entity.getId());
         final CustomerEntity customerEntity =
-            customerRepository.save(mapper.toEntity(customer));
+            customerRepository.save(mapper.toEntity(entity));
         return mapper.toDto(customerEntity);
     }
 
