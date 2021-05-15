@@ -23,10 +23,9 @@ public class CustomerFactory {
     @Autowired
     private CustomerMapper mapper;
 
-    public void persistTestCustomers(int numOfCustomers) {
-        for(Customer customerEntity : buildTestCustomers(numOfCustomers)) {
-            dbOperation.save(customerEntity);
-        }
+    public void persistTestCustomers(int numOfTestCustomers) {
+        List<Customer> customers = buildTestCustomers(numOfTestCustomers);
+        customers.forEach(dbOperation::save);
     }
 
     public List<Customer> buildTestCustomers(int numOfCustomers) {
