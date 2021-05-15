@@ -3,7 +3,7 @@ package com.customer.db;
 import java.util.List;
 
 /**
- * The interface Db operation.
+ * DbOperation interface: details supported db operations.
  *
  * @param <T> the record entity type
  *
