@@ -46,12 +46,12 @@ public class CustomerDao {
 
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
-        return mapper.mapToDto(customerRepository.save(mapper.toEntity(customer)));
+        return mapper.mapToDto(customerRepository.save(mapper.mapToEntity(customer)));
     }
 
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        return mapper.mapToDto(customerRepository.save(mapper.toEntity(customer)));
+        return mapper.mapToDto(customerRepository.save(mapper.mapToEntity(customer)));
     }
 
     public void deleteCustomerById(long id) {
