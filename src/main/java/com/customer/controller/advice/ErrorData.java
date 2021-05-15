@@ -9,10 +9,8 @@ import lombok.Data;
 @Data
 @Builder
 public class ErrorData {
-
     private String url;
     private String errorCode;
     private String message;
     private String timestamp;
-
 }
