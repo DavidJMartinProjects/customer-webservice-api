@@ -60,7 +60,7 @@ public class CustomerFactory {
     }
 
     public Customer findCustomerById(int customerId) {
-        return dbOperation.findCustomerById(customerId);
+        return dbOperation.findById(customerId);
     }
 
 }

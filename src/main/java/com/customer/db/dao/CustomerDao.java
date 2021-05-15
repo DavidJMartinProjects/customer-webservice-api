@@ -31,7 +31,7 @@ public class CustomerDao implements DbOperation<Customer> {
 
     /* CRUD */
     @Override
-    public List<Customer> findAllCustomers() {
+    public List<Customer> findAll() {
         log.info("fetching customers.");
         return customerRepository.findAll()
             .stream()
@@ -40,7 +40,7 @@ public class CustomerDao implements DbOperation<Customer> {
     }
 
     @Override
-    public Customer findCustomerById(long id) {
+    public Customer findById(long id) {
         log.info("fetching customer with id: {}.", id);
         return customerRepository.findById(id)
             .map(mapper::toDto)
@@ -58,7 +58,7 @@ public class CustomerDao implements DbOperation<Customer> {
     }
 
     @Override
-    public Customer updateCustomerById(Customer customer) {
+    public Customer updateById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
         final CustomerEntity customerEntity =
             customerRepository.save(mapper.toEntity(customer));
@@ -66,7 +66,7 @@ public class CustomerDao implements DbOperation<Customer> {
     }
 
     @Override
-    public void deleteCustomerById(long id) {
+    public void deleteById(long id) {
         log.info("deleting customer with id: {}.", id);
         customerRepository.deleteById(id);
     }

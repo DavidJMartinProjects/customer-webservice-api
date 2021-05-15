@@ -9,10 +9,10 @@ public interface DbOperation<T> {
 
     /* CRUD */
     T save(T customer);
-    T findCustomerById(long id);
-    List<T> findAllCustomers();
-    T updateCustomerById(T customer);
-    void deleteCustomerById(long id);
+    T findById(long id);
+    List<T> findAll();
+    T updateById(T customer);
+    void deleteById(long id);
 
     /* Queries */
     boolean isEmailRegistered(String email);

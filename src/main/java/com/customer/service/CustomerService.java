@@ -25,7 +25,7 @@ public class CustomerService {
 
     public List<Customer> getCustomers() {
         log.info("processing request to fetch all customers.");
-        return dbOperation.findAllCustomers();
+        return dbOperation.findAll();
     }
 
     public Customer saveCustomer(Customer customer) {
@@ -36,17 +36,17 @@ public class CustomerService {
 
     public Customer findCustomerById(long id) {
         log.info("processing request to fetch customer with id: {}.", id);
-        return dbOperation.findCustomerById(id);
+        return dbOperation.findById(id);
     }
 
     public Customer updateCustomerById(Customer customer) {
         log.info("processing request to update customer with id: {}.", customer.getId());
-        return dbOperation.updateCustomerById(customer);
+        return dbOperation.updateById(customer);
     }
 
     public void deleteCustomerById(long id) {
         log.info("processing request to delete customer with id: {}.", id);
-        dbOperation.deleteCustomerById(id);
+        dbOperation.deleteById(id);
     }
 
 }
