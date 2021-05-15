@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.DbOperations;
+import com.customer.db.DbOperation;
 import com.customer.service.validation.CustomerValidator;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,35 +18,35 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerService {
 
     @Autowired
-    private DbOperations<Customer> dbOperations;
+    private DbOperation<Customer> dbOperation;
 
     @Autowired
     private CustomerValidator customerValidator;
 
     public List<Customer> getCustomers() {
         log.info("processing request to fetch all customers.");
-        return dbOperations.findAllCustomers();
+        return dbOperation.findAllCustomers();
     }
 
     public Customer saveCustomer(Customer customer) {
         log.info("processing request to save customer.");
         customerValidator.validate(customer);
-        return dbOperations.save(customer);
+        return dbOperation.save(customer);
     }
 
     public Customer findCustomerById(long id) {
         log.info("processing request to fetch customer with id:{}.", id);
-        return dbOperations.findCustomerById(id);
+        return dbOperation.findCustomerById(id);
     }
 
     public Customer updateCustomerById(Customer customer) {
         log.info("processing request to update customer with id:{}.", customer.getId());
-        return dbOperations.updateCustomerById(customer);
+        return dbOperation.updateCustomerById(customer);
     }
 
     public void deleteCustomerById(long id) {
         log.info("processing request to delete customer with id:{}.", id);
-        dbOperations.deleteCustomerById(id);
+        dbOperation.deleteCustomerById(id);
     }
 
 }

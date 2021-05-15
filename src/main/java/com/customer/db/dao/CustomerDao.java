@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.DbOperations;
+import com.customer.db.DbOperation;
 import com.customer.db.dao.mapper.CustomerMapper;
+import com.customer.db.model.CustomerEntity;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Component
-public class CustomerDao implements DbOperations<Customer> {
+public class CustomerDao implements DbOperation<Customer> {
 
     @Autowired
     private CustomerMapper mapper;
@@ -51,13 +52,15 @@ public class CustomerDao implements DbOperations<Customer> {
     @Override
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
-        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
+        CustomerEntity customerEntity = customerRepository.save(mapper.toEntity(customer));
+        return mapper.toDto(customerEntity);
     }
 
     @Override
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
+        CustomerEntity customerEntity = customerRepository.save(mapper.toEntity(customer));
+        return mapper.toDto(customerEntity);
     }
 
     @Override
