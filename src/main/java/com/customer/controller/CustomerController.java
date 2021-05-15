@@ -22,8 +22,6 @@ import com.customer.service.CustomerService;
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.api.CustomersApi;
 
-
-
 /**
  * @author davidjmartin
  */
