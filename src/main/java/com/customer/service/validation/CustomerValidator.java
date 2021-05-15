@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerValidator {
 
     @Autowired
-    private DbOperation<Customer> dbOperation;
+    private DbOperation<Customer> dbQuery;
 
     public void validate(Customer customer) {
         log.info("validating request.");
@@ -24,7 +24,7 @@ public class CustomerValidator {
     }
 
     private void checkIfEmailIsRegistered(String email) {
-        if(dbOperation.isEmailRegistered(email)) {
+        if(dbQuery.isEmailRegistered(email)) {
             log.info("FAILED: email address is already registered.");
             throw new ValidationFailureException("email address '" + email + "' is already registered.");
         }
