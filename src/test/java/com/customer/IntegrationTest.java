@@ -29,9 +29,6 @@ public abstract class IntegrationTest {
     protected CustomerFactory customerFactory;
 
     @Autowired
-    protected CustomerMapper customerMapper;
-
-    @Autowired
     protected DbOperation<Customer> dbOperation;
 
     @BeforeEach
