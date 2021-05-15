@@ -2,17 +2,13 @@ package com.customer.db;
 
 import static java.lang.String.format;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.model.Customer;
-import com.customer.db.entity.CustomerEntity;
 import com.customer.db.mapper.CustomerMapper;
 import com.customer.db.repository.CustomerRepository;
 import com.customer.exceptions.ResourceNotFoundException;
@@ -35,31 +31,27 @@ public class CustomerDao {
         log.info("fetching customers.");
         return customerRepository.findAll()
             .stream()
-            .map(mapper::toDto)
+            .map(mapper::mapToDto)
             .collect(Collectors.toList());
     }
 
     public Customer findCustomerById(long id) {
         log.info("fetching customer with id: {}.", id);
         return customerRepository.findById(id)
-            .map(mapper::toDto)
-            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", id)));
+            .map(mapper::mapToDto)
+            .orElseThrow(
+                () -> new ResourceNotFoundException(format("resource with id: %s not found.", id))
+            );
     }
 
     public Customer save(Customer customer) {
         log.info("saving customer with lastName: {}.", customer.getLastName());
-        return Stream.of(customerRepository.save(mapper.toEntity(customer)))
-            .map(mapper::toDto)
-            .findFirst()
-            .orElse(new Customer());
+        return mapper.mapToDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     public Customer updateCustomerById(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        return Stream.of(customerRepository.save(mapper.toEntity(customer)))
-            .map(mapper::toDto)
-            .findFirst()
-            .orElseThrow(() -> new ResourceNotFoundException(format("resource with id: %s not found.", customer.getId())));
+        return mapper.mapToDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     public void deleteCustomerById(long id) {
