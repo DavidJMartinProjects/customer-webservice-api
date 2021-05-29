@@ -13,8 +13,9 @@ import com.customer.db.DbOperation;
 import com.customer.db.dao.mapper.CustomerMapper;
 import com.customer.db.dao.model.CustomerEntity;
 import com.customer.db.dao.repository.CustomerRepository;
-import com.customer.exception.ResourceNotFoundException;
+import com.customer.exception.CustomerServiceException;
 import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * @author davidjmartin
@@ -22,6 +23,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class CustomerDao implements DbOperation<Customer> {
+
+    private static String CUSTOMER_ID_DOES_NOT_EXIST = "customer with id: %s does not exist.";
 
     @Autowired
     private CustomerMapper mapper;
@@ -39,35 +42,37 @@ public class CustomerDao implements DbOperation<Customer> {
     }
 
     @Override
-    public Customer findById(long id) {
-        log.info("fetching customer with id: {}.", id);
-        return customerRepository.findById(id)
-            .map(mapper::toDto)
-            .orElseThrow(
-                () -> new ResourceNotFoundException(format("resource with id: %s not found.", id))
-            );
+    public Customer findById(long customerId) {
+        log.info("fetching customer with id: {}.", customerId);
+        CustomerEntity entity = customerRepository.findById(customerId)
+            .orElseThrow(() -> new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customerId)));
+        return mapper.toDto(entity);
     }
 
     @Override
-    public Customer save(Customer entity) {
-        log.info("saving customer with lastName: {}.", entity.getLastName());
-        final CustomerEntity customerEntity =
-            customerRepository.save(mapper.toEntity(entity));
-        return mapper.toDto(customerEntity);
+    public Customer save(Customer customer) {
+        log.info("saving customer with lastName: {}.", customer.getLastName());
+        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     @Override
-    public Customer update(Customer entity) {
-        log.info("updating customer with id: {}.", entity.getId());
-        final CustomerEntity customerEntity =
-            customerRepository.save(mapper.toEntity(entity));
-        return mapper.toDto(customerEntity);
+    public Customer update(Customer customer) {
+        log.info("updating customer with id: {}.", customer.getId());
+        if (customerRepository.existsById(Long.valueOf(customer.getId()))) {
+            return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
+        } else {
+            throw new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customer.getId()));
+        }
     }
 
     @Override
-    public void deleteById(long id) {
-        log.info("deleting customer with id: {}.", id);
-        customerRepository.deleteById(id);
+    public void deleteById(long customerId) {
+        log.info("deleting customer with id: {}.", customerId);
+        if(customerRepository.existsById(customerId)) {
+            customerRepository.deleteById(customerId);
+        } else {
+            throw new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customerId));
+        }
     }
 
     @Override

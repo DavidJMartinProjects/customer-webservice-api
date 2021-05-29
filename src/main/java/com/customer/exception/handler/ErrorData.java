@@ -1,4 +1,4 @@
-package com.customer.controller.advice;
+package com.customer.exception.handler;
 
 import lombok.Builder;
 import lombok.Data;

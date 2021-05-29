@@ -26,7 +26,7 @@ public class CustomerFactory {
     @Autowired
     private DbOperation<Customer> dbOperation;
 
-    public void persistTestCustomers(int numOfTestCustomers) {
+    public void buildTestData(int numOfTestCustomers) {
         List<Customer> customers = buildTestCustomers(numOfTestCustomers);
         customers.forEach(dbOperation::save);
     }

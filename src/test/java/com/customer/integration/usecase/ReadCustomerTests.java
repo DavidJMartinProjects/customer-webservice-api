@@ -3,6 +3,8 @@ package com.customer.integration.usecase;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+
 import com.app.openapi.generated.model.Customer;
 import com.customer.integration.IntegrationTest;
 import org.hamcrest.Matchers;
@@ -27,9 +29,9 @@ class ReadCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isOk()
+            .isOk()
             .expectBody(Customer.class)
-                .isEqualTo(customer);
+            .isEqualTo(customer);
     }
 
     @Test
@@ -45,10 +47,10 @@ class ReadCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isOk()
+            .isOk()
             .expectBodyList(Customer.class)
-                .hasSize(3)
-                .isEqualTo(expectedCustomers);
+            .hasSize(3)
+            .isEqualTo(expectedCustomers);
     }
 
     // <-- Negative GET Requests Integration Tests -->
@@ -65,12 +67,12 @@ class ReadCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isNotFound()
+            .isEqualTo(HttpStatus.CONFLICT)
             .expectBody()
-                .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-                .jsonPath("$.message").value(Matchers.containsString(nonExistingId + " not found"))
-                .jsonPath("$.errorCode").value(Matchers.equalTo("resource not found."))
-                .jsonPath("$.timestamp").isNotEmpty();
+            .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
+            .jsonPath("$.message").value(Matchers.containsString("customer with id: " + nonExistingId + " does not exist."))
+            .jsonPath("$.errorCode").value(Matchers.equalTo("resource not found."))
+            .jsonPath("$.timestamp").isNotEmpty();
     }
 
 }

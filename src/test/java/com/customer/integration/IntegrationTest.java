@@ -32,7 +32,7 @@ public abstract class IntegrationTest {
 
     @BeforeEach
     public void init() {
-        customerFactory.persistTestCustomers(3);
+        customerFactory.buildTestData(3);
     }
 
 }

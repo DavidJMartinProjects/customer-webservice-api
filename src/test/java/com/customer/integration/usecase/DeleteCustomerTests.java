@@ -1,5 +1,7 @@
 package com.customer.integration.usecase;
 
+import org.springframework.http.HttpStatus;
+
 import com.app.openapi.generated.model.Customer;
 import com.customer.integration.IntegrationTest;
 import org.hamcrest.Matchers;
@@ -24,9 +26,9 @@ public class DeleteCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isNoContent()
+            .isNoContent()
             .expectBody()
-                .isEmpty();
+            .isEmpty();
     }
 
     // ToDo: handle the JPA exception & return a more precise error message for this delete scenario
@@ -44,11 +46,11 @@ public class DeleteCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .is5xxServerError()
+            .isEqualTo(HttpStatus.CONFLICT)
             .expectBody()
-                .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-                .jsonPath("$.errorCode").value(Matchers.equalTo("internal server error."))
-                .jsonPath("$.timestamp").isNotEmpty();
+            .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
+            .jsonPath("$.errorCode").value(Matchers.equalTo("resource not found."))
+            .jsonPath("$.timestamp").isNotEmpty();
     }
 
 }
