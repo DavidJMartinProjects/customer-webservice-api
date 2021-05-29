@@ -43,8 +43,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(RequestValidationException.class)
     @ResponseStatus(code = HttpStatus.CONFLICT)
     @ResponseBody
-    public ErrorData handleValidationFailureException(HttpServletRequest request, RequestValidationException ex) {
-        log.info("handling ValidationFailureException with message: {}.", ex.getMessage());
+    public ErrorData handleRequestValidationException(HttpServletRequest request, RequestValidationException ex) {
+        log.info("handling RequestValidationException with message: {}.", ex.getMessage());
         return buildErrorData("request validation failure.", ex.getMessage(), request);
     }
 

@@ -15,6 +15,29 @@ public class CreateCustomerTests extends IntegrationTest {
 
     // <-- Negative POST Requests Integration Tests -->
     @Test
+    void GIVEN_registeredEmail_WHEN_postRequestToCustomers_THEN_alreadyRegistered() {
+        // given
+        final Customer customer = customerFactory.buildUniqueCustomer();
+        customer.setEmail("test-email-1");
+
+        // when
+        webTestClient
+            .post()
+            .uri(CUSTOMERS_API_BASE_PATH)
+            .body(Mono.just(customer), Customer.class)
+            .exchange()
+
+            // then
+            .expectStatus()
+            .isEqualTo(HttpStatus.CONFLICT)
+            .expectBody()
+            .jsonPath("$.url").value(Matchers.equalTo("POST request to : /customers"))
+            .jsonPath("$.errorCode").value(Matchers.equalTo("request validation failure."))
+            .jsonPath("$.message").value(Matchers.equalTo("email address 'test-email-1' is already registered."))
+            .jsonPath("$.timestamp").isNotEmpty();
+    }
+
+    @Test
     void GIVEN_emptyFirstName_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
         final Customer customer = customerFactory.buildUniqueCustomer();
