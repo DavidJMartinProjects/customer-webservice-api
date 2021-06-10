@@ -57,11 +57,11 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(code = HttpStatus.CONFLICT)
     @ResponseBody
     public ErrorData handleDataAccessException(HttpServletRequest request, EmptyResultDataAccessException ex) {
         log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
-        return buildErrorData("internal server error.", ex.getMessage(), request);
+        return buildErrorData("resource not found.", ex.getMessage(), request);
     }
 
     private ErrorData buildErrorData(String errorCode, String message, HttpServletRequest request) {

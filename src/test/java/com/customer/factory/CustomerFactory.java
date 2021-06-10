@@ -26,7 +26,7 @@ public class CustomerFactory {
     @Autowired
     private DbOperation<Customer> dbOperation;
 
-    public void buildTestData(int numOfTestCustomers) {
+    public void saveTestCustomers(int numOfTestCustomers) {
         List<Customer> customers = buildTestCustomers(numOfTestCustomers);
         customers.forEach(dbOperation::save);
     }
@@ -44,6 +44,8 @@ public class CustomerFactory {
                     .country("test-country-" + index)
                     .email("test-email-" + index)
                     .build();
+
+            log.info("saved customer record with id: {}.", customerEntity.getId());
             customers.add(customerEntity);
         }
 

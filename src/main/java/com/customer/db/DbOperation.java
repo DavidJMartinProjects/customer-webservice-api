@@ -53,6 +53,12 @@ public interface DbOperation<T> {
     void deleteById(long id);
 
     /**
+     * Deletes all records.
+     *
+     */
+    void deleteAll();
+
+    /**
      * returns true if the provided email is already registered.
      *
      * @param email the email

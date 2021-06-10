@@ -1,9 +1,13 @@
 package com.customer.integration.usecase;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.app.openapi.generated.model.Customer;
+import com.customer.db.dao.CustomerDao;
 import com.customer.integration.IntegrationTest;
+import lombok.extern.slf4j.Slf4j;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +20,7 @@ public class DeleteCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_existingCustomerId_WHEN_deleteRequestToCustomerById_THEN_noContent() {
         // given
-        final Customer customer = customerFactory.findCustomerById(CUSTOMER_ID_ONE);
+        final Customer customer = dbOperation.findAll().get(0);
 
         // when
         webTestClient

@@ -14,7 +14,7 @@ public class UpdateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_updatedCustomer_WHEN_putRequestToCustomerById_THEN_ok() {
         // given
-        final Customer customer = customerFactory.findCustomerById(CUSTOMER_ID_ONE);
+        final Customer customer = dbOperation.findAll().get(0);
         customer.setFirstName("Clint");
         customer.setLastName("Eastwood");
 

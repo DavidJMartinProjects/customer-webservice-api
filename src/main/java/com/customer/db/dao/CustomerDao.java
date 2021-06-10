@@ -1,7 +1,5 @@
 package com.customer.db.dao;
 
-import static java.lang.String.format;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,21 +56,19 @@ public class CustomerDao implements DbOperation<Customer> {
     @Override
     public Customer update(Customer customer) {
         log.info("updating customer with id: {}.", customer.getId());
-        if (customerRepository.existsById(Long.valueOf(customer.getId()))) {
-            return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
-        } else {
-            throw new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customer.getId()));
-        }
+        return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     @Override
     public void deleteById(long customerId) {
         log.info("deleting customer with id: {}.", customerId);
-        if(customerRepository.existsById(customerId)) {
-            customerRepository.deleteById(customerId);
-        } else {
-            throw new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customerId));
-        }
+        customerRepository.deleteById(customerId);
+    }
+
+    @Override
+    public void deleteAll() {
+        log.info("deleting all customers records.");
+        customerRepository.deleteAll();
     }
 
     @Override

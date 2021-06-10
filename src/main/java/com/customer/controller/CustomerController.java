@@ -72,7 +72,7 @@ public class CustomerController implements CustomersApi {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Void> deleteCustomerById(@PathVariable("id") Integer id) {
-        log.info("received DELETE request to path: {}.", CUSTOMERS_API_BASE_PATH + id);
+        log.info("received DELETE request to path: {}.", CUSTOMERS_API_BASE_PATH +"/"+ id);
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();
     }
