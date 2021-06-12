@@ -168,3 +168,5 @@ components:
           type: string
         email:
           type: string
+        image:
+          type: string

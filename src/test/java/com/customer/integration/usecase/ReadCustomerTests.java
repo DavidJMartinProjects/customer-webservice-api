@@ -50,7 +50,7 @@ class ReadCustomerTests extends IntegrationTest {
             .isOk()
             .expectBodyList(Customer.class)
             .hasSize(3);
-        
+
     }
 
     // <-- Negative GET Requests Integration Tests -->

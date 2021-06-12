@@ -40,4 +40,6 @@ public class CustomerEntity {
     @NotEmpty(message = "please provide an email")
     private String email;
 
+    private String image;
+
 }

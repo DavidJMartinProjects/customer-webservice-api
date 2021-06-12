@@ -43,6 +43,7 @@ public class CustomerFactory {
                     .city("test-city-" + index)
                     .country("test-country-" + index)
                     .email("test-email-" + index)
+                    .image("test-imageUrl-" + index)
                     .build();
 
             log.info("saved customer record with id: {}.", customerEntity.getId());
