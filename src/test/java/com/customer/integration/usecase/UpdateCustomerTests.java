@@ -8,15 +8,16 @@ import reactor.core.publisher.Mono;
 /**
  * @author DavidJMartin
  */
-public class UpdateCustomerTests extends IntegrationTest {
+class UpdateCustomerTests extends IntegrationTest {
 
     // <-- Positive PUT Requests Integration Tests-->
     @Test
     void GIVEN_updatedCustomer_WHEN_putRequestToCustomerById_THEN_ok() {
         // given
-        final Customer customer = dbOperation.findAll().get(0);
+        final Customer customer = customerFactory.buildCustomer();
         customer.setFirstName("Clint");
         customer.setLastName("Eastwood");
+        customer.setEmail("unique@email.com");
 
         // when
         webTestClient

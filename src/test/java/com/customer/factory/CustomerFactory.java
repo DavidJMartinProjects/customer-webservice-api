@@ -56,10 +56,17 @@ public class CustomerFactory {
             .collect(Collectors.toList());
     }
 
-    public Customer buildUniqueCustomer() {
-        final Customer customer = buildTestCustomers(1).get(0);
-        customer.setEmail("unique@email.com");
-        return customer;
+//    public Customer buildUniqueCustomer() {
+//        final Customer customer = buildTestCustomers(1).get(0);
+//        customer.setEmail("unique@email.com");
+//        return customer;
+//    }
+
+    public Customer buildCustomer() {
+        return buildTestCustomers(1)
+            .stream()
+            .findFirst()
+            .orElse(new Customer());
     }
 
     public Customer findCustomerById(int customerId) {

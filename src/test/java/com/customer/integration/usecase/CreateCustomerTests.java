@@ -11,16 +11,13 @@ import reactor.core.publisher.Mono;
 /**
  * @author DavidJMartin
  */
-public class CreateCustomerTests extends IntegrationTest {
+class CreateCustomerTests extends IntegrationTest {
 
     // <-- Negative POST Requests Integration Tests -->
     @Test
     void GIVEN_registeredEmail_WHEN_postRequestToCustomers_THEN_alreadyRegistered() {
         // given
-        final Customer customer = customerFactory.buildTestCustomers(1)
-            .stream()
-            .findFirst()
-            .orElse(new Customer());
+        final Customer customer = customerFactory.buildCustomer();
 
         // when
         webTestClient
@@ -42,8 +39,9 @@ public class CreateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_emptyFirstName_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
-        final Customer customer = customerFactory.buildUniqueCustomer();
+        final Customer customer = customerFactory.buildCustomer();
         customer.setFirstName("");
+        customer.setEmail("unique@email.com");
 
         // when
         webTestClient
@@ -65,8 +63,9 @@ public class CreateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_emptyLastName_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
-        final Customer customer = customerFactory.buildUniqueCustomer();
+        final Customer customer = customerFactory.buildCustomer();
         customer.setLastName("");
+        customer.setEmail("unique@email.com");
 
         // when
         webTestClient
@@ -88,7 +87,7 @@ public class CreateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_emptyEmail_WHEN_postRequestToCustomers_THEN_validationFailure() {
         // given
-        final Customer customer = customerFactory.buildUniqueCustomer();
+        final Customer customer = customerFactory.buildCustomer();
         customer.setEmail("");
 
         // when
@@ -111,9 +110,10 @@ public class CreateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_emptyFirstNameAndLastName_WHEN_postRequestToCustomers_THEN_expectedValidationViolationMessages() {
         // given
-        final Customer customer = customerFactory.buildUniqueCustomer();
+        final Customer customer = customerFactory.buildCustomer();
         customer.setFirstName("");
         customer.setLastName("");
+        customer.setEmail("unique@email.com");
 
         // when
         webTestClient
@@ -153,7 +153,8 @@ public class CreateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_validCustomer_WHEN_postRequestToCustomers_THEN_created() {
         // given
-        final Customer customer = customerFactory.buildUniqueCustomer();
+        final Customer customer = customerFactory.buildCustomer();
+        customer.setEmail("unique@email.com");
 
         // when
         webTestClient

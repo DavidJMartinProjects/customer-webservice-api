@@ -19,7 +19,7 @@ class ReadCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_existingCustomerId_WHEN_getRequestToCustomerById_THEN_ok() {
         // given
-        final Customer customer = dbOperation.findAll().get(0);
+        final Customer customer = customerFactory.buildCustomer();
 
         // when
         webTestClient

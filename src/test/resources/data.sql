@@ -12,14 +12,6 @@ CREATE TABLE customers (
 );
 
 INSERT INTO customers (first_name, last_name, address, city, country, email, image) VALUES
-  ('David', 'Martin', 'Main St.', 'Texas', 'USA', 'dm@email.com', 'https://bootdey.com/img/Content/avatar/avatar1.png'),
-  ('Vicky', 'Hulston', 'City Center', 'Paris', 'France', 'jd@email.com', 'https://bootdey.com/img/Content/avatar/avatar2.png'),
-  ('Mary', 'Bloggs', 'Town Square', 'London', 'UK', 'mb@email.com', 'https://bootdey.com/img/Content/avatar/avatar5.png'),
-  ('Jim', 'Martin', 'Main St.', 'Texas', 'USA', 'dm@email.com', 'https://bootdey.com/img/Content/avatar/avatar4.png'),
-  ('Joe', 'Doe', 'City Center', 'Paris', 'France', 'jd@email.com', 'https://bootdey.com/img/Content/avatar/avatar5.png'),
-  ('Lucy', 'Bloggs', 'Town Square', 'London', 'UK', 'mb@email.com', 'https://bootdey.com/img/Content/avatar/avatar6.png'),
-  ('Ann', 'Martin', 'Main St.', 'Texas', 'USA', 'dm@email.com', 'https://bootdey.com/img/Content/avatar/avatar7.png'),
-  ('John', 'Doe', 'City Center', 'Paris', 'France', 'jd@email.com', 'https://bootdey.com/img/Content/avatar/avatar8.png'),
-  ('Mary', 'Bloggs', 'Town Square', 'London', 'UK', 'mb@email.com', 'https://bootdey.com/img/Content/avatar/avatar2.png'),
-  ('Jane', 'Martin', 'Main St.', 'Texas', 'USA', 'dm@email.com', 'https://bootdey.com/img/Content/avatar/avatar1.png'),
-  ('John', 'Doe', 'City Center', 'Paris', 'France', 'jd@email.com', 'https://bootdey.com/img/Content/avatar/avatar2.png');
+  ('test-firstName-1', 'test-lastName-1', 'test-address-1', 'test-city-1', 'test-country-1', 'test-email-1', 'test-imageUrl-1'),
+  ('test-firstName-2', 'test-lastName-2', 'test-address-2', 'test-city-2', 'test-country-2', 'test-email-2', 'test-imageUrl-2'),
+  ('test-firstName-3', 'test-lastName-3', 'test-address-3', 'test-city-3', 'test-country-3', 'test-email-3', 'test-imageUrl-3');
