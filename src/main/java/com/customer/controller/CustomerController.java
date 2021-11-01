@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.openapi.generated.api.CustomersApi;
 import com.app.openapi.generated.model.Customer;
-import com.customer.service.CustomerService;
+import com.customer.service.impl.CustomerServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -22,37 +22,37 @@ public class CustomerController implements CustomersApi {
     static final String CUSTOMERS_API_BASE_PATH = "/customers";
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerServiceImpl customerServiceImpl;
 
     @Override
     public ResponseEntity<List<Customer>> getCustomers() {
         log.info("received GET request to path: {}.", CUSTOMERS_API_BASE_PATH);
-        return ResponseEntity.ok(customerService.getCustomers());
+        return ResponseEntity.ok(customerServiceImpl.getCustomers());
     }
 
     @Override
     public ResponseEntity<Customer> createCustomer(Customer customer) {
         log.info("received POST request to path: {}.", CUSTOMERS_API_BASE_PATH);
-        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customer));
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerServiceImpl.saveCustomer(customer));
     }
 
     @Override
     public ResponseEntity<Customer> getCustomerById(Long id) {
         log.info("received GET request to path: {}.", CUSTOMERS_API_BASE_PATH + id);
-        return ResponseEntity.ok(customerService.findCustomerById(id));
+        return ResponseEntity.ok(customerServiceImpl.findCustomerById(id));
     }
 
     @Override
     public ResponseEntity<Customer> updateCustomerById(Integer id,Customer customer) {
         log.info("received PUT request to path: {}.", CUSTOMERS_API_BASE_PATH + id);
         customer.setId(id);
-        return ResponseEntity.ok(customerService.updateCustomerById(customer));
+        return ResponseEntity.ok(customerServiceImpl.updateCustomerById(customer));
     }
 
     @Override
     public ResponseEntity<Void> deleteCustomerById(Integer id) {
         log.info("received DELETE request to path: {}.", CUSTOMERS_API_BASE_PATH +"/"+ id);
-        customerService.deleteCustomerById(id);
+        customerServiceImpl.deleteCustomerById(id);
         return ResponseEntity.noContent().build();
     }
 
