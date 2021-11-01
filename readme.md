@@ -1,5 +1,5 @@
-# customer-webservice 
-> A RESTful web based microservice used to perform CRUD operations on Customer records.
+## Project Description
+A RESTful web based microservice used to perform CRUD operations on Customer records.
 
 This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ approach.
 With focus on clean, maintainable code & high value testcases.
