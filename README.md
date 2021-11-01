@@ -37,7 +37,7 @@ Integration testcases can be found at:
 ## CI/CD Pipeline (using CircleCi)  
   > https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer_webservice   
 
-
+<!-- 
 ## Deployment
 
 OS X, Windows, Linux:
@@ -95,4 +95,4 @@ To generate the required sources, build the project using the below command
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
 [wiki]: https://github.com/yourname/yourproject/wiki
 
-[comment]: <> (https://github.com/dbader/readme-template/blob/master/README.md)
+[comment]: <> (https://github.com/dbader/readme-template/blob/master/README.md) -->
