@@ -28,7 +28,7 @@ public class EmailRequestValidator implements RequestValidator {
     private void checkIfEmailIsRegistered(String email) {
         if(dbOperation.isEmailRegistered(email)) {
             log.info("Validation failed: email address is already registered.");
-            throw new RequestValidationException("email address '" + email + "' is already registered.");
+            throw new RequestValidationException("Provided email address: '" + email + "' is already registered.");
         }
     }
 
