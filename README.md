@@ -1,10 +1,21 @@
-# RESTful Springboot Microservice
+# customer-service 
 > A RESTful web based microservice used to perform CRUD operations on Customer records.
 
 This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ approach.
 With focus on clean, maintainable code & testing at the appropriate level.
 
-- API documentation
+## Technologies & Frameworks
+
+- Open API
+- Swagger UI
+- SpringBoot
+- Spring JPA
+- Flyway 
+- PostgreSQL
+- H2 
+- Integration Testing
+
+## API documentation
   -  The microservice exposes its api documentation through its actuator endpoints.
   -  To view the service api docs, run the project & navigate to the service management urls shown below.
 ```sh
@@ -17,16 +28,17 @@ With focus on clean, maintainable code & testing at the appropriate level.
   /src/main/resources/openapi-spec/
 ```
 
-- Integration Tests location:
+## Integration Tests:
+Integration testcases can be found at:
 ```sh
    src/test/java/com/customer/integration/usecase/
 ```
 
-- CI/CD Pipeline (using CircleCi)  
-  - https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer_webservice   
+## CI/CD Pipeline (using CircleCi)  
+  > https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer_webservice   
 
 
-## Installation
+## Deployment
 
 OS X, Windows, Linux:
     
