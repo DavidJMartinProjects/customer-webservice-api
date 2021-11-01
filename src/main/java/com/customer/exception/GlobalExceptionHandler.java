@@ -1,5 +1,7 @@
 package com.customer.exception;
 
+import static org.springframework.web.client.HttpServerErrorException.InternalServerError;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,19 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ResponseBody
-    public ErrorData handleConstraintViolationException(HttpServletRequest request, ConstraintViolationException ex) {
-        log.info("handling ValidationFailureException with propagated violation errors: {}.", ex.getMessage());
-        List<String> errors = ex.getConstraintViolations()
-            .stream()
-            .map(ConstraintViolation::getMessage)
-            .collect(Collectors.toList());
-
-        return buildErrorData("request validation failure.", errors.toString(), request);
-    }
-
     @ExceptionHandler(RequestValidationException.class)
     @ResponseStatus(code = HttpStatus.CONFLICT)
     @ResponseBody
@@ -62,6 +51,27 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ErrorData handleDataAccessException(HttpServletRequest request, DataAccessException ex) {
         log.info("handling DataAccessException: {}.", ex.getMessage());
         return buildErrorData("encountered exception.", ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(InternalServerError.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public ErrorData handleInternalServerError(HttpServletRequest request, InternalServerError ex) {
+        log.info("handling InternalServerError: {}.", ex.getMessage());
+        return buildErrorData("encountered exception.", ex.getMessage(), request);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    public ErrorData handleConstraintViolationException(HttpServletRequest request, ConstraintViolationException ex) {
+        log.info("handling ValidationFailureException with propagated violation errors: {}.", ex.getMessage());
+        List<String> errors = ex.getConstraintViolations()
+            .stream()
+            .map(ConstraintViolation::getMessage)
+            .collect(Collectors.toList());
+
+        return buildErrorData("request validation failure.", errors.toString(), request);
     }
 
     private ErrorData buildErrorData(String errorCode, String message, HttpServletRequest request) {
