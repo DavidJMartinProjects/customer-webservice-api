@@ -1,4 +1,4 @@
-package com.customer.exception.handler;
+package com.customer.exception;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.customer.exception.CustomerServiceException;
-import com.customer.exception.RequestValidationException;
+import com.customer.exception.exceptions.CustomerServiceException;
+import com.customer.exception.exceptions.RequestValidationException;
 import lombok.extern.slf4j.Slf4j;
 
 /**

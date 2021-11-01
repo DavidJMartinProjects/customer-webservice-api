@@ -11,7 +11,7 @@ import com.customer.db.DbOperation;
 import com.customer.db.dao.mapper.CustomerMapper;
 import com.customer.db.dao.model.CustomerEntity;
 import com.customer.db.dao.repository.CustomerRepository;
-import com.customer.exception.CustomerServiceException;
+import com.customer.exception.exceptions.CustomerServiceException;
 import lombok.extern.slf4j.Slf4j;
 
 

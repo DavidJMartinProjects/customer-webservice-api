@@ -1,4 +1,4 @@
-package com.customer.exception.handler;
+package com.customer.exception;
 
 import lombok.Builder;
 import lombok.Data;
