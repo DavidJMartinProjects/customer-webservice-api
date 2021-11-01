@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
-import com.customer.service.validation.RequestValidator;
+import com.customer.validation.RequestValidator;
 import lombok.extern.slf4j.Slf4j;
 
 /**

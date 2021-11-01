@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
 import com.customer.model.mapper.CustomerMapper;
-import com.customer.model.CustomerEntity;
+import com.customer.model.entity.CustomerEntity;
 import lombok.extern.slf4j.Slf4j;
 
 /**

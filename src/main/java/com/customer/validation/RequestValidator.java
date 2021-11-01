@@ -1,4 +1,4 @@
-package com.customer.service.validation;
+package com.customer.validation;
 
 import com.app.openapi.generated.model.Customer;
 

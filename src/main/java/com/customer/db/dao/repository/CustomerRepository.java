@@ -3,7 +3,7 @@ package com.customer.db.dao.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.customer.model.CustomerEntity;
+import com.customer.model.entity.CustomerEntity;
 
 /**
  * @author davidjmartin
