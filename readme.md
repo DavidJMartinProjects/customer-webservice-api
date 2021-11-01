@@ -18,24 +18,24 @@ With focus on clean, maintainable code & high value testcases.
 ## API documentation
   -  The microservice exposes its api documentation through its actuator endpoints.
   -  To view the service api docs, run the project & navigate to the service management urls shown below.
-```sh
-    - http://localhost:9090/actuator/openapi    
-    - http://localhost:9090/actuator/swaggerui  
-```
+     
+     - http://localhost:9090/actuator/openapi    
+     - http://localhost:9090/actuator/swaggerui  
 
-- OpenAPI Spec location: 
-```sh
-  /src/main/resources/openapi-spec/
-```
+
+- The OpenAPI Spec can be found at the below path: 
+
+  -  /src/main/resources/openapi-spec/
+
 
 ## Integration Tests:
 Integration testcases can be found at:
-```sh
-   src/test/java/com/customer/integration/usecase/
-```
 
-## CI/CD Pipeline (using CircleCi)  
-  > https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer-webservice   
+ -   src/test/java/com/customer/integration/usecase/
+
+
+## CI/CD Pipeline (using CircleCi)
+ - https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer-webservice   
 
 
 
