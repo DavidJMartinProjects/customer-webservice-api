@@ -1,4 +1,4 @@
-package com.customer.factory;
+package com.customer.integration.factory;
 
 import java.util.ArrayList;
 import java.util.List;

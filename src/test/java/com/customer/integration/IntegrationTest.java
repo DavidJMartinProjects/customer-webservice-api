@@ -8,8 +8,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.db.DbOperation;
-import com.customer.factory.CustomerFactory;
+import com.customer.integration.factory.CustomerFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
