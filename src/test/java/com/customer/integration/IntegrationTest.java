@@ -15,10 +15,10 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * @author DavidJMartin
  */
-@Slf4j
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @AutoConfigureWebTestClient
+@Slf4j
 public abstract class IntegrationTest {
 
     protected static final String CUSTOMERS_API_BASE_PATH = "/customers";

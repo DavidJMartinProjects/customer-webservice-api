@@ -1,10 +1,10 @@
-package com.customer.db.dao.mapper;
+package com.customer.model.mapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.app.openapi.generated.model.Customer;
-import com.customer.db.dao.model.CustomerEntity;
+import com.customer.model.CustomerEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 
