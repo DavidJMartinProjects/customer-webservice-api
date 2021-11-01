@@ -32,7 +32,7 @@ class CreateCustomerTests extends IntegrationTest {
             .expectBody()
             .jsonPath("$.url").value(Matchers.equalTo("POST request to : /customers"))
             .jsonPath("$.errorCode").value(Matchers.equalTo("request validation failure."))
-            .jsonPath("$.message").value(Matchers.equalTo("email address 'test-email-1' is already registered."))
+            .jsonPath("$.message").value(Matchers.equalTo("Provided email address: 'test-email-1' is already registered."))
             .jsonPath("$.timestamp").isNotEmpty();
     }
 
