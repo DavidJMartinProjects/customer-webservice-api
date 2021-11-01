@@ -9,8 +9,9 @@ import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author davidjmartin
@@ -18,7 +19,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "customers")
 @Builder
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerEntity {

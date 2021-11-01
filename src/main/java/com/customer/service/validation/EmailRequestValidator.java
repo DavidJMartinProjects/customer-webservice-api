@@ -13,11 +13,12 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Component
 @Slf4j
-public class CustomerValidator {
+public class EmailRequestValidator implements RequestValidator {
 
     @Autowired
     private DbOperation<Customer> dbOperation;
 
+    @Override
     public void validate(Customer customer) {
         log.info("validating request.");
         checkIfEmailIsRegistered(customer.getEmail());

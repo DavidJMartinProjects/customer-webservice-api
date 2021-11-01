@@ -17,8 +17,10 @@ public class CreateCustomerTests extends IntegrationTest {
     @Test
     void GIVEN_registeredEmail_WHEN_postRequestToCustomers_THEN_alreadyRegistered() {
         // given
-        final Customer customer = customerFactory.buildUniqueCustomer();
-        customer.setEmail("test-email-1");
+        final Customer customer = customerFactory.buildTestCustomers(1)
+            .stream()
+            .findFirst()
+            .orElse(new Customer());
 
         // when
         webTestClient

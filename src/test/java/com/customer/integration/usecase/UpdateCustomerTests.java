@@ -27,9 +27,9 @@ public class UpdateCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isOk()
+            .isOk()
             .expectBody(Customer.class)
-                .isEqualTo(customer);
+            .isEqualTo(customer);
     }
 
     // <-- Negative PUT Requests Integration Tests-->
@@ -47,9 +47,9 @@ public class UpdateCustomerTests extends IntegrationTest {
 
             // then
             .expectStatus()
-                .isBadRequest()
+            .isBadRequest()
             .expectBody()
-                .isEmpty();
+            .isEmpty();
     }
 
 }

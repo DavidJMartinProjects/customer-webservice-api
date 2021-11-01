@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.openapi.generated.model.Customer;
 import com.customer.db.DbOperation;
-import com.customer.service.validation.CustomerValidator;
+import com.customer.service.validation.RequestValidator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -21,7 +21,7 @@ public class CustomerService {
     private DbOperation<Customer> dbOperation;
 
     @Autowired
-    private CustomerValidator customerValidator;
+    private RequestValidator emailValidator;
 
     public List<Customer> getCustomers() {
         log.info("processing request to fetch all customers.");
@@ -30,7 +30,7 @@ public class CustomerService {
 
     public Customer saveCustomer(Customer customer) {
         log.info("processing request to save customer.");
-        customerValidator.validate(customer);
+        emailValidator.validate(customer);
         return dbOperation.save(customer);
     }
 
