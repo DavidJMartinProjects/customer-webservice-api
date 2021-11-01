@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -56,12 +56,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return buildErrorData("resource not found.", ex.getMessage(), request);
     }
 
-    @ExceptionHandler(EmptyResultDataAccessException.class)
+    @ExceptionHandler(DataAccessException.class)
     @ResponseStatus(code = HttpStatus.CONFLICT)
     @ResponseBody
-    public ErrorData handleDataAccessException(HttpServletRequest request, EmptyResultDataAccessException ex) {
-        log.info("handling EmptyResultDataAccessException: {}.", ex.getMessage());
-        return buildErrorData("resource not found.", ex.getMessage(), request);
+    public ErrorData handleDataAccessException(HttpServletRequest request, DataAccessException ex) {
+        log.info("handling DataAccessException: {}.", ex.getMessage());
+        return buildErrorData("encountered exception.", ex.getMessage(), request);
     }
 
     private ErrorData buildErrorData(String errorCode, String message, HttpServletRequest request) {

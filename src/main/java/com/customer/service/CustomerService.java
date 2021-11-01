@@ -24,28 +24,28 @@ public class CustomerService {
     private RequestValidator emailValidator;
 
     public List<Customer> getCustomers() {
-        log.info("processing request to fetch all customers.");
+        log.info("fetching all customers.");
         return dbOperation.findAll();
     }
 
     public Customer saveCustomer(Customer customer) {
-        log.info("processing request to save customer.");
+        log.info("saving customer with id: {}.", customer.getId());
         emailValidator.validate(customer);
         return dbOperation.save(customer);
     }
 
     public Customer findCustomerById(long id) {
-        log.info("processing request to fetch customer with id: {}.", id);
+        log.info("fetching customer with id: {}.", id);
         return dbOperation.findById(id);
     }
 
     public Customer updateCustomerById(Customer customer) {
-        log.info("processing request to update customer with id: {}.", customer.getId());
+        log.info("updating customer with id: {}.", customer.getId());
         return dbOperation.update(customer);
     }
 
     public void deleteCustomerById(long id) {
-        log.info("processing request to delete customer with id: {}.", id);
+        log.info("deleting customer with id: {}.", id);
         dbOperation.deleteById(id);
     }
 

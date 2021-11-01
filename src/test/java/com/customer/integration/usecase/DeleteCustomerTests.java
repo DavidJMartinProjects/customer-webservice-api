@@ -53,7 +53,7 @@ public class DeleteCustomerTests extends IntegrationTest {
             .isEqualTo(HttpStatus.CONFLICT)
             .expectBody()
             .jsonPath("$.url").value(Matchers.containsString("/customers/" + nonExistingId))
-            .jsonPath("$.errorCode").value(Matchers.equalTo("resource not found."))
+            .jsonPath("$.errorCode").value(Matchers.equalTo("encountered exception."))
             .jsonPath("$.timestamp").isNotEmpty();
     }
 
