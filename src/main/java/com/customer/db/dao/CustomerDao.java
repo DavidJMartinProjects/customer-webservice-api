@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -24,7 +26,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
-    private static String CUSTOMER_ID_DOES_NOT_EXIST = "customer with id: %s does not exist.";
+    private static final String DEFAULT_SORT_FIELD = "id";
+    private static final String CUSTOMER_ID_DOES_NOT_EXIST = "customer with id: %s does not exist.";
 
     @Autowired
     private CustomerMapper mapper;
@@ -33,18 +36,11 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
     private CustomerRepository customerRepository;
 
     @Override
-    public List<Customer> findAll() {
-        log.debug("fetching customers.");
-        return customerRepository.findAll()
-            .stream()
-            .map(mapper::toDto)
-            .collect(Collectors.toList());
-    }
-
-    @Override
     public CustomerPage findAll(int page, int size) {
         log.debug("fetching customers. page {}, size {}.", page, size);
-        Page<CustomerEntity> customerEntityPage =  customerRepository.findAll(PageRequest.of(page, size));
+        Sort sort = Sort.by(Sort.Direction.ASC, DEFAULT_SORT_FIELD);
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<CustomerEntity> customerEntityPage =  customerRepository.findAll(pageable);
 
         return buildCustomerPage(customerEntityPage);
     }
@@ -53,20 +49,19 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
         List<Customer> customers =  customerEntityPage.getContent()
             .stream()
             .map(mapper::toDto)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
 
-        CustomerPage customerPage = new CustomerPage();
-        customerPage.setCustomers(customers);
-        customerPage.setTotalPages((long) customerEntityPage.getTotalPages());
-        customerPage.setTotalElements((long) customerEntityPage.getTotalElements());
-        return customerPage;
+        return new CustomerPage()
+            .customers(customers)
+            .totalPages((long) customerEntityPage.getTotalPages())
+            .totalElements(customerEntityPage.getTotalElements());
     }
 
     @Override
-    public Customer findById(long customerId) {
-        log.debug("fetching customer with id: {}.", customerId);
-        CustomerEntity entity = customerRepository.findById(customerId)
-            .orElseThrow(() -> new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customerId)));
+    public Customer findById(long id) {
+        log.debug("fetching customer with id: {}.", id);
+        CustomerEntity entity = customerRepository.findById(id)
+            .orElseThrow(() -> new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, id)));
         return mapper.toDto(entity);
     }
 
@@ -83,15 +78,9 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
     }
 
     @Override
-    public void deleteById(long customerId) {
-        log.debug("deleting customer with id: {}.", customerId);
-        customerRepository.deleteById(customerId);
-    }
-
-    @Override
-    public void deleteAll() {
-        log.debug("deleting all customers records.");
-        customerRepository.deleteAll();
+    public void deleteById(long id) {
+        log.debug("deleting customer with id: {}.", id);
+        customerRepository.deleteById(id);
     }
 
     @Override

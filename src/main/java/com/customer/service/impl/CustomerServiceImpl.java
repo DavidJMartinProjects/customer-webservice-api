@@ -9,8 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 /**
  * @author davidjmartin
  */
@@ -23,12 +21,6 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private RequestValidator emailValidator;
-
-    @Override
-    public List<Customer> getCustomers() {
-        log.info("fetching all customers.");
-        return dbOperation.findAll();
-    }
 
     @Override
     public CustomerPage getCustomers(int page, int size) {

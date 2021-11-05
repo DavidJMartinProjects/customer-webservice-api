@@ -32,13 +32,6 @@ public interface DbOperation<T, U> {
     T findById(long id);
 
     /**
-     * Find all records.
-     *
-     * @return the list of found records
-     */
-    List<T> findAll();
-
-    /**
      * Find all records (paginated).
      *
      * @param page the page number
@@ -64,12 +57,6 @@ public interface DbOperation<T, U> {
      * @param id the record id
      */
     void deleteById(long id);
-
-    /**
-     * Deletes all records.
-     *
-     */
-    void deleteAll();
 
     /**
      * returns true if the provided email is already registered.
