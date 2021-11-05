@@ -1,15 +1,15 @@
 package com.customer.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.app.openapi.generated.model.Customer;
+import com.app.openapi.generated.model.CustomerPage;
 import com.customer.db.DbOperation;
 import com.customer.service.CustomerService;
 import com.customer.validation.RequestValidator;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author davidjmartin
@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    private DbOperation<Customer> dbOperation;
+    private DbOperation<Customer, CustomerPage> dbOperation;
 
     @Autowired
     private RequestValidator emailValidator;
@@ -28,6 +28,11 @@ public class CustomerServiceImpl implements CustomerService {
     public List<Customer> getCustomers() {
         log.info("fetching all customers.");
         return dbOperation.findAll();
+    }
+
+    @Override
+    public CustomerPage getCustomers(int page, int size) {
+        return dbOperation.findAll(page, size);
     }
 
     @Override

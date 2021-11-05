@@ -1,17 +1,17 @@
 package com.customer.integration.factory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.app.openapi.generated.model.Customer;
+import com.app.openapi.generated.model.CustomerPage;
+import com.customer.db.DbOperation;
+import com.customer.model.entity.CustomerEntity;
+import com.customer.model.mapper.CustomerMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.app.openapi.generated.model.Customer;
-import com.customer.db.DbOperation;
-import com.customer.model.mapper.CustomerMapper;
-import com.customer.model.entity.CustomerEntity;
-import lombok.extern.slf4j.Slf4j;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author DavidJMartin
@@ -24,7 +24,7 @@ public class CustomerFactory {
     private CustomerMapper mapper;
 
     @Autowired
-    private DbOperation<Customer> dbOperation;
+    private DbOperation<Customer, CustomerPage> dbOperation;
 
     public void saveTestCustomers(int numOfTestCustomers) {
         List<Customer> customers = buildTestCustomers(numOfTestCustomers);

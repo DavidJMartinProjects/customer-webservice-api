@@ -12,31 +12,48 @@ servers:
 paths:
   /customers:
     get:
+      summary: ''
       tags:
         - customer-controller
       operationId: getCustomers
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
+        - name: size
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
       responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Customer'
-        '400':
+        "400":
           description: Bad Request
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
-        '404':
-          description: Not Found
+        "409":
+          description: Conflict
           content:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ErrorData'
-      description: returns all customers
+        "500":
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPage'
     post:
       tags:
         - customer-controller
@@ -170,3 +187,16 @@ components:
           type: string
         image:
           type: string
+    CustomerPage:
+      type: object
+      properties:
+        customers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Customer'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64

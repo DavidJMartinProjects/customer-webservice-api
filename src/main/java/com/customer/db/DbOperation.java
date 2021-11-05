@@ -1,5 +1,7 @@
 package com.customer.db;
 
+import org.springframework.data.domain.Page;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ import java.util.List;
  *
  * @author davidjmartin
  */
-public interface DbOperation<T> {
+public interface DbOperation<T, U> {
 
     /**
      * Save a record.
@@ -35,6 +37,17 @@ public interface DbOperation<T> {
      * @return the list of found records
      */
     List<T> findAll();
+
+    /**
+     * Find all records (paginated).
+     *
+     * @param page the page number
+     *
+     * @param size the number of records per page
+     *
+     * @return the page of records
+     */
+    U findAll(int page, int size);
 
     /**
      * Update a record.
@@ -66,5 +79,4 @@ public interface DbOperation<T> {
      * @return true if email is registered
      */
     boolean isEmailRegistered(String email);
-
 }

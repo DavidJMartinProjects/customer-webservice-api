@@ -161,6 +161,7 @@
                                 <dateLibrary>java8-localdatetime</dateLibrary>
                                 <java8>true</java8>
                                 <useBeanValidation>true</useBeanValidation>
+                                <enableBuilderSupport>true</enableBuilderSupport>
                             </configOptions>
                         </configuration>
                     </execution>

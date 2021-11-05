@@ -34,24 +34,24 @@ class ReadCustomerTests extends IntegrationTest {
             .isEqualTo(customer);
     }
 
-    @Test
-    void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
-        // given
-        final List<Customer> expectedCustomers = customerFactory.buildTestCustomers(3);
-
-        // when
-        webTestClient
-            .get()
-            .uri(CUSTOMERS_API_BASE_PATH)
-            .exchange()
-
-            // then
-            .expectStatus()
-            .isOk()
-            .expectBodyList(Customer.class)
-            .hasSize(3);
-
-    }
+//    @Test
+//    void GIVEN_expectedCustomers_WHEN_getRequestToCustomers_THEN_ok() {
+//        // given
+//        final List<Customer> expectedCustomers = customerFactory.buildTestCustomers(3);
+//
+//        // when
+//        webTestClient
+//            .get()
+//            .uri(CUSTOMERS_API_BASE_PATH)
+//            .exchange()
+//
+//            // then
+//            .expectStatus()
+//            .isOk()
+//            .expectBodyList(Customer.class)
+//            .hasSize(3);
+//
+//    }
 
     // <-- Negative GET Requests Integration Tests -->
     @Test

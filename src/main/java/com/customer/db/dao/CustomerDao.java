@@ -1,26 +1,28 @@
 package com.customer.db.dao;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
 import com.app.openapi.generated.model.Customer;
+import com.app.openapi.generated.model.CustomerPage;
 import com.customer.db.DbOperation;
-import com.customer.model.mapper.CustomerMapper;
-import com.customer.model.entity.CustomerEntity;
 import com.customer.db.dao.repository.CustomerRepository;
 import com.customer.exception.exceptions.CustomerServiceException;
+import com.customer.model.entity.CustomerEntity;
+import com.customer.model.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
  * @author davidjmartin
  */
-@Slf4j
 @Component
-public class CustomerDao implements DbOperation<Customer> {
+@Slf4j
+public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
     private static String CUSTOMER_ID_DOES_NOT_EXIST = "customer with id: %s does not exist.";
 
@@ -37,6 +39,27 @@ public class CustomerDao implements DbOperation<Customer> {
             .stream()
             .map(mapper::toDto)
             .collect(Collectors.toList());
+    }
+
+    @Override
+    public CustomerPage findAll(int page, int size) {
+        log.info("fetching customers. page {}, size {}.", page, size);
+        Page<CustomerEntity> customerEntityPage =  customerRepository.findAll(PageRequest.of(page, size));
+
+        return buildCustomerPage(customerEntityPage);
+    }
+
+    private CustomerPage buildCustomerPage(Page<CustomerEntity> customerEntityPage) {
+        List<Customer> customers =  customerEntityPage.getContent()
+            .stream()
+            .map(mapper::toDto)
+                .collect(Collectors.toList());
+
+        CustomerPage customerPage = new CustomerPage();
+        customerPage.setCustomers(customers);
+        customerPage.setTotalPages((long) customerEntityPage.getTotalPages());
+        customerPage.setTotalElements((long) customerEntityPage.getTotalElements());
+        return customerPage;
     }
 
     @Override
