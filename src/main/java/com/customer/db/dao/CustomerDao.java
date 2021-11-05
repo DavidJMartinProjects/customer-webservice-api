@@ -34,7 +34,7 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
     @Override
     public List<Customer> findAll() {
-        log.info("fetching customers.");
+        log.debug("fetching customers.");
         return customerRepository.findAll()
             .stream()
             .map(mapper::toDto)
@@ -43,7 +43,7 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
     @Override
     public CustomerPage findAll(int page, int size) {
-        log.info("fetching customers. page {}, size {}.", page, size);
+        log.debug("fetching customers. page {}, size {}.", page, size);
         Page<CustomerEntity> customerEntityPage =  customerRepository.findAll(PageRequest.of(page, size));
 
         return buildCustomerPage(customerEntityPage);
@@ -64,7 +64,7 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
     @Override
     public Customer findById(long customerId) {
-        log.info("fetching customer with id: {}.", customerId);
+        log.debug("fetching customer with id: {}.", customerId);
         CustomerEntity entity = customerRepository.findById(customerId)
             .orElseThrow(() -> new CustomerServiceException(String.format(CUSTOMER_ID_DOES_NOT_EXIST, customerId)));
         return mapper.toDto(entity);
@@ -72,25 +72,25 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
     @Override
     public Customer save(Customer customer) {
-        log.info("saving customer with lastName: {}.", customer.getLastName());
+        log.debug("saving customer with lastName: {}.", customer.getLastName());
         return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     @Override
     public Customer update(Customer customer) {
-        log.info("updating customer with id: {}.", customer.getId());
+        log.debug("updating customer with id: {}.", customer.getId());
         return mapper.toDto(customerRepository.save(mapper.toEntity(customer)));
     }
 
     @Override
     public void deleteById(long customerId) {
-        log.info("deleting customer with id: {}.", customerId);
+        log.debug("deleting customer with id: {}.", customerId);
         customerRepository.deleteById(customerId);
     }
 
     @Override
     public void deleteAll() {
-        log.info("deleting all customers records.");
+        log.debug("deleting all customers records.");
         customerRepository.deleteAll();
     }
 
