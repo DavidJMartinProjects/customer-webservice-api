@@ -26,14 +26,17 @@ public class CustomerController implements CustomersApi {
     @Override
     public ResponseEntity<CustomerPage> getCustomers(Integer pageNumber, Integer pageSize, String sortKey, String sortDirection) {
         log.info("GET request: {}", CUSTOMERS_API_BASE_PATH);
-        PageParams pageParams =
-            PageParams.builder()
-                .pageNumber(pageNumber)
-                .pageSize(pageSize)
-                .sortKey(sortKey)
-                .sortDirection(sortDirection)
-                .build();
+        PageParams pageParams = buildPageParams(pageNumber, pageSize, sortKey, sortDirection);
         return ResponseEntity.ok(customerService.getCustomers(pageParams));
+    }
+
+    private PageParams buildPageParams(Integer pageNumber, Integer pageSize, String sortKey, String sortDirection) {
+        return PageParams.builder()
+            .pageNumber(pageNumber)
+            .pageSize(pageSize)
+            .sortKey(sortKey)
+            .sortDirection(sortDirection)
+            .build();
     }
 
     @Override
