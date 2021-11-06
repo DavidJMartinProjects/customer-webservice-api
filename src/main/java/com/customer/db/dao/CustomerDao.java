@@ -36,11 +36,11 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
     private CustomerRepository customerRepository;
 
     @Override
-    public CustomerPage findAll(int page, int size, String sortKey, String sortDirection) {
-        log.debug("fetching customers. page {}, size {}.", page, size);
+    public CustomerPage findAll(int pageNumber, int pageSize, String sortKey, String sortDirection) {
+        log.debug("fetching customers. page {}, size {}.", pageNumber, pageSize);
         Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortKey);
-        Pageable pageable = PageRequest.of(page, size, sort);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
         Page<CustomerEntity> customerEntityPage =  customerRepository.findAll(pageable);
         return buildCustomerPage(customerEntityPage);

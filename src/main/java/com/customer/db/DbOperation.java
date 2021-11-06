@@ -34,17 +34,17 @@ public interface DbOperation<T, U> {
     /**
      * Find all records (paginated).
      *
-     * @param page the page number
+     * @param pageNumber the pageNumber number
      *
-     * @param size the number of records per page
+     * @param pageSize the number of records per pageNumber
      *
-     * @param sortKey the number of records per page
+     * @param sortKey the number of records per pageNumber
      *
-     * @param sortDirection the number of records per page
+     * @param sortDirection the number of records per pageNumber
      *
-     * @return the page of records
+     * @return the pageNumber of records
      */
-    U findAll(int page, int size, String sortKey, String sortDirection);
+    U findAll(int pageNumber, int pageSize, String sortKey, String sortDirection);
 
     /**
      * Update a record.

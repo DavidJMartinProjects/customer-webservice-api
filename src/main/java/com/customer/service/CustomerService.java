@@ -7,7 +7,7 @@ import com.app.openapi.generated.model.CustomerPage;
  * @author davidjmartin
  */
 public interface CustomerService {
-    CustomerPage getCustomers(int page, int size, String sortKey, String sortDirection);
+    CustomerPage getCustomers(int pageNumber, int pageSize, String sortKey, String sortDirection);
     Customer saveCustomer(Customer customer);
     Customer findCustomerById(long id);
     Customer updateCustomerById(Customer customer);
