@@ -38,9 +38,13 @@ public interface DbOperation<T, U> {
      *
      * @param size the number of records per page
      *
+     * @param sortKey the number of records per page
+     *
+     * @param sortDirection the number of records per page
+     *
      * @return the page of records
      */
-    U findAll(int page, int size);
+    U findAll(int page, int size, String sortKey, String sortDirection);
 
     /**
      * Update a record.

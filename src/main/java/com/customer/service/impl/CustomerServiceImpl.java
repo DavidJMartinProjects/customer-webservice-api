@@ -23,8 +23,8 @@ public class CustomerServiceImpl implements CustomerService {
     private RequestValidator emailValidator;
 
     @Override
-    public CustomerPage getCustomers(int page, int size) {
-        return dbOperation.findAll(page, size);
+    public CustomerPage getCustomers(int page, int size, String sortKey, String sortDirection) {
+        return dbOperation.findAll(page, size, sortKey, sortDirection);
     }
 
     @Override

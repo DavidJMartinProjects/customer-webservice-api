@@ -29,6 +29,16 @@ paths:
           schema:
             type: integer
             format: int32
+        - name: sortKey
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: sortDirection
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         "400":
           description: Bad Request
