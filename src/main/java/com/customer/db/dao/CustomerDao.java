@@ -1,13 +1,8 @@
 package com.customer.db.dao;
 
-import com.app.openapi.generated.model.Customer;
-import com.app.openapi.generated.model.CustomerPage;
-import com.customer.db.DbOperation;
-import com.customer.db.dao.repository.CustomerRepository;
-import com.customer.exception.exceptions.CustomerServiceException;
-import com.customer.model.entity.CustomerEntity;
-import com.customer.model.mapper.CustomerMapper;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,8 +10,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import com.app.openapi.generated.model.Customer;
+import com.app.openapi.generated.model.CustomerPage;
+import com.customer.db.DbOperation;
+import com.customer.db.dao.repository.CustomerRepository;
+import com.customer.exception.exceptions.CustomerServiceException;
+import com.customer.model.entity.CustomerEntity;
+import com.customer.model.mapper.CustomerMapper;
+import com.customer.model.page.PageParams;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -26,7 +28,6 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CustomerDao implements DbOperation<Customer, CustomerPage> {
 
-    private static final String DEFAULT_SORT_FIELD = "id";
     private static final String CUSTOMER_ID_DOES_NOT_EXIST = "customer with id: %s does not exist.";
 
     @Autowired
@@ -36,11 +37,11 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
     private CustomerRepository customerRepository;
 
     @Override
-    public CustomerPage findAll(int pageNumber, int pageSize, String sortKey, String sortDirection) {
-        log.debug("fetching customers. page {}, size {}.", pageNumber, pageSize);
-        Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction, sortKey);
-        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+    public CustomerPage findAll(PageParams pageParams) {
+        log.debug("fetching customers with pagination params: {}.", pageParams);
+        Sort.Direction direction = "asc".equalsIgnoreCase(pageParams.getSortDirection()) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, pageParams.getSortKey());
+        Pageable pageable = PageRequest.of(pageParams.getPageNumber(), pageParams.getPageSize(), sort);
 
         Page<CustomerEntity> customerEntityPage =  customerRepository.findAll(pageable);
         return buildCustomerPage(customerEntityPage);

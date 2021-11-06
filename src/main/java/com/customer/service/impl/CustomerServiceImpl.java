@@ -3,6 +3,7 @@ package com.customer.service.impl;
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
 import com.customer.db.DbOperation;
+import com.customer.model.page.PageParams;
 import com.customer.service.CustomerService;
 import com.customer.validation.RequestValidator;
 import lombok.extern.slf4j.Slf4j;
@@ -23,8 +24,8 @@ public class CustomerServiceImpl implements CustomerService {
     private RequestValidator emailValidator;
 
     @Override
-    public CustomerPage getCustomers(int pageNumber, int pageSize, String sortKey, String sortDirection) {
-        return dbOperation.findAll(pageNumber, pageSize, sortKey, sortDirection);
+    public CustomerPage getCustomers(PageParams pageParams) {
+        return dbOperation.findAll(pageParams);
     }
 
     @Override

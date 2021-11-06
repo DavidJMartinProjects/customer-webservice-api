@@ -3,6 +3,7 @@ package com.customer.controller;
 import com.app.openapi.generated.api.CustomersApi;
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
+import com.customer.model.page.PageParams;
 import com.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,15 @@ public class CustomerController implements CustomersApi {
 
     @Override
     public ResponseEntity<CustomerPage> getCustomers(Integer pageNumber, Integer pageSize, String sortKey, String sortDirection) {
-        log.info("GET request: {} with params: pageNumber {}, pageSize {}.", CUSTOMERS_API_BASE_PATH, pageNumber, pageSize);
-        return ResponseEntity.ok(customerService.getCustomers(pageNumber, pageSize, sortKey, sortDirection));
+        log.info("GET request: {}", CUSTOMERS_API_BASE_PATH);
+        PageParams pageParams =
+            PageParams.builder()
+                .pageNumber(pageNumber)
+                .pageSize(pageSize)
+                .sortKey(sortKey)
+                .sortDirection(sortDirection)
+                .build();
+        return ResponseEntity.ok(customerService.getCustomers(pageParams));
     }
 
     @Override

@@ -1,8 +1,6 @@
 package com.customer.db;
 
-import org.springframework.data.domain.Page;
-
-import java.util.List;
+import com.customer.model.page.PageParams;
 
 /**
  * details supported db operations.
@@ -34,17 +32,11 @@ public interface DbOperation<T, U> {
     /**
      * Find all records (paginated).
      *
-     * @param pageNumber the pageNumber number
+     * @param pageParams Wrapper class for pagination parameters
      *
-     * @param pageSize the number of records per pageNumber
-     *
-     * @param sortKey the number of records per pageNumber
-     *
-     * @param sortDirection the number of records per pageNumber
-     *
-     * @return the pageNumber of records
+     * @return the page of records
      */
-    U findAll(int pageNumber, int pageSize, String sortKey, String sortDirection);
+    U findAll(PageParams pageParams);
 
     /**
      * Update a record.
