@@ -33,19 +33,19 @@ paths:
         "400":
           description: Bad Request
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
         "409":
           description: Conflict
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
         "500":
           description: Internal Server Error
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
         "200":
@@ -94,13 +94,13 @@ paths:
         '400':
           description: Bad Request
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
         '404':
           description: Not Found
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
       description: returns a customer by idó
@@ -125,13 +125,13 @@ paths:
         '400':
           description: Bad Request
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
         '404':
           description: Not Found
           content:
-            '*/*':
+            application/json:
               schema:
                 $ref: '#/components/schemas/ErrorData'
     delete:
