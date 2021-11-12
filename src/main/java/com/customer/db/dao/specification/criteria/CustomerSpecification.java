@@ -1,4 +1,4 @@
-package com.customer.db.dao.specification;
+package com.customer.db.dao.specification.criteria;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,10 @@ import javax.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
 
 import com.customer.db.dao.model.entity.CustomerEntity;
+import com.customer.db.dao.specification.enums.SearchOperation;
 
 /**
- * @author David
+ * @author DavidJMartin
  */
 public class CustomerSpecification implements Specification<CustomerEntity> {
 
@@ -33,7 +34,7 @@ public class CustomerSpecification implements Specification<CustomerEntity> {
         //create a new predicate list
         List<Predicate> predicates = new ArrayList<>();
 
-        //add add criteria to predicates
+        //add search criteria to predicates
         for (SearchCriteria criteria : searchCriteria) {
             if (criteria.getOperation().equals(SearchOperation.LIKE)) {
                 predicates.add(builder.like(

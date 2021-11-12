@@ -40,6 +40,10 @@ Integration testcases can be found at:
 
 
 <!-- 
+
+## Example API Usage:
+http://localhost:8080/customers?search=city:paris,firstName:Joe
+
 ## Deployment
 
 OS X, Windows, Linux:

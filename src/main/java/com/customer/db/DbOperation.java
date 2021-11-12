@@ -12,13 +12,15 @@ import com.app.openapi.generated.model.PageParams;
 public interface DbOperation<T, U> {
 
     /**
-     * Save a record.
+     * Find all records (paginated).
      *
-     * @param entity the record
+     * @param searchCriteria String containing optional searchCriteria details
      *
-     * @return the saved record
+     * @param pageParams Wrapper class specifying pagination parameters
+     *
+     * @return the page of records
      */
-    T save(T entity);
+    U findAll(String searchCriteria, PageParams pageParams);
 
     /**
      * Find a record by id.
@@ -30,15 +32,13 @@ public interface DbOperation<T, U> {
     T findById(long id);
 
     /**
-     * Find all records (paginated).
+     * Save a record.
      *
-     * @param searchCriteria String containing optional searchCriteria details
+     * @param entity the record
      *
-     * @param pageParams Wrapper class for pagination parameters
-     *
-     * @return the page of records
+     * @return the saved record
      */
-    U findAll(String searchCriteria, PageParams pageParams);
+    T save(T entity);
 
     /**
      * Update a record.

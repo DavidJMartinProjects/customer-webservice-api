@@ -1,12 +1,13 @@
-package com.customer.db.dao.specification;
+package com.customer.db.dao.specification.criteria;
 
+import com.customer.db.dao.specification.enums.SearchOperation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @author David
+ * @author DavidJMartin
  */
 @Data
 @Builder

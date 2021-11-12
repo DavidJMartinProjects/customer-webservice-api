@@ -1,8 +1,6 @@
 package com.customer.db.dao;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +16,8 @@ import com.app.openapi.generated.model.PageParams;
 import com.customer.db.DbOperation;
 import com.customer.db.dao.model.entity.CustomerEntity;
 import com.customer.db.dao.model.mapper.CustomerMapper;
-import com.customer.db.dao.specification.CustomerSpecification;
-import com.customer.db.dao.specification.SearchCriteria;
-import com.customer.db.dao.specification.SearchOperation;
 import com.customer.db.dao.repository.CustomerRepository;
+import com.customer.db.dao.specification.SpecificationFactory;
 import com.customer.exception.exceptions.CustomerServiceException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -33,11 +29,6 @@ import org.apache.commons.lang3.StringUtils;
 @Component
 @Slf4j
 public class CustomerDao implements DbOperation<Customer, CustomerPage> {
-
-    public static final int SEARCH_KEY_INDEX = 1;
-    public static final int SEARCH_VALUE_INDEX = 3;
-
-    public static final String KEY_VALUE_PAIR_REGEX = "(\\w+?)(:)(\\w+?),";
 
     @Autowired
     private CustomerMapper mapper;
@@ -57,25 +48,9 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
         if(StringUtils.isEmpty(searchCriteria)) {
             customerEntityPage = customerRepository.findAll(pageable);
         } else {
-            customerEntityPage = customerRepository.findAll(buildSpecification(searchCriteria), pageable);
+            customerEntityPage = customerRepository.findAll(SpecificationFactory.build(searchCriteria), pageable);
         }
         return buildCustomerPage(customerEntityPage);
-    }
-
-    private CustomerSpecification buildSpecification(String search) {
-        CustomerSpecification specification = new CustomerSpecification();
-        final Pattern pattern = Pattern.compile(KEY_VALUE_PAIR_REGEX);
-        Matcher matcher = pattern.matcher(search + ",");
-        while (matcher.find()) {
-            specification.add(
-                SearchCriteria.builder()
-                    .key(matcher.group(SEARCH_KEY_INDEX))
-                    .value(matcher.group(SEARCH_VALUE_INDEX))
-                    .operation(SearchOperation.LIKE)
-                    .build()
-            );
-        }
-        return specification;
     }
 
     private CustomerPage buildCustomerPage(Page<CustomerEntity> customerEntityPage) {
