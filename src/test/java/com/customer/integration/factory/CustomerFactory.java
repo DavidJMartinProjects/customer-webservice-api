@@ -1,17 +1,18 @@
 package com.customer.integration.factory;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
 import com.customer.db.DbOperation;
 import com.customer.db.dao.model.entity.CustomerEntity;
 import com.customer.db.dao.model.mapper.CustomerMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author DavidJMartin
@@ -56,10 +57,16 @@ public class CustomerFactory {
     }
 
     public Customer buildCustomer() {
-        return buildTestCustomers(1)
-            .stream()
-            .findFirst()
-            .orElse(new Customer());
+        return new Customer()
+            .id(1)
+            .firstName("David")
+            .lastName("Martin")
+            .address("Main St.")
+            .city("Athlone")
+            .country("Ireland")
+            .email("dm@email.com")
+            .image("https://bootdey.com/img/Content/avatar/avatar1.png");
     }
+
 
 }

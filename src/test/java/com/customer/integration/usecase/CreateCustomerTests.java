@@ -32,7 +32,7 @@ class CreateCustomerTests extends IntegrationTest {
             .expectBody()
             .jsonPath("$.url").value(Matchers.equalTo("POST request to : /customers"))
             .jsonPath("$.errorCode").value(Matchers.equalTo("request validation failure."))
-            .jsonPath("$.message").value(Matchers.equalTo("Provided email address: 'test-email-1' is already registered."))
+            .jsonPath("$.message").value(Matchers.equalTo("Provided email address: 'dm@email.com' is already registered."))
             .jsonPath("$.timestamp").isNotEmpty();
     }
 
@@ -168,10 +168,10 @@ class CreateCustomerTests extends IntegrationTest {
             .isCreated()
             .expectBody()
             .jsonPath("$.id").isNotEmpty()
-            .jsonPath("$.firstName").value(Matchers.equalTo("test-firstName-1"))
-            .jsonPath("$.lastName").value(Matchers.equalTo("test-lastName-1"))
-            .jsonPath("$.address").value(Matchers.equalTo("test-address-1"))
-            .jsonPath("$.country").value(Matchers.equalTo("test-country-1"))
+            .jsonPath("$.firstName").value(Matchers.equalTo("David"))
+            .jsonPath("$.lastName").value(Matchers.equalTo("Martin"))
+            .jsonPath("$.address").value(Matchers.equalTo("Main St."))
+            .jsonPath("$.country").value(Matchers.equalTo("Ireland"))
             .jsonPath("$.email").value(Matchers.equalTo("unique@email.com"));
     }
 

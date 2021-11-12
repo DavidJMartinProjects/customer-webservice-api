@@ -1,16 +1,3 @@
-DROP TABLE IF EXISTS customers;
-
-CREATE TABLE customers (
-  id INT AUTO_INCREMENT  PRIMARY KEY,
-  first_name VARCHAR(250) NOT NULL,
-  last_name VARCHAR(250) NOT NULL,
-  address VARCHAR(250) DEFAULT NULL,
-  city VARCHAR(250) DEFAULT NULL,
-  country VARCHAR(250) DEFAULT NULL,
-  email VARCHAR(250) DEFAULT NULL,
-  image VARCHAR(250) DEFAULT NULL
-);
-
 INSERT INTO customers (first_name, last_name, address, city, country, email, image) VALUES
   ('David', 'Martin', 'Main St.', 'Athlone', 'Ireland', 'dm@email.com', 'https://bootdey.com/img/Content/avatar/avatar1.png'),
   ('Vicky', 'Hulston', 'City Center', 'Athlone', 'Ireland', 'vh@email.com', 'https://bootdey.com/img/Content/avatar/avatar8.png'),
