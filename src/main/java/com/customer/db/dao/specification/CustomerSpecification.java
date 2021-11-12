@@ -1,4 +1,4 @@
-package com.customer.db.dao.query;
+package com.customer.db.dao.specification;
 
 import java.util.ArrayList;
 import java.util.List;

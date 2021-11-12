@@ -1,4 +1,4 @@
-package com.customer.db.dao.query;
+package com.customer.db.dao.specification;
 
 public enum SearchOperation {
     LIKE,
