@@ -2,7 +2,8 @@ package com.customer.service;
 
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
-import com.customer.model.page.PageParams;
+import com.app.openapi.generated.model.PageParams;
+
 
 /**
  * @author davidjmartin

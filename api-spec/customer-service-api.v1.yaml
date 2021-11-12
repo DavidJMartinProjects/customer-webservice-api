@@ -1,88 +1,12 @@
 openapi: 3.0.1
 info:
-  description: customer-service api docs
   title: OpenAPI definition
   version: v0
-  contact:
-    name: DavidJMartin
-  termsOfService: DavidJMartin
 servers:
-  - url: 'http://localhost:8080'
+  - url: http://localhost:8080
     description: Generated server url
 paths:
-  /customers:
-    get:
-      summary: ''
-      tags:
-        - customer-controller
-      operationId: getCustomers
-      parameters:
-        - name: page
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: size
-          in: query
-          required: true
-          schema:
-            type: integer
-            format: int32
-        - name: sortKey
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: sortDirection
-          in: query
-          required: true
-          schema:
-            type: string
-      responses:
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
-        "409":
-          description: Conflict
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
-        "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CustomerPage'
-    post:
-      tags:
-        - customer-controller
-      summary: ''
-      operationId: createCustomer
-      responses:
-        '201':
-          description: CREATED
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Customer'
-      description: creates a new customer
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Customer'
-  '/customers/{id}':
+  /customers/{id}:
     get:
       tags:
         - customer-controller
@@ -95,78 +19,178 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "409":
+          description: Conflict
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "500":
+          description: Internal Server Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "400":
+          description: Bad Request
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
-      description: returns a customer by idó
     put:
       tags:
         - customer-controller
-      summary: ''
       operationId: updateCustomerById
-      description: updates a customer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Customer'
+        required: true
       responses:
-        '200':
+        "409":
+          description: Conflict
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "500":
+          description: Internal Server Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "400":
+          description: Bad Request
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "200":
           description: OK
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Customer'
-        '400':
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
-        '404':
-          description: Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorData'
     delete:
       tags:
         - customer-controller
-      summary: ''
       operationId: deleteCustomerById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int32
       responses:
-        '204':
-          description: No Content
-        '404':
-          description: Not Found
-      description: deletes a customer by id
-    parameters:
-      - schema:
-          type: integer
-          format: int32
-        name: id
-        in: path
+        "409":
+          description: Conflict
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "500":
+          description: Internal Server Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "400":
+          description: Bad Request
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "200":
+          description: OK
+  /customers:
+    get:
+      tags:
+        - customer-controller
+      operationId: getCustomers
+      parameters:
+        - name: pageParams
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/PageParams'
+      responses:
+        "409":
+          description: Conflict
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "500":
+          description: Internal Server Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "400":
+          description: Bad Request
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "200":
+          description: OK
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/CustomerPage'
+    post:
+      tags:
+        - customer-controller
+      operationId: createCustomer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
         required: true
-        description: customer id
+      responses:
+        "409":
+          description: Conflict
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "500":
+          description: Internal Server Error
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "400":
+          description: Bad Request
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/ErrorData'
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
 components:
   schemas:
     ErrorData:
-      title: ErrorData
       type: object
       properties:
         url:
@@ -178,11 +202,11 @@ components:
         timestamp:
           type: string
     Customer:
-      title: Customer
       type: object
       properties:
         id:
           type: integer
+          format: int32
         firstName:
           type: string
         lastName:
@@ -197,6 +221,23 @@ components:
           type: string
         image:
           type: string
+    PageParams:
+      type: object
+      properties:
+        pageNumber:
+          type: integer
+          format: int32
+          default: 0
+        pageSize:
+          type: integer
+          format: int32
+          default: 10
+        sortKey:
+          type: string
+          default: 'id'
+        sortDirection:
+          type: string
+          default: 'ASC'
     CustomerPage:
       type: object
       properties:

@@ -17,7 +17,7 @@ import com.customer.db.dao.repository.CustomerRepository;
 import com.customer.exception.exceptions.CustomerServiceException;
 import com.customer.model.entity.CustomerEntity;
 import com.customer.model.mapper.CustomerMapper;
-import com.customer.model.page.PageParams;
+import com.app.openapi.generated.model.PageParams;
 import lombok.extern.slf4j.Slf4j;
 
 

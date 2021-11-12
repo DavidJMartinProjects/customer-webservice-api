@@ -1,22 +1,23 @@
 package com.customer.controller;
 
-import com.app.openapi.generated.api.CustomersApi;
-import com.app.openapi.generated.model.Customer;
-import com.app.openapi.generated.model.CustomerPage;
-import com.customer.model.page.PageParams;
-import com.customer.service.CustomerService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.app.openapi.generated.api.CustomersApi;
+import com.app.openapi.generated.model.Customer;
+import com.app.openapi.generated.model.CustomerPage;
+import com.app.openapi.generated.model.PageParams;
+import com.customer.service.CustomerService;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author davidjmartin
  */
 @RestController
 @Slf4j
-public class CustomerController implements CustomersApi {
+public class CustomerController implements CustomersApi{
 
     static final String CUSTOMERS_API_BASE_PATH = "/customers";
 
@@ -24,19 +25,10 @@ public class CustomerController implements CustomersApi {
     private CustomerService customerService;
 
     @Override
-    public ResponseEntity<CustomerPage> getCustomers(Integer pageNumber, Integer pageSize, String sortKey, String sortDirection) {
+    public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams) {
         log.info("GET request: {}", CUSTOMERS_API_BASE_PATH);
-        PageParams pageParams = buildPageParams(pageNumber, pageSize, sortKey, sortDirection);
+        log.info("default pageParams: {}: ", pageParams);
         return ResponseEntity.ok(customerService.getCustomers(pageParams));
-    }
-
-    private PageParams buildPageParams(Integer pageNumber, Integer pageSize, String sortKey, String sortDirection) {
-        return PageParams.builder()
-            .pageNumber(pageNumber)
-            .pageSize(pageSize)
-            .sortKey(sortKey)
-            .sortDirection(sortDirection)
-            .build();
     }
 
     @Override

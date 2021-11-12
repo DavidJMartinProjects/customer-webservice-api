@@ -1,6 +1,6 @@
 package com.customer.db;
 
-import com.customer.model.page.PageParams;
+import com.app.openapi.generated.model.PageParams;
 
 /**
  * details supported db operations.

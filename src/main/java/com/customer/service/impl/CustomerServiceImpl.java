@@ -3,7 +3,7 @@ package com.customer.service.impl;
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
 import com.customer.db.DbOperation;
-import com.customer.model.page.PageParams;
+import com.app.openapi.generated.model.PageParams;
 import com.customer.service.CustomerService;
 import com.customer.validation.RequestValidator;
 import lombok.extern.slf4j.Slf4j;
