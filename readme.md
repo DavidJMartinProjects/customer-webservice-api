@@ -10,8 +10,8 @@ With focus on clean, maintainable code & high value testcases.
 - Swagger UI
 - SpringBoot
 - Spring JPA
-- Flyway 
 - PostgreSQL
+- Flyway (db migrations)
 - H2 
 - Integration Testing
 
