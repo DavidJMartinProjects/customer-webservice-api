@@ -30,26 +30,26 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer saveCustomer(Customer customer) {
-        log.info("saving customer with id: {}.", customer.getId());
+        log.debug("saving customer with id: {}.", customer.getId());
         emailValidator.validate(customer);
         return dbOperation.save(customer);
     }
 
     @Override
     public Customer findCustomerById(long id) {
-        log.info("fetching customer with id: {}.", id);
+        log.debug("fetching customer with id: {}.", id);
         return dbOperation.findById(id);
     }
 
     @Override
     public Customer updateCustomerById(Customer customer) {
-        log.info("updating customer with id: {}.", customer.getId());
+        log.debug("updating customer with id: {}.", customer.getId());
         return dbOperation.update(customer);
     }
 
     @Override
     public void deleteCustomerById(long id) {
-        log.info("deleting customer with id: {}.", id);
+        log.debug("deleting customer with id: {}.", id);
         dbOperation.deleteById(id);
     }
 
