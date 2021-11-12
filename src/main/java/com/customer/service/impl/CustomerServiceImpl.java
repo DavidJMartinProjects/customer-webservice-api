@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerPage getCustomers(PageParams pageParams, String searchCriteria) {
-        return dbOperation.findAll(searchCriteria, pageParams);
+        return dbOperation.findAll(pageParams, searchCriteria);
     }
 
     @Override

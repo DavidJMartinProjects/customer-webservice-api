@@ -37,7 +37,7 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
     private CustomerRepository customerRepository;
 
     @Override
-    public CustomerPage findAll(String searchCriteria, PageParams pageParams) {
+    public CustomerPage findAll(PageParams pageParams, String searchCriteria) {
         log.debug("pagination params: {}, searchCriteria: {}", pageParams, searchCriteria);
         Pageable pageable = buildPageRequest(pageParams);
 

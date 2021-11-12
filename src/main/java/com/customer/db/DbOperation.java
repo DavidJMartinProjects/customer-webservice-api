@@ -20,7 +20,7 @@ public interface DbOperation<T, U> {
      *
      * @return the page of records
      */
-    U findAll(String searchCriteria, PageParams pageParams);
+    U findAll(PageParams pageParams, String searchCriteria);
 
     /**
      * Find a record by id.
