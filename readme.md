@@ -19,8 +19,8 @@ With focus on clean, maintainable code & high value testcases.
   -  The microservice exposes its api documentation through its actuator endpoints.
   -  To view the service api docs, run the project & navigate to the service management urls shown below.
      
-     - http://localhost:9090/actuator/openapi    
-     - http://localhost:9090/actuator/swaggerui  
+     - http://localhost:8080/v3/api-docs 
+     - http://localhost:8080/swagger-ui/index.html
 
 
 - The OpenAPI Spec can be found at the below path: 
