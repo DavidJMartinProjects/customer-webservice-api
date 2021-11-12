@@ -9,8 +9,6 @@ import com.app.openapi.generated.api.CustomersApi;
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
 import com.app.openapi.generated.model.PageParams;
-import com.customer.db.dao.model.mapper.CustomerMapper;
-import com.customer.db.dao.repository.CustomerRepository;
 import com.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,12 +23,6 @@ public class CustomerController implements CustomersApi{
 
     @Autowired
     private CustomerService customerService;
-
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
-    private CustomerMapper mapper;
 
     @Override
     public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams, String searchCriteria) {
@@ -51,14 +43,13 @@ public class CustomerController implements CustomersApi{
     }
 
     @Override
-    public ResponseEntity<Customer> updateCustomerById(Integer id, Customer customer) {
+    public ResponseEntity<Customer> updateCustomerById(Long id, Customer customer) {
         log.info("PUT request: {}.", CUSTOMERS_API_BASE_PATH + "/" + id);
-        customer.setId(id);
-        return ResponseEntity.ok(customerService.updateCustomerById(customer));
+        return ResponseEntity.ok(customerService.updateCustomerById(id, customer));
     }
 
     @Override
-    public ResponseEntity<Void> deleteCustomerById(Integer id) {
+    public ResponseEntity<Void> deleteCustomerById(Long id) {
         log.info("DELETE request: {}.", CUSTOMERS_API_BASE_PATH + "/" + id);
         customerService.deleteCustomerById(id);
         return ResponseEntity.noContent().build();

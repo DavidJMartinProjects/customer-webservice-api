@@ -12,6 +12,9 @@ public interface CustomerService {
     CustomerPage getCustomers(PageParams pageParams, String searchCriteria);
     Customer saveCustomer(Customer customer);
     Customer findCustomerById(long id);
-    Customer updateCustomerById(Customer customer);
+    Customer updateCustomerById(long id, Customer customer);
     void deleteCustomerById(long id);
+
+    // validations
+    boolean isEmailRegistered(String email);
 }

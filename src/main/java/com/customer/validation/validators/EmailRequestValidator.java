@@ -1,13 +1,13 @@
 package com.customer.validation.validators;
 
-import com.app.openapi.generated.model.Customer;
-import com.app.openapi.generated.model.CustomerPage;
-import com.customer.db.DbOperation;
-import com.customer.exception.exceptions.RequestValidationException;
-import com.customer.validation.RequestValidator;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.app.openapi.generated.model.Customer;
+import com.customer.exception.exceptions.RequestValidationException;
+import com.customer.service.CustomerService;
+import com.customer.validation.RequestValidator;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author DavidJMartin
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class EmailRequestValidator implements RequestValidator {
 
     @Autowired
-    private DbOperation<Customer, CustomerPage> dbOperation;
+    private CustomerService customerService;
 
     @Override
     public void validate(Customer customer) {
@@ -26,7 +26,7 @@ public class EmailRequestValidator implements RequestValidator {
     }
 
     private void checkIfEmailIsRegistered(String email) {
-        if(dbOperation.isEmailRegistered(email)) {
+        if(customerService.isEmailRegistered(email)) {
             log.info("Validation failed: email address is already registered.");
             throw new RequestValidationException("Provided email address: '" + email + "' is already registered.");
         }

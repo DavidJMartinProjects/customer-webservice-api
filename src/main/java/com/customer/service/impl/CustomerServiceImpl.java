@@ -42,8 +42,9 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Customer updateCustomerById(Customer customer) {
+    public Customer updateCustomerById(long id, Customer customer) {
         log.debug("updating customer with id: {}.", customer.getId());
+        customer.setId(id);
         return dbOperation.update(customer);
     }
 
@@ -51,6 +52,11 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomerById(long id) {
         log.debug("deleting customer with id: {}.", id);
         dbOperation.deleteById(id);
+    }
+
+    @Override
+    public boolean isEmailRegistered(String email) {
+        return dbOperation.isEmailRegistered(email);
     }
 
 }

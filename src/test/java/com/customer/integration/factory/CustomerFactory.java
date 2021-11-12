@@ -58,7 +58,7 @@ public class CustomerFactory {
 
     public Customer buildCustomer() {
         return new Customer()
-            .id(1)
+            .id(1L)
             .firstName("David")
             .lastName("Martin")
             .address("Main St.")
@@ -67,6 +67,5 @@ public class CustomerFactory {
             .email("dm@email.com")
             .image("https://bootdey.com/img/Content/avatar/avatar1.png");
     }
-
 
 }
