@@ -27,7 +27,6 @@ public class CustomerController implements CustomersApi{
     @Override
     public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams) {
         log.info("GET request: {}", CUSTOMERS_API_BASE_PATH);
-        log.info("default pageParams: {}: ", pageParams);
         return ResponseEntity.ok(customerService.getCustomers(pageParams));
     }
 
