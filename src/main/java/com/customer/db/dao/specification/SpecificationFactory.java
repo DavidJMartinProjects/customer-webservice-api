@@ -17,7 +17,7 @@ public class SpecificationFactory {
 
     private static final String KEY_VALUE_PAIR_REGEX = "(\\w+?)(:)(\\w+?),";
 
-    private SpecificationFactory() {};
+    private SpecificationFactory() {}
 
     public static CustomerSpecification build(String search) {
         CustomerSpecification specification = new CustomerSpecification();

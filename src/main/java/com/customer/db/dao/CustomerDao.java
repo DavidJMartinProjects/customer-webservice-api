@@ -39,10 +39,7 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
     @Override
     public CustomerPage findAll(String searchCriteria, PageParams pageParams) {
         log.debug("pagination params: {}, searchCriteria: {}", pageParams, searchCriteria);
-
-        Sort.Direction direction = "asc".equalsIgnoreCase(pageParams.getSortDirection()) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction, pageParams.getSortKey());
-        Pageable pageable = PageRequest.of(pageParams.getPageNumber(), pageParams.getPageSize(), sort);
+        Pageable pageable = buildPageRequest(pageParams);
 
         Page<CustomerEntity> customerEntityPage;
         if(StringUtils.isEmpty(searchCriteria)) {
@@ -51,6 +48,12 @@ public class CustomerDao implements DbOperation<Customer, CustomerPage> {
             customerEntityPage = customerRepository.findAll(SpecificationFactory.build(searchCriteria), pageable);
         }
         return buildCustomerPage(customerEntityPage);
+    }
+
+    private Pageable buildPageRequest(PageParams pageParams) {
+        Sort.Direction direction = "asc".equalsIgnoreCase(pageParams.getSortDirection()) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, pageParams.getSortKey());
+        return PageRequest.of(pageParams.getPageNumber(), pageParams.getPageSize(), sort);
     }
 
     private CustomerPage buildCustomerPage(Page<CustomerEntity> customerEntityPage) {
