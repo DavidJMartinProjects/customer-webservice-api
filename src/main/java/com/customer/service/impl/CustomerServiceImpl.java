@@ -24,8 +24,8 @@ public class CustomerServiceImpl implements CustomerService {
     private RequestValidator emailValidator;
 
     @Override
-    public CustomerPage getCustomers(PageParams pageParams) {
-        return dbOperation.findAll(pageParams);
+    public CustomerPage getCustomers(PageParams pageParams, String searchCriteria) {
+        return dbOperation.findAll(searchCriteria, pageParams);
     }
 
     @Override

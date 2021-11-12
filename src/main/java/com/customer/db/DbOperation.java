@@ -32,11 +32,13 @@ public interface DbOperation<T, U> {
     /**
      * Find all records (paginated).
      *
+     * @param searchCriteria String containing optional searchCriteria details
+     *
      * @param pageParams Wrapper class for pagination parameters
      *
      * @return the page of records
      */
-    U findAll(PageParams pageParams);
+    U findAll(String searchCriteria, PageParams pageParams);
 
     /**
      * Update a record.

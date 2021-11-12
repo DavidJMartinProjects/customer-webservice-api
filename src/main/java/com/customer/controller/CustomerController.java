@@ -9,6 +9,8 @@ import com.app.openapi.generated.api.CustomersApi;
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
 import com.app.openapi.generated.model.PageParams;
+import com.customer.db.dao.model.mapper.CustomerMapper;
+import com.customer.db.dao.repository.CustomerRepository;
 import com.customer.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,10 +26,16 @@ public class CustomerController implements CustomersApi{
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    @Autowired
+    private CustomerMapper mapper;
+
     @Override
-    public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams) {
+    public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams, String searchCriteria) {
         log.info("GET request: {}", CUSTOMERS_API_BASE_PATH);
-        return ResponseEntity.ok(customerService.getCustomers(pageParams));
+        return ResponseEntity.ok(customerService.getCustomers(pageParams, searchCriteria));
     }
 
     @Override
