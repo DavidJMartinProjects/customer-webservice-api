@@ -11,8 +11,8 @@ import org.modelmapper.ModelMapper;
 /**
  * @author davidjmartin
  */
-@Slf4j
 @Component
+@Slf4j
 public class CustomerMapper {
 
     @Autowired

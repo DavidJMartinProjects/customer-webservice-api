@@ -134,6 +134,12 @@ paths:
           schema:
             type: string
             default: ''
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+            default: ''
       responses:
         "409":
           description: Conflict

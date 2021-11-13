@@ -43,6 +43,8 @@ Integration testcases can be found at:
 
 ## Example API Usage:
 http://localhost:8080/customers?search=city:paris,firstName:Joe
+http://localhost:8080/customers?fields=id,lastName,firstName,email,city
+http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,firstName,email,city
 
 ## Deployment
 

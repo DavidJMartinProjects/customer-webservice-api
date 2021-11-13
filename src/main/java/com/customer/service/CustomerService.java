@@ -9,12 +9,12 @@ import com.app.openapi.generated.model.PageParams;
  * @author davidjmartin
  */
 public interface CustomerService {
-    CustomerPage getCustomers(PageParams pageParams, String searchCriteria);
+    CustomerPage getCustomers(PageParams pageParams, String searchCriteria, String fields);
     Customer saveCustomer(Customer customer);
     Customer findCustomerById(long id);
     Customer updateCustomerById(long id, Customer customer);
     void deleteCustomerById(long id);
 
-    // validations
+    // validation
     boolean isEmailRegistered(String email);
 }

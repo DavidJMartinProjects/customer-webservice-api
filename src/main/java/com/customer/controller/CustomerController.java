@@ -25,9 +25,9 @@ public class CustomerController implements CustomersApi{
     private CustomerService customerService;
 
     @Override
-    public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams, String searchCriteria) {
+    public ResponseEntity<CustomerPage> getCustomers(PageParams pageParams, String searchCriteria, String requiredFields) {
         log.info("GET request: {}", CUSTOMERS_API_BASE_PATH);
-        return ResponseEntity.ok(customerService.getCustomers(pageParams, searchCriteria));
+        return ResponseEntity.ok(customerService.getCustomers(pageParams, searchCriteria, requiredFields));
     }
 
     @Override

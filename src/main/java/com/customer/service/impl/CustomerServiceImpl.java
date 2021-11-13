@@ -1,14 +1,17 @@
 package com.customer.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.app.openapi.generated.model.Customer;
 import com.app.openapi.generated.model.CustomerPage;
-import com.customer.db.DbOperation;
 import com.app.openapi.generated.model.PageParams;
+import com.customer.db.DbOperation;
+import com.customer.filtering.FieldFilterUtil;
 import com.customer.service.CustomerService;
 import com.customer.validation.RequestValidator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author davidjmartin
@@ -23,9 +26,15 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private RequestValidator emailValidator;
 
+    @Autowired
+    private FieldFilterUtil fieldFilterUtil;
+
     @Override
-    public CustomerPage getCustomers(PageParams pageParams, String searchCriteria) {
-        return dbOperation.findAll(pageParams, searchCriteria);
+    public CustomerPage getCustomers(PageParams pageParams, String searchCriteria, String fields) {
+        if(StringUtils.isEmpty(fields)) {
+            return dbOperation.findAll(pageParams, searchCriteria);
+        }
+        return fieldFilterUtil.filter(fields, dbOperation.findAll(pageParams, searchCriteria));
     }
 
     @Override
