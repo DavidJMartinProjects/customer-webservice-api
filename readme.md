@@ -54,11 +54,6 @@ Integration testcases can be found at:
  -   src/test/java/com/customer/integration/usecase/
 
 
-## CI/CD Pipeline (using CircleCi)
- - https://app.circleci.com/pipelines/github/DavidJMartinProjects/customer-webservice   
-
-
-
 <!-- 
 
 ## Example API Usage:
