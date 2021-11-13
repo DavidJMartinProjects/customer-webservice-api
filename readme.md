@@ -57,7 +57,7 @@ With focus on clean, maintainable code & high value testcases.
   -  To view the service api docs, run the project & navigate to the service management urls shown below.
       ```   
      http://localhost:8080/v3/api-docs 
-     http://localhost:8080/swagger-ui/index.html
+     http://localhost:8080/swagger-ui.html
      ```
 
 
