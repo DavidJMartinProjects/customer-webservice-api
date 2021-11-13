@@ -62,7 +62,7 @@ With focus on clean, maintainable code & high value testcases.
 
 - The OpenAPI Spec can be found at the below path:
   ```
-  /src/main/resources/openapi-spec/
+  {root-directory}/openapi-spec/
   ``` 
 
 

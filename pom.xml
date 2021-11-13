@@ -148,7 +148,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>${project.basedir}/api-spec/customer-service-api.v1.yaml</inputSpec>
+                            <inputSpec>${project.basedir}/openapi-spec/customer-service-api.v1.yaml</inputSpec>
                             <generatorName>spring</generatorName>
                             <generateModels>true</generateModels>
                             <generateApis>true</generateApis>
