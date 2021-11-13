@@ -55,22 +55,23 @@ With focus on clean, maintainable code & high value testcases.
 ## API documentation
   -  The microservice exposes its api documentation via entry-points.
   -  To view the service api docs, run the project & navigate to the service management urls shown below.
-      ```   
+     ```   
      http://localhost:8080/v3/api-docs 
      http://localhost:8080/swagger-ui.html
      ```
 
 
-- The OpenAPI Spec can be found at the below path: 
-
-  -  /src/main/resources/openapi-spec/
+- The OpenAPI Spec can be found at the below path:
+  ```
+  /src/main/resources/openapi-spec/
+  ``` 
 
 
 ## Integration Tests:
 Integration testcases can be found at:
-
- -   src/test/java/com/customer/integration/usecase/
-
+  ```
+  src/test/java/com/customer/integration/usecase/
+  ```
 
 <!-- 
 
