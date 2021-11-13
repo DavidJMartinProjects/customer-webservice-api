@@ -12,6 +12,7 @@ With high focus on clean, maintainable code & behaviour driven testing.
 
 ## Technologies & Frameworks
 ### Development
+- Maven
 - Open API
 - Swagger UI
 - SpringBoot
@@ -20,11 +21,10 @@ With high focus on clean, maintainable code & behaviour driven testing.
 - H2 (test db)
 - Flyway (db migrations)
 - Integration Testing
-- Maven
 ### Deployment
+- Helm
 - Docker
 - Docker-Compose
-- Helm
 
 ##  Running the Project Locally
  -  Download this repository 
