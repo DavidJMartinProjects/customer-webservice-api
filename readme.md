@@ -1,8 +1,14 @@
 # Project Description
 A RESTful web based microservice used to perform CRUD operations on Customer records.
 
-This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ development approach.
-With focus on clean, maintainable code & behaviour driven testing.
+The API supports the following functionality:
+ - Pagination
+ - Querying
+ - Response field filtering
+
+This project was developed using an _"api-driven first"_ development approach, utilising OpenAPI.
+
+With high focus on clean, maintainable code & behaviour driven testing.
 
 ## Technologies & Frameworks
 
