@@ -10,9 +10,9 @@ With focus on clean, maintainable code & high value testcases.
 - Swagger UI
 - SpringBoot
 - Spring JPA
-- PostgreSQL
+- PostgreSQL (production db)
+- H2 (test db)
 - Flyway (db migrations)
-- H2 
 - Integration Testing
 
 ## How to run the Project locally
