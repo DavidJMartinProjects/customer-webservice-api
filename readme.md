@@ -21,7 +21,7 @@ With focus on clean, maintainable code & high value testcases.
     ```
     mvn clean install -DskipTests
     ```
- - From the root of the project, run the below docker-compose command
+ -  Run the below docker-compose command
     ```
     docker-compose up
     ```    
