@@ -56,6 +56,16 @@ Integration testcases can be found at:
 
 <!-- 
 
+docker pull postgres:11
+docker run --name dev-postgres -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassword -d postgres:11
+# CREATE db coursedb
+docker exec dev-postgres psql -U postgres -c"CREATE DATABASE coursedb" postgres
+
+C:\Users\Dave> docker exec dev-postgres psql -U postgres -c"DROP DATABASE mydb" postgres
+DROP DATABASE
+C:\Users\Dave> docker exec dev-postgres psql -U postgres -c"CREATE DATABASE mydb" postgres
+CREATE DATABASE
+
 ## Example API Usage:
 http://localhost:8080/customers?search=city:paris,firstName:Joe
 http://localhost:8080/customers?fields=id,lastName,firstName,email,city
