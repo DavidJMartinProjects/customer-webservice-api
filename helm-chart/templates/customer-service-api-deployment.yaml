@@ -24,7 +24,7 @@ spec:
         io.kompose.service: customer-service-api
     spec:
       containers:
-        - image: davidjmartin/customer-service:latest
+        - image: davidjmartin/customer-service-api:latest
           imagePullPolicy: Never
           name: customer-service-api
           ports:
