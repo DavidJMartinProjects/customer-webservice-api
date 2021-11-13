@@ -28,7 +28,7 @@ With high focus on clean, maintainable code & behaviour driven testing.
 
 ##  Running the Project Locally
  -  Download this repository 
- -  Build the project using the below command
+ -  Build the project using Maven using the below command
     ```
     mvn clean install -DskipTests
     ```
