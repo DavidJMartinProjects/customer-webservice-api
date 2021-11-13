@@ -1,4 +1,4 @@
-## Project Description
+# Project Description
 A RESTful web based microservice used to perform CRUD operations on Customer records.
 
 This project demonstrates the development of a RESTful web-service using an _"api-driven first"_ approach.
@@ -15,12 +15,32 @@ With focus on clean, maintainable code & high value testcases.
 - H2 
 - Integration Testing
 
+## Example API Usage:
+
+ - <b>Querying</b> Customer records using the 'search' parameter
+    ```
+    http://localhost:8080/customers?search=city:paris,firstName:Joe
+    ```
+- <b>Filtering</b> Customer response fields using the 'fields' parameter
+    ```
+    http://localhost:8080/customers?fields=id,lastName,firstName,email,city
+    ```
+- <b>Pagination</b> support by specifying page the desired page parameters
+    ```
+    http://localhost:8080/customers?pageNumber=1&pageSize=10&sortKey=id&sortDirection=DESC
+    ```
+- Example api call using both querying and field filtering 
+    ```
+    http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,firstName,email,city
+    ```
+
 ## API documentation
-  -  The microservice exposes its api documentation through its actuator endpoints.
+  -  The microservice exposes its api documentation via entry-points.
   -  To view the service api docs, run the project & navigate to the service management urls shown below.
-     
-     - http://localhost:8080/v3/api-docs 
-     - http://localhost:8080/swagger-ui/index.html
+      ```   
+     http://localhost:8080/v3/api-docs 
+     http://localhost:8080/swagger-ui/index.html
+     ```
 
 
 - The OpenAPI Spec can be found at the below path: 
