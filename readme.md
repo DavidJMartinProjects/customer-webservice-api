@@ -15,6 +15,24 @@ With focus on clean, maintainable code & high value testcases.
 - H2 
 - Integration Testing
 
+## How to run the Project locally
+ -  Download this repository 
+ -  Build the project using the below command
+    ```
+    mvn clean install -DskipTests
+    ```
+ - From the root of the project, run the below docker-compose command
+    ```
+    docker-compose up
+    ```    
+ - The service is then accessible from port <b>8080</b> of your <b>localhost</b>
+   
+
+ - Open a browser and visit the below URL to confirm
+    ```
+    http://localhost:8080/customers
+    ```
+
 ## Example API Usage:
 
  - <b>Querying</b> Customer records using the 'search' parameter
