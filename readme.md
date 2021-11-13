@@ -25,7 +25,7 @@ With focus on clean, maintainable code & high value testcases.
     ```
     docker-compose up
     ```    
- - The service is then accessible from port <b>8080</b> of your <b>localhost</b>
+ - The service is now accessible from port <b>8080</b> of your <b>localhost</b>
    
 
  - Open a browser and visit the below URL to confirm
