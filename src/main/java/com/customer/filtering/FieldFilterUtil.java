@@ -34,7 +34,7 @@ public class FieldFilterUtil {
     public CustomerPage filter(String fields, CustomerPage customerPage) {
         List<Customer> filteredCustomers =
             customerPage.getCustomers().stream()
-                .map(e -> mapper.toFilter(e))
+                .map(customerDto -> mapper.toResource(customerDto))
                 .map(customerResource -> extractFields(fields, customerResource))
                 .map(jsonString -> mapper.toWrapper(jsonString))
                 .collect(Collectors.toList());

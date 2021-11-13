@@ -26,7 +26,7 @@ public class ResourceMapper {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public CustomerResource toFilter(Customer customer) {
+    public CustomerResource toResource(Customer customer) {
         log.debug("mapping customer entity with id: {} to dto.", customer.getId());
         return modelMapper.map(customer, CustomerResource.class);
     }
