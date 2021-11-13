@@ -3,7 +3,7 @@ version: '3.1'
 services:
   customer-service-api:
     container_name: customer-service-api
-    image: davidjmartin/customer-service:latest
+    image: davidjmartin/customer-service-api:latest
     build: ./
     ports:
       - "8080:8080"
