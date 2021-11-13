@@ -32,7 +32,7 @@ public class CustomerSpecification implements Specification<CustomerEntity> {
     public Predicate toPredicate(Root<CustomerEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
         // create a new predicate list
         List<Predicate> predicates = new ArrayList<>();
-        // add search criteria to predicates
+        // populate predicates based on searchCriteria
         for (SearchCriteria criteria : searchCriteria) {
             if (criteria.getOperation().equals(SearchOperation.LIKE)) {
                 predicates.add(builder.like(
