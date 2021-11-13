@@ -30,9 +30,9 @@ public class CustomerSpecification implements Specification<CustomerEntity> {
 
     @Override
     public Predicate toPredicate(Root<CustomerEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        //create a new predicate list
+        // create a new predicate list
         List<Predicate> predicates = new ArrayList<>();
-        //add search criteria to predicates
+        // add search criteria to predicates
         for (SearchCriteria criteria : searchCriteria) {
             if (criteria.getOperation().equals(SearchOperation.LIKE)) {
                 predicates.add(builder.like(
