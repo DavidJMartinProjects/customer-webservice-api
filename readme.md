@@ -11,7 +11,7 @@ This project was developed using an _"api-driven first"_ development approach, u
 With high focus on clean, maintainable code & behaviour driven testing.
 
 ## Technologies & Frameworks
-
+### Development
 - Open API
 - Swagger UI
 - SpringBoot
@@ -20,6 +20,8 @@ With high focus on clean, maintainable code & behaviour driven testing.
 - H2 (test db)
 - Flyway (db migrations)
 - Integration Testing
+- Maven
+### Deployment
 - Docker
 - Docker-Compose
 - Helm
