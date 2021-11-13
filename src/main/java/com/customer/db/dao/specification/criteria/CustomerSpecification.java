@@ -30,7 +30,6 @@ public class CustomerSpecification implements Specification<CustomerEntity> {
 
     @Override
     public Predicate toPredicate(Root<CustomerEntity> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
-        // create a new predicate list
         List<Predicate> predicates = new ArrayList<>();
         // populate predicates based on searchCriteria
         for (SearchCriteria criteria : searchCriteria) {
