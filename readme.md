@@ -15,7 +15,7 @@ With focus on clean, maintainable code & high value testcases.
 - Flyway (db migrations)
 - Integration Testing
 
-## How to run the Project locally
+##  Running the project locally
  -  Download this repository 
  -  Build the project using the below command
     ```
