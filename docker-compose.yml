@@ -1,15 +1,18 @@
 version: '3.1'
+
 services:
-  app:
-    container_name: app-springboot-postgresql
-    image: davidjmartin/customer-service
+  customer-service-api:
+    container_name: customer-service-api
+    image: davidjmartin/customer-service:latest
     build: ./
     ports:
       - "8080:8080"
     depends_on:
-      - dbpostgresql
-  dbpostgresql:
-    image: postgres
+      - db-postgresql
+
+  db-postgresql:
+    container_name: db-postgresql
+    image: postgres:14
     ports:
       - "5432:5432"
     environment:
