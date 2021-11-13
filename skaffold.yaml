@@ -4,11 +4,13 @@ metadata:
   name: customer-webservice
 build:
   artifacts:
-  - image: postgres
+  - image: davidjmartin/customer-service-api
     docker:
       dockerfile: Dockerfile
 deploy:
   kubectl:
     manifests:
-    - k8/customer-service.deployment.yaml
-    - k8/postgres-db-deployment.yaml
+    - helm-chart/templates/customer-service-api-deployment.yaml
+    - helm-chart/templates/customer-service-api-service.yaml
+    - helm-chart/templates/db-postgresql-deployment.yaml
+    - helm-chart/templates/db-postgresql-service.yaml
