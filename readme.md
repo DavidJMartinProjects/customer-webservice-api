@@ -49,7 +49,7 @@ With focus on clean, maintainable code & high value testcases.
     ```
 - Example api call using both querying and field filtering 
     ```
-    http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,firstName,email,city
+    http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,email,city
     ```
 
 ## API documentation
