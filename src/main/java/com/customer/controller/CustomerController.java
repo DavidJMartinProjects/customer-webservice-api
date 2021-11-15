@@ -3,6 +3,7 @@ package com.customer.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.openapi.generated.api.CustomersApi;
@@ -17,6 +18,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @RestController
 @Slf4j
+@CrossOrigin
 public class CustomerController implements CustomersApi{
 
     static final String CUSTOMERS_API_BASE_PATH = "/customers";
