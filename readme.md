@@ -64,7 +64,7 @@ With high focus on clean, maintainable code & behaviour driven testing.
 
 ## API documentation
   -  The microservice exposes its api documentation via swagger.
-  -  To view the service api docs, run the project locally & navigate to the url shown below.
+  -  To view the api docs, run the project locally & navigate to the url shown below.
      ```
      http://localhost:8080/swagger-ui.html
      ```
