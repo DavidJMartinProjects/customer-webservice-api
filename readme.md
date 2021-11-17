@@ -75,8 +75,15 @@ With high focus on clean, maintainable code & behaviour driven testing.
   {root-directory}/openapi-spec/
   ``` 
 
+## Database Migration
+  - The database schema is built on startup using Flyway SQL scripts.
+  - The Flyway migration scripts can be found at the below path:
+    ```
+    {root-directory}/src/main/resources/db/migration
+    ``` 
 
-## Integration Tests:
+
+## Integration Tests
 Integration testcases can be found at:
   ```
   {root-directory}/src/test/java/com/customer/integration/usecase/
