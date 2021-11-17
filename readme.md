@@ -12,7 +12,6 @@ With high focus on clean, maintainable code & behaviour driven testing.
 
 ## Technologies & Frameworks
 ### Development
-- Maven
 - Open API
 - Swagger UI
 - SpringBoot
@@ -28,7 +27,7 @@ With high focus on clean, maintainable code & behaviour driven testing.
 
 ##  Running the Project Locally
  -  Download this repository 
- -  Build the project using Maven using the below command
+ -  Build the project with Maven using the below command
     ```
     mvn clean install -DskipTests
     ```
@@ -64,8 +63,8 @@ With high focus on clean, maintainable code & behaviour driven testing.
     ```
 
 ## API documentation
-  -  The microservice exposes its api documentation via entry-points.
-  -  To view the service api docs, run the project & navigate to the service management urls shown below.
+  -  The microservice exposes its api documentation via swagger.
+  -  To view the service api docs, run the project locally & navigate to the url shown below.
      ```
      http://localhost:8080/swagger-ui.html
      ```
@@ -80,7 +79,7 @@ With high focus on clean, maintainable code & behaviour driven testing.
 ## Integration Tests:
 Integration testcases can be found at:
   ```
-  src/test/java/com/customer/integration/usecase/
+  {root-directory}/src/test/java/com/customer/integration/usecase/
   ```
 
 <!-- 
