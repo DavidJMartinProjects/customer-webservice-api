@@ -84,10 +84,10 @@ With high focus on clean, maintainable code & behaviour driven testing.
 
 
 ## Integration Tests
-Integration testcases can be found at:
-  ```
-  {root-directory}/src/test/java/com/customer/integration/usecase/
-  ```
+ - Integration testcases can be found at:
+    ```
+    {root-directory}/src/test/java/com/customer/integration/usecase/
+    ```
 
 <!-- 
 
