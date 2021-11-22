@@ -2,9 +2,9 @@
 A RESTful web based microservice used to perform CRUD operations on Customer records.
 
 The API supports the following functionality:
- - Pagination
- - Querying
- - Response field filtering
+ - <b>Pagination</b>
+ - <b>Querying</b>
+ - <b>Response field filtering</b>
 
 This project was developed using an _"api-driven first"_ development approach, utilising OpenAPI.
 
