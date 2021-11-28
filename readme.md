@@ -8,7 +8,39 @@ The API supports the following functionality:
 
 This project was developed using an _"api-driven first"_ development approach, utilising OpenAPI.
 
-With high focus on clean, maintainable code & behaviour driven testing.
+With high focus on clean, maintainable code & behavior driven testing.
+
+## Example API Usage:
+
+ - <b>Querying</b> Customer records using the 'search' parameter
+    ```
+    http://localhost:8080/customers?search=city:paris,firstName:Joe
+    ```
+- <b>Filtering</b> Customer response fields using the 'fields' parameter
+    ```
+    http://localhost:8080/customers?fields=id,lastName,firstName,email,city
+    ```
+- <b>Pagination</b> support by specifying page the desired page parameters
+    ```
+    http://localhost:8080/customers?pageNumber=1&pageSize=10&sortKey=id&sortDirection=DESC
+    ```
+- Example api call using both querying and field filtering 
+    ```
+    http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,email,city
+    ```
+
+## API documentation
+  -  The microservice exposes its api documentation via swagger.
+  -  To view the api docs, run the project locally & navigate to the url shown below.
+     ```
+     http://localhost:8080/swagger-ui.html
+     ```
+
+
+- The OpenAPI Spec can be found at the below path:
+  ```
+  {root-directory}/openapi-spec/
+  ``` 
 
 ## Technologies & Frameworks
 ### Development
@@ -42,38 +74,6 @@ With high focus on clean, maintainable code & behaviour driven testing.
     ```
     http://localhost:8080/customers
     ```
-
-## Example API Usage:
-
- - <b>Querying</b> Customer records using the 'search' parameter
-    ```
-    http://localhost:8080/customers?search=city:paris,firstName:Joe
-    ```
-- <b>Filtering</b> Customer response fields using the 'fields' parameter
-    ```
-    http://localhost:8080/customers?fields=id,lastName,firstName,email,city
-    ```
-- <b>Pagination</b> support by specifying page the desired page parameters
-    ```
-    http://localhost:8080/customers?pageNumber=1&pageSize=10&sortKey=id&sortDirection=DESC
-    ```
-- Example api call using both querying and field filtering 
-    ```
-    http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,email,city
-    ```
-
-## API documentation
-  -  The microservice exposes its api documentation via swagger.
-  -  To view the api docs, run the project locally & navigate to the url shown below.
-     ```
-     http://localhost:8080/swagger-ui.html
-     ```
-
-
-- The OpenAPI Spec can be found at the below path:
-  ```
-  {root-directory}/openapi-spec/
-  ``` 
 
 ## Database Migration
   - The database schema is built on startup using Flyway SQL scripts.
