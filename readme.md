@@ -20,7 +20,7 @@ With high focus on clean, maintainable code & behavior driven testing.
     ```
     http://localhost:8080/customers?fields=id,lastName,firstName,email,city
     ```
-- <b>Pagination</b> support by specifying page the desired page parameters
+- <b>Pagination</b> support by specifying the desired page parameters
     ```
     http://localhost:8080/customers?pageNumber=1&pageSize=10&sortKey=id&sortDirection=DESC
     ```
