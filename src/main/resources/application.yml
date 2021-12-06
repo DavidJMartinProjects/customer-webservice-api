@@ -1,0 +1,16 @@
+flyway:
+    baseline-on-migrate: true
+    enabled: true
+    outputQueryResults: true
+logging:
+    level:
+        root: INFO
+spring:
+    datasource:
+        password: password
+        url: jdbc:postgresql://db-postgresql:5432/mydb
+        username: postgres
+    jpa:
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
