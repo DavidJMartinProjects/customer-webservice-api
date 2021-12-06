@@ -14,9 +14,9 @@ With high focus on clean, maintainable code & behavior driven testing.
 
  - <b>Querying</b> Customer records using the 'search' parameter
     ```
-    http://localhost:8080/customers?search=city:paris,firstName:Joe
+    http://localhost:8080/customers?search=city=paris,firstName=Joe
     ```
-- <b>Filtering</b> Customer response fields using the 'fields' parameter
+- <b>Filtering</b> response fields using the 'fields' parameter
     ```
     http://localhost:8080/customers?fields=id,lastName,firstName,email,city
     ```
@@ -26,7 +26,7 @@ With high focus on clean, maintainable code & behavior driven testing.
     ```
 - Example api call using both querying and field filtering 
     ```
-    http://localhost:8080/customers?search=city:athlone,lastName:hulston&fields=id,lastName,email,city
+    http://localhost:8080/customers?search=city=athlone,lastName=hulston&fields=id,lastName,email,city
     ```
 
 ## API documentation

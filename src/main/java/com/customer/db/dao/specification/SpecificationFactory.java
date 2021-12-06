@@ -12,7 +12,7 @@ import com.customer.db.dao.specification.enums.SearchOperation;
  */
 public class SpecificationFactory {
 
-    private static final String KEY_VALUE_PAIR_REGEX = "(\\w+?)(:)(\\w+?),";
+    private static final String KEY_VALUE_PAIR_REGEX = "(\\w+?)(=)(\\w+?),";
 
     private static final int SEARCH_KEY_INDEX = 1;
     private static final int SEARCH_VALUE_INDEX = 3;

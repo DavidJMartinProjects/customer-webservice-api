@@ -115,12 +115,6 @@
             <artifactId>springdoc-openapi-ui</artifactId>
             <version>${springdoc-openapi-ui.version}</version>
         </dependency>
-        <dependency>
-            <groupId>capital.scalable</groupId>
-            <artifactId>spring-auto-restdocs-core</artifactId>
-            <version>${spring-auto-restdocs-core.version}</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
 
     <build>
